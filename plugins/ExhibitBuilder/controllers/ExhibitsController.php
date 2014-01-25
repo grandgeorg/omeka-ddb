@@ -64,6 +64,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
     public function showitemAction()
     {
+        
         $itemId = $this->_getParam('item_id');
         $item = $this->_helper->db->findById($itemId, 'Item');
 
@@ -78,6 +79,33 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             fire_plugin_hook('show_exhibit_item',  array('item' => $item, 'exhibit' => $exhibit));
 
             return $this->renderExhibit(compact('exhibit', 'item'), 'item');
+        } else {
+            $this->_helper->flashMessenger(__('This item is not used within this exhibit.'), 'error');
+            throw new Omeka_Controller_Exception_403;
+        }
+    }
+
+    public function showajaxitemAction()
+    {
+        
+        // var_dump($this->view);
+        $itemId = $this->_getParam('item_id');
+        $item = $this->_helper->db->findById($itemId, 'Item');
+
+        $exhibit = $this->_findByExhibitSlug();
+        if (!$exhibit) {
+            throw new Omeka_Controller_Exception_404;
+        }
+
+        if ($item && $exhibit->hasItem($item) ) {
+
+            //Plugin hooks
+            // fire_plugin_hook('show_exhibit_item',  array('item' => $item, 'exhibit' => $exhibit));
+            // var_dump($this->view);
+
+            // return $this->renderExhibit(compact('exhibit', 'item'), 'item');
+            $this->view->assign(compact('exhibit', 'item'));
+            return $this->render();
         } else {
             $this->_helper->flashMessenger(__('This item is not used within this exhibit.'), 'error');
             throw new Omeka_Controller_Exception_403;
