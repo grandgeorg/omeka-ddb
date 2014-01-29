@@ -98,7 +98,7 @@
                 var linkIcon = '<i class="icon-earth"></i> ';
                 //  copyright
                 if (typeof(this.dataset.copyright) != 'undefined' && this.dataset.copyright.length > 0) {
-                    copyright = '<div class="ddb-omkea-colorbox-copyright">&copy; ' + this.dataset.copyright + '</div>';
+                    copyright = '<div class="ddb-omkea-colorbox-copyright">' + this.dataset.copyright + '</div>';
                     copyrightTrigger = '<div class="ddb-omkea-colorbox-copyright-trigger">&copy;</div>';
                 }
                 //  link
