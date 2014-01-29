@@ -56,26 +56,23 @@
                     $('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
                     return false;
                 });
-            });
-        </script>
-        <script type="text/javascript">
-            jQuery.gina = {
-                sizeInlineLightboxImage : function(loaded) {
-                    var winW = $(window).innerWidth();
-                    var winH = $(window).innerHeight();
-                    if (winH < $(window).height() && winW < $(window).width()) {
-                        winW = $(window).width();
-                        winH = $(window).height();
+
+                jQuery.gina = {
+                    sizeInlineLightboxImage : function(loaded) {
+                        var winW = $(window).innerWidth();
+                        var winH = $(window).innerHeight();
+                        if (winH < $(window).height() && winW < $(window).width()) {
+                            winW = $(window).width();
+                            winH = $(window).height();
+                        }
+                        if(!loaded) {
+                            $(window).resize(function() {
+                                jQuery.gina.sizeInlineLightboxImage(!loaded);
+                            });
+                        } 
+                        $('.inline-lightbox-img').css('max-height', (winH-80));
                     }
-                    if(!loaded) {
-                        $(window).resize(function() {
-                            jQuery.gina.sizeInlineLightboxImage(!loaded);
-                        });
-                    } 
-                    $('.inline-lightbox-img').css('max-height', (winH-80));
                 }
-            }
-            $(document).ready(function(){
                 jQuery.gina.sizeInlineLightboxImage();
             });
 

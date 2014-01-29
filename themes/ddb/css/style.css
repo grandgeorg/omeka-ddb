@@ -626,35 +626,15 @@
 .ddb-omkea-colorbox-copyright-trigger {
     font-size: 26px;
     margin: 0 8px 0 0;
-    /*padding-bottom: 6px;*/
 }
 
 .ddb-omkea-colorbox-title, .ddb-omkea-colorbox-copyright {
     display: none;
     position: relative;
-    /*background-color: #fff;*/
     background-color: rgba(255, 255, 255, 0.6);
     color: #333;
     padding: 4px 4px 12px 4px;
     text-align: center;
-    /*border: 2px solid #f30;*/
-    /*display: block;*/
-    /*font-size: 14px; */
-    /*line-height: 20px;*/
-}
-.ddb-omkea-colorbox-title { 
-    /*color: #000; */
-    /*font-size: 16px; */
-}
-.ddb-omkea-colorbox-copyright {
-    /*display: none;*/
-    /*float: right;*/
-    /*font-size: 10.5px; */
-    /*margin-right: 0;*/
-}
-.ddb-omkea-colorbox-link { 
-    /*float: right;*/
-    /*margin-right: 27px;*/
 }
 /* END colorbox */
 

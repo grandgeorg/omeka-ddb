@@ -38,11 +38,39 @@
 <!-- end footer -->
 
     <script type="text/javascript">
-    var offsetX = 80;
-    var offsetY = 90;
-    var winW = 0;
-    var winH = 0;
     $(document).ready(function() {
+
+        /* GINA Grandgeorg Internet Application object */
+        if ($.Gina) {
+            $.Gina = $.Gina;
+        } else {
+            $.Gina = {
+                offsetX: 63, /*63*/
+                offsetY: 95, /*95*/
+                winW: 0,
+                winH: 0,
+                setWindowSizes: function(loaded) {
+                    this.winW = $(window).innerWidth();
+                    this.winH = $(window).innerHeight();
+                    if (this.winH < $(window).height() && this.winW < $(window).width()) {
+                        this.winW = $(window).width();
+                        this.winH = $(window).height();
+                    }
+                    this.winW = this.winW - this.offsetX;
+                    this.winH = this.winH - this.offsetY;
+                    // if(!loaded) {
+                    //     $(window).resize(function() {
+                    //         $.Gina.setWindowSizes(!loaded);
+                    //     });
+                    // }
+                }
+
+
+            }
+        }
+        $.Gina.setWindowSizes();
+
+
         /* Toottip - JQueryUI */
         $('nav').tooltip({ 
             tooltipClass: "ddb-omeka-tooltip-styling",
@@ -141,17 +169,9 @@
                     $('.ddb-omkea-colorbox-copyright').filter(':visible').toggle();
                     $('.ddb-omkea-colorbox-title').toggle();
                 });
+                $('#cboxLoadedContent').css('overflow-x', 'hidden');
             }
         });
-
-        winW = $(window).innerWidth();
-        winH = $(window).innerHeight();
-        if (winH < $(window).height() && winW < $(window).width()) {
-            winW = $(window).width();
-            winH = $(window).height();
-        }
-        winW = winW - offsetX;
-        winH = winH - offsetY;
 
 
     });
