@@ -20,6 +20,9 @@ foreach ($files as $file) {
 <div class="inline-lightbox-container" style="min-width:280px; min-height:100px;">
 <?php echo files_for_item(array('imageSize' => 'fullsize', 'linkToFile' => true), 
     array('class'=>'inline-lightbox-element')); ?></div>
+
+<!-- <div class="foo">fooooooooooooooo</div> -->
+
 <script type="text/javascript">
     $(document).ready(function() {
         var mediaWidth = <?php echo $width; ?>;
@@ -48,5 +51,14 @@ foreach ($files as $file) {
             $('.inline-lightbox-container').css({'height': mediaHeight});
         }
         // $.colorbox.resize();
+
+
+
+        
+        // $('.foo').click(function() {
+        //     // $('.ddb-omkea-colorbox-copyright').toggle();
+        //     alert('fooooooooooo');
+        // });
+
     });
 </script>

@@ -87,45 +87,57 @@
         /*  Lightbox - ColorBox  */
         $(".ddb-omeka-gallery a").colorbox({
             rel:'ddb-omake-colorbox', 
-                // inline:true, 
-                maxWidth:"100%", 
-                maxHeight:"100%",
-                // onComplete:function(){ console.log(this); },
-                title: function(){
-                    var title = '';
-                    var copyright = '';
-                    var link = '';
-                    if (typeof(this.dataset.copyright) != 'undefined' && this.dataset.copyright.length > 0) {
-                        copyright = '<div class="ddb-omkea-colorbox-copyright">&copy; ' + this.dataset.copyright + '</div>';
-                    }
-                    if (typeof(this.dataset.linktext) != 'undefined' && this.dataset.linktext.length > 0) {
-                        link = this.dataset.linktext;
-                    }
-                    if (typeof(this.dataset.linkurl) != 'undefined' && this.dataset.linkurl.length > 0) {
-                        if (link.length == 0) {
-                            if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
-                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + '">' + this.dataset.linkurl + '</a>';
-                            } else {
-                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '">' + this.dataset.linkurl + '</a>';
-                            }
+            maxWidth:"100%", 
+            maxHeight:"100%",
+            title: function(){
+                var title = '';
+                var copyright = '';
+                var link = '';
+                var linkIcon = '<i class="icon-earth"></i> ';
+                //  copyright
+                if (typeof(this.dataset.copyright) != 'undefined' && this.dataset.copyright.length > 0) {
+                    copyright = '<div class="ddb-omkea-colorbox-copyright-trigger">&copy;</div><div class="ddb-omkea-colorbox-copyright">&copy; ' + this.dataset.copyright + '</div>';
+                }
+                //  link
+                if (typeof(this.dataset.linktext) != 'undefined' && this.dataset.linktext.length > 0) {
+                    link = this.dataset.linktext;
+                }
+                if (typeof(this.dataset.linkurl) != 'undefined' && this.dataset.linkurl.length > 0) {
+                    if (link.length == 0) {
+                        if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
+                            link = '<a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + '">' + linkIcon + '</a>';
                         } else {
-                            if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
-                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + '">' + link + '</a>';
-                            } else {
-                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '">' + link + '</a>';
-                            }
+                            link = '<a href="' + this.dataset.linkurl + '" title="' + this.dataset.linkurl + '">' + linkIcon + '</a>';
+                        }
+                    } else {
+                        if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
+                            link = '<a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + ' - ' + link + '">' + linkIcon + '</a>';
+                        } else {
+                            link = '<a href="' + this.dataset.linkurl + '" title="' + link + '">' + linkIcon * '</a>';
                         }
                     }
-                    if (link.length > 0) {
-                        link = '<div class="ddb-omkea-colorbox-link">' + link + '</div>';
-                    }
-                    if (typeof(this.dataset.title) != 'undefined' && this.dataset.title.length > 0) {
-                        title =  '<div class="ddb-omkea-colorbox-title">' + link + this.dataset.title + '</div>';
-                    } else {
-                        title = link
-                    }
-                    return copyright + title;
+                } else if (link.length > 0) {
+                    link = '<i class="icon-earth" title="' + link + '"></i> ';
                 }
+                if (link.length > 0) {
+                    link = '<div class="ddb-omkea-colorbox-link">' + link + '</div>';
+                }
+                // title
+                if (typeof(this.dataset.title) != 'undefined' && this.dataset.title.length > 0) {
+                    title =  '<div class="ddb-omkea-colorbox-title-trigger"><i class="icon-info2"></i> </div><div class="ddb-omkea-colorbox-title"> ' + this.dataset.title + '</div>';
+                }
+                return title + copyright + link;
+            },
+            onComplete: function() {
+                $('.ddb-omkea-colorbox-copyright-trigger').click(function() {
+                    $('.ddb-omkea-colorbox-title').filter(':visible').toggle();
+                    $('.ddb-omkea-colorbox-copyright').toggle();
+                });
+                $('.ddb-omkea-colorbox-title-trigger').click(function() {
+                    $('.ddb-omkea-colorbox-copyright').filter(':visible').toggle();
+                    $('.ddb-omkea-colorbox-title').toggle();
+                });
+            }
         });
 
         winW = $(window).innerWidth();
@@ -137,8 +149,8 @@
         winW = winW - offsetX;
         winH = winH - offsetY;
 
+
     });
     </script>
-
 </body>
 </html>

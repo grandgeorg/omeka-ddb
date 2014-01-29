@@ -1,3 +1,196 @@
+/* icon fonts */
+@font-face {
+    font-family: 'icomoon';
+    src:url('fonts/icomoon.eot');
+    src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.woff') format('woff'),
+        url('fonts/icomoon.ttf') format('truetype'),
+        url('fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-location:before {
+    content: "\e600";
+}
+.icon-location2:before {
+    content: "\e601";
+}
+.icon-earth:before {
+    content: "\e602";
+}
+.icon-link:before {
+    content: "\e603";
+}
+.icon-globe:before {
+    content: "\e604";
+}
+.icon-info:before {
+    content: "\e605";
+}
+.icon-info2:before {
+    content: "\e606";
+}
+.icon-minus:before {
+    content: "\e607";
+}
+.icon-plus:before {
+    content: "\e608";
+}
+.icon-play:before {
+    content: "\e609";
+}
+.icon-pause:before {
+    content: "\e60a";
+}
+.icon-stop:before {
+    content: "\e60b";
+}
+.icon-backward:before {
+    content: "\e60c";
+}
+.icon-forward:before {
+    content: "\e60d";
+}
+.icon-first:before {
+    content: "\e60e";
+}
+.icon-last:before {
+    content: "\e60f";
+}
+.icon-previous:before {
+    content: "\e610";
+}
+.icon-next:before {
+    content: "\e611";
+}
+.icon-loop:before {
+    content: "\e612";
+}
+.icon-loop2:before {
+    content: "\e613";
+}
+.icon-volume-decrease:before {
+    content: "\e614";
+}
+.icon-volume-increase:before {
+    content: "\e615";
+}
+.icon-volume-mute:before {
+    content: "\e616";
+}
+.icon-volume-mute2:before {
+    content: "\e617";
+}
+.icon-volume-low:before {
+    content: "\e618";
+}
+.icon-volume-medium:before {
+    content: "\e619";
+}
+.icon-volume-high:before {
+    content: "\e61a";
+}
+.icon-eject:before {
+    content: "\e61b";
+}
+.icon-shuffle:before {
+    content: "\e61c";
+}
+.icon-arrow-up-left:before {
+    content: "\e61d";
+}
+.icon-arrow-up:before {
+    content: "\e61e";
+}
+.icon-arrow-up-right:before {
+    content: "\e61f";
+}
+.icon-arrow-right:before {
+    content: "\e620";
+}
+.icon-arrow-down-right:before {
+    content: "\e621";
+}
+.icon-arrow-down:before {
+    content: "\e622";
+}
+.icon-arrow-down-left:before {
+    content: "\e623";
+}
+.icon-arrow-left:before {
+    content: "\e624";
+}
+.icon-arrow-up-left2:before {
+    content: "\e625";
+}
+.icon-arrow-up2:before {
+    content: "\e626";
+}
+.icon-arrow-up-right2:before {
+    content: "\e627";
+}
+.icon-arrow-right2:before {
+    content: "\e628";
+}
+.icon-arrow-down-right2:before {
+    content: "\e629";
+}
+.icon-arrow-down2:before {
+    content: "\e62a";
+}
+.icon-arrow-down-left2:before {
+    content: "\e62b";
+}
+.icon-arrow-left2:before {
+    content: "\e62c";
+}
+.icon-checkbox-checked:before {
+    content: "\e62d";
+}
+.icon-home:before {
+    content: "\e62e";
+}
+.icon-film:before {
+    content: "\e62f";
+}
+.icon-play2:before {
+    content: "\e630";
+}
+.icon-image:before {
+    content: "\e631";
+}
+.icon-image2:before {
+    content: "\e632";
+}
+.icon-images:before {
+    content: "\e633";
+}
+.icon-user:before {
+    content: "\e634";
+}
+.icon-users:before {
+    content: "\e635";
+}
+/* END icon fonts */
+
+
+
+
 /* navigation */
 
 .gallery .exhibit-item {
@@ -365,8 +558,8 @@
     #cboxContent{background:#fff; overflow:hidden;}
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
-        #cboxLoadedContent{margin-bottom:42px; position: relative;}
-        #cboxTitle{position:absolute; bottom:4px; left:150px; right:0; text-align:left; color:#999;}
+        #cboxLoadedContent{margin-bottom:32px; position: relative;}
+        #cboxTitle{position:absolute; bottom:0; left:150px; right:0; text-align:left; color:#999;}
         #cboxCurrent{position:absolute; bottom:4px; left:53px; color:#999; font-size: 14px;}
         #cboxLoadingOverlay{background:url(../javascripts/vendor/colorbox/images/loading_background.png) no-repeat center center;}
         #cboxLoadingGraphic{background:url(../javascripts/vendor/colorbox/images/loading.gif) no-repeat center center;}
@@ -404,36 +597,60 @@
 .inline-lightbox-container { background-color: #222;}
 .inline-lightbox-element { background-color: #222; }
 .inline-lightbox-element img { display:block; margin:0 auto; max-width: 100%; max-height: 100%; border: 0; padding: 0;}
-.ddb-omkea-colorbox-title, .ddb-omkea-colorbox-link {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+/* colorbox controlls and title */
+.ddb-omkea-colorbox-link, .ddb-omkea-colorbox-title-trigger, .ddb-omkea-colorbox-copyright-trigger {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
     display: block;
-    /*float: left;*/
-    /*margin-right: 1.5em;*/
-    font-size: 14px; 
-    line-height: 20px;
-    clear: right;
+    min-width: 22px;
+    width: 22px;
+    float: left;
+    margin: 2px 8px 0 0;
+    font-size: 19px;
+    line-height: 1;
+    color: #666;
+    cursor: pointer;
+}
+.ddb-omkea-colorbox-title-trigger:hover, .ddb-omkea-colorbox-copyright-trigger:hover {
+    color:#a5003b;
+}
+.ddb-omkea-colorbox-copyright-trigger {
+    font-size: 26px;
+    margin: 0 8px 0 0;
+    /*padding-bottom: 6px;*/
+}
+
+.ddb-omkea-colorbox-title, .ddb-omkea-colorbox-copyright {
+    display: none;
+    position: absolute;
+    bottom: 32px;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    -webkit-border-top-left-radius: 6px;
+    -moz-border-radius-topleft: 6px;
+    border-top-left-radius: 6px;
+    color: #333;
+    padding: 0 4px;
+    /*border: 2px solid #f30;*/
+    /*display: block;*/
+    /*font-size: 14px; */
+    /*line-height: 20px;*/
 }
 .ddb-omkea-colorbox-title { 
-    color: #000; 
-    font-size: 16px; 
-    /*font-weight: bold;*/
+    /*color: #000; */
+    /*font-size: 16px; */
 }
 .ddb-omkea-colorbox-copyright {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    display: block;
-    float: right;
-    /*position: absolute;*/
-    /*right: 0;*/
-    clear: both;
-    font-size: 10.5px; 
-    margin-right: 0;
+    /*display: none;*/
+    /*float: right;*/
+    /*font-size: 10.5px; */
+    /*margin-right: 0;*/
 }
 .ddb-omkea-colorbox-link { 
-    float: right;
-    margin-right: 27px;
-}
-.ddb-omkea-colorbox-link a { 
-    text-decoration: underline; 
+    /*float: right;*/
+    /*margin-right: 27px;*/
 }
 /* END colorbox */
 
