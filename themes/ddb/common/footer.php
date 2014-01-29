@@ -38,15 +38,12 @@
 <!-- end footer -->
 
     <script type="text/javascript">
+    var offsetX = 80;
+    var offsetY = 90;
+    var winW = 0;
+    var winH = 0;
     $(document).ready(function() {
-        $(".ddb-omeka-gallery a").fancybox({
-            'width'             : '90%',
-            'height'            : '100%',
-            'autoScale'         : true,
-            'transitionIn'      : 'none',
-            'transitionOut'     : 'none',
-            'type'              : 'iframe'
-        });
+        /* Toottip - JQueryUI */
         $('nav').tooltip({ 
             tooltipClass: "ddb-omeka-tooltip-styling",
             position: {
@@ -62,24 +59,20 @@
                 }
             }
         });
-        // Omeka.showAdvancedForm();   ---------eable again?     
+
+        /* Omeka core js */
+        // Omeka.showAdvancedForm();   ---------enable again?     
         // Omeka.moveNavOnResize();        
-        // Omeka.mobileMenu();        
+        // Omeka.mobileMenu();   
+
+        /* Carousel Page Navigation 
+         * @see : http://docs.dev7studios.com/jquery-plugins/caroufredsel-advanced
+         */
         $('#nav-carousel').carouFredSel({
-            // @see : http://docs.dev7studios.com/jquery-plugins/caroufredsel-advanced
             circular: false,
             infinite: false,
             auto    : {play : false},
             width: '100%',
-            // scroll  : {
-            //     items: "page"
-            // },
-            // items       : {
-            //     visible     : {
-            //         min         : 1,
-            //         max         : 10
-            //     }
-            // },
             prev    : { 
                 button  : "#ddb-omeka-carousel_prev",
                 key     : "left"
@@ -90,6 +83,60 @@
             },
             cookie: true,
         });
+
+        /*  Lightbox - ColorBox  */
+        $(".ddb-omeka-gallery a").colorbox({
+            rel:'ddb-omake-colorbox', 
+                // inline:true, 
+                maxWidth:"100%", 
+                maxHeight:"100%",
+                // onComplete:function(){ console.log(this); },
+                title: function(){
+                    var title = '';
+                    var copyright = '';
+                    var link = '';
+                    if (typeof(this.dataset.copyright) != 'undefined' && this.dataset.copyright.length > 0) {
+                        copyright = '<div class="ddb-omkea-colorbox-copyright">&copy; ' + this.dataset.copyright + '</div>';
+                    }
+                    if (typeof(this.dataset.linktext) != 'undefined' && this.dataset.linktext.length > 0) {
+                        link = this.dataset.linktext;
+                    }
+                    if (typeof(this.dataset.linkurl) != 'undefined' && this.dataset.linkurl.length > 0) {
+                        if (link.length == 0) {
+                            if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
+                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + '">' + this.dataset.linkurl + '</a>';
+                            } else {
+                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '">' + this.dataset.linkurl + '</a>';
+                            }
+                        } else {
+                            if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
+                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + '">' + link + '</a>';
+                            } else {
+                                link = '<i class="icon-globe"></i> <a href="' + this.dataset.linkurl + '">' + link + '</a>';
+                            }
+                        }
+                    }
+                    if (link.length > 0) {
+                        link = '<div class="ddb-omkea-colorbox-link">' + link + '</div>';
+                    }
+                    if (typeof(this.dataset.title) != 'undefined' && this.dataset.title.length > 0) {
+                        title =  '<div class="ddb-omkea-colorbox-title">' + link + this.dataset.title + '</div>';
+                    } else {
+                        title = link
+                    }
+                    return copyright + title;
+                }
+        });
+
+        winW = $(window).innerWidth();
+        winH = $(window).innerHeight();
+        if (winH < $(window).height() && winW < $(window).width()) {
+            winW = $(window).width();
+            winH = $(window).height();
+        }
+        winW = winW - offsetX;
+        winH = winH - offsetY;
+
     });
     </script>
 

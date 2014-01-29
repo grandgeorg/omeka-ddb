@@ -432,8 +432,9 @@ function exhibit_builder_render_layout_form($layout)
  * @param string $thumbnailType The type of thumbnail to display
  * @return string HTML output
  **/
-function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), $thumbnailType = 'square_thumbnail', $linkOptions)
-{
+function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), 
+    $thumbnailType = 'square_thumbnail', $linkOptions = array()) {
+
     $html = '';
     for ($i = (int)$start; $i <= (int)$end; $i++) {
         if ($attachment = exhibit_builder_page_attachment($i)) {
@@ -457,6 +458,93 @@ function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), $thum
     return apply_filters('exhibit_builder_thumbnail_gallery', $html,
         array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
 }
+
+// Grandgeorg Websolutions
+function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(), 
+    $thumbnailType = 'square_thumbnail', $linkOptions = array()) {
+
+    $html = '';
+    $colCount = 0;
+    for ($i = (int)$start; $i <= (int)$end; $i++) {
+        $colCount++;
+        if ($attachment = exhibit_builder_page_attachment($i)) {
+            if (($colCount % 3) === 0) {
+                $addExhibitItemClass = ' last-item-in-line';
+            } else {
+                $addExhibitItemClass = '';                
+            }
+            $html .= "\n" . '<div class="exhibit-item' . $addExhibitItemClass . '">';
+            if ($attachment['file']) {
+                $file = $attachment['file'];
+                
+                $attachmentTitle = '';
+                $attachmentTitleFromCaption = strip_tags($attachment['caption']);
+                $attachmentTitleFromObject = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Title')));
+                $attachmentTitleFromFile = strip_tags(metadata($file, array('Dublin Core', 'Title')));
+                if (!empty($attachmentTitleFromCaption)) {
+                    $attachmentTitle = $attachmentTitleFromCaption;
+                } elseif(!empty($attachmentTitleFromObject)) {
+                    $attachmentTitle = $attachmentTitleFromObject;
+                } elseif (!empty($attachmentTitleFromFile)) {
+                    $attachmentTitle = $attachmentTitleFromFile;
+                }
+                $attachmentRights = '';
+                $attachmentRightsFromObject = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Rights')));
+                $attachmentRightsFromFile = strip_tags(metadata($file, array('Dublin Core', 'Rights')));
+                if(!empty($attachmentRightsFromObject)) {
+                    $attachmentRights = $attachmentRightsFromObject;
+                } elseif (!empty($attachmentRightsFromFile)) {
+                    $attachmentRights = $attachmentRightsFromFile;
+                }
+
+                // Source 
+                $attachmenLinkText = '';
+                $attachmenLinkTitle = '';
+                $attachmenLinkUrl = '';
+                $attachmenLinkTextFromObject = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Source')));
+                $attachmenLinkTextFromFile = strip_tags(metadata($file, array('Dublin Core', 'Source')));
+                if(!empty($attachmenLinkTextFromObject)) {
+                    $attachmenLinkText = $attachmenLinkTextFromObject;
+                } elseif (!empty($attachmenLinkTextFromFile)) {
+                    $attachmenLinkText = $attachmenLinkTextFromFile;
+                }
+
+                if (1 === preg_match('@title="([^"]*)@', 
+                    metadata($attachment['item'], array('Dublin Core', 'Source')), $attachmenLinkTitleFromObject)) {
+                    $attachmenLinkTitle = $attachmenLinkTitleFromObject[1];
+                } elseif (1 === preg_match('@title="([^"]*)@', 
+                    metadata($file, array('Dublin Core', 'Source')), $attachmenLinkTitleFromFile)) {
+                    $attachmenLinkTitle = $attachmenLinkTitleFromFile[1];
+                }
+
+                if (1 === preg_match('@href="([^"]*)@', 
+                    metadata($attachment['item'], array('Dublin Core', 'Source')), $attachmenLinkUrlFromObject)) {
+                    $attachmenLinkUrl = $attachmenLinkUrlFromObject[1];
+                } elseif (1 === preg_match('@href="([^"]*)@', 
+                    metadata($file, array('Dublin Core', 'Source')), $attachmenLinkUrlFromFile)) {
+                    $attachmenLinkUrl = $attachmenLinkUrlFromFile[1];
+                }
+
+
+                $linkOptions = array_merge($linkOptions, array(
+                    'data-title' => $attachmentTitle,
+                    'data-linktext' => $attachmenLinkText,
+                    'data-linkurl' => $attachmenLinkUrl,
+                    'data-linktitle' => $attachmenLinkTitle,
+                    'data-copyright' => $attachmentRights
+                ));
+
+                $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
+                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $linkOptions, $attachment['item']);
+            }
+            $html .= '</div>' . "\n";
+        }
+    }
+    
+    return apply_filters('exhibit_builder_thumbnail_gallery', $html,
+        array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
+}
+// END Grandgeorg Websolutions
 
 /**
  * Return the HTML for summarizing a random featured exhibit

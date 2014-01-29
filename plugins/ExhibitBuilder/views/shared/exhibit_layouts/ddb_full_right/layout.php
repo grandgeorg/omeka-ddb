@@ -33,7 +33,9 @@
         <img src="/themes/ddb/images/banner_moosgruen.jpg">
     </div>
     <div class="secondary">
-        <?php if ($attachment = exhibit_builder_page_attachment(1)):
+        <?php 
+        /* handle main image */
+        if ($attachment = exhibit_builder_page_attachment(1)) {
             $file = $attachment['file'];
             $attachmentTitle = '';
             $attachmentTitleFromCaption = strip_tags($attachment['caption']);
@@ -85,29 +87,44 @@
 
         ?>
         <div class="exhibit-item ddb-omeka-gallery ddb-omeka-main-exhibit-item">
-            <?php echo exhibit_builder_attachment_markup($attachment, 
-                array(
-                    'imageSize' => 'fullsize', 
-                    'linkAttributes'=>array(
-                        // 'rel'=>'ddb-omeka-gallery-1',
-                        'data-title' => $attachmentTitle,
-                        'data-link-text' => $attachmenLinkText,
-                        'data-link-url' => $attachmenLinkUrl,
-                        'data-link-title' => $attachmenLinkTitle,
-                        'data-copyright' => $attachmentRights
+            <?php 
+            if (1 != 1 && count($attachment{'item'}->getFiles()) == 1) {
+                // There is only one file attached to the object
+                $metadata = json_decode($file->metadata);
+                if (isset($metadata->mime_type) && substr($metadata->mime_type, 0, 5) == 'image') {
+                    // The file is an image, so link to the fullsize image
+                    echo files_for_item(array(
+                        'imageSize' => 'fullsize', 
+                        'linkToFile' => true,
+                        'linkAttributes'=>array(
+                            // 'rel'=>'ddb-omeka-gallery-1',
+                            'data-title' => $attachmentTitle,
+                            'data-linktext' => $attachmenLinkText,
+                            'data-linkurl' => $attachmenLinkUrl,
+                            'data-linktitle' => $attachmenLinkTitle,
+                            'data-copyright' => $attachmentRights
+                    )), array('class'=>'permalink'), $attachment['item']); 
+                }
+            } else {
+                echo exhibit_builder_attachment_markup(
+                    $attachment, 
+                    array(
+                        'imageSize' => 'fullsize', 
+                        'linkAttributes'=>array(
+                            // 'rel'=>'ddb-omeka-gallery-1',
+                            'data-title' => $attachmentTitle,
+                            'data-linktext' => $attachmenLinkText,
+                            'data-linkurl' => $attachmenLinkUrl,
+                            'data-linktitle' => $attachmenLinkTitle,
+                            'data-copyright' => $attachmentRights
                     )), 
-                array('class' => 'permalink inline-lightbox-trigger')); ?>
+                    array('class' => 'permalink'));
+            }
+            ?>
         </div>
-        <?php endif; ?>
+        <?php } ?>
         <div class="gallery ddb-omeka-gallery">
-            <?php echo exhibit_builder_thumbnail_gallery(2, 12, array('class'=>'permalink'), 'square_thumbnail', array(
-                'rel'=>'ddb-omeka-gallery-1',
-                'data-title' => '',
-                'data-link-text' => '',
-                'data-link-url' => '',
-                'data-link-title' => '',
-                'data-copyright' => ''
-            )); ?>
+            <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 12, array('class'=>'permalink'), 'square_thumbnail'); ?>
         </div>
         <?php if ($text = exhibit_builder_page_text(2)):?>
         <div class="exhibit-text">

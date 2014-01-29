@@ -22,7 +22,7 @@
     queue_css_file('ddb-02');
     queue_css_url('//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
     queue_css_file('style');
-    queue_css_file('../javascripts/vendor/colorbox/colorbox');
+    // queue_css_file('../javascripts/vendor/colorbox/colorbox');
 
     echo head_css();
     ?>
@@ -37,6 +37,7 @@
     queue_js_file('messages');
     queue_js_file('globals');
     queue_js_file('vendor/colorbox/jquery.colorbox-min');
+    queue_js_file('vendor/colorbox/i18n/jquery.colorbox-de');
     queue_js_url('//code.jquery.com/ui/1.10.3/jquery-ui.js');
     queue_js_file('vendor/caroufredsel/jquery.carouFredSel-6.2.1-packed');
     echo head_js(); 
