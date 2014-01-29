@@ -559,7 +559,9 @@
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{margin-bottom:32px; position: relative;}
-        #cboxTitle{position:absolute; bottom:0; left:150px; right:0; text-align:left; color:#999;}
+        #cboxTitle{position:absolute; bottom:0; left:0; right:0; text-align:left; color:#999; overflow: hidden; 
+            /*min-height: 32px;*/
+        }
         #cboxCurrent{position:absolute; bottom:4px; left:53px; color:#999; font-size: 14px;}
         #cboxLoadingOverlay{background:url(../javascripts/vendor/colorbox/images/loading_background.png) no-repeat center center;}
         #cboxLoadingGraphic{background:url(../javascripts/vendor/colorbox/images/loading.gif) no-repeat center center;}
@@ -599,10 +601,16 @@
 .inline-lightbox-element img { display:block; margin:0 auto; max-width: 100%; max-height: 100%; border: 0; padding: 0;}
 
 /* colorbox controlls and title */
+.ddb-omkea-colorbox-info-triggers {
+    position: relative;
+    margin-left: 150px;
+    overflow: hidden;
+}
 .ddb-omkea-colorbox-link, .ddb-omkea-colorbox-title-trigger, .ddb-omkea-colorbox-copyright-trigger {
+    display: block;
+    position: relative;
     font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
-    display: block;
     min-width: 22px;
     width: 22px;
     float: left;
@@ -623,16 +631,12 @@
 
 .ddb-omkea-colorbox-title, .ddb-omkea-colorbox-copyright {
     display: none;
-    position: absolute;
-    bottom: 32px;
-    background-color: #fff;
-    left: 0;
-    right: 0;
-    -webkit-border-top-left-radius: 6px;
-    -moz-border-radius-topleft: 6px;
-    border-top-left-radius: 6px;
+    position: relative;
+    /*background-color: #fff;*/
+    background-color: rgba(255, 255, 255, 0.6);
     color: #333;
-    padding: 0 4px;
+    padding: 4px 4px 12px 4px;
+    text-align: center;
     /*border: 2px solid #f30;*/
     /*display: block;*/
     /*font-size: 14px; */

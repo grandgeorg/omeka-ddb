@@ -91,12 +91,15 @@
             maxHeight:"100%",
             title: function(){
                 var title = '';
+                var titleTrigger = '';
                 var copyright = '';
+                var copyrightTrigger = '';
                 var link = '';
                 var linkIcon = '<i class="icon-earth"></i> ';
                 //  copyright
                 if (typeof(this.dataset.copyright) != 'undefined' && this.dataset.copyright.length > 0) {
-                    copyright = '<div class="ddb-omkea-colorbox-copyright-trigger">&copy;</div><div class="ddb-omkea-colorbox-copyright">&copy; ' + this.dataset.copyright + '</div>';
+                    copyright = '<div class="ddb-omkea-colorbox-copyright">&copy; ' + this.dataset.copyright + '</div>';
+                    copyrightTrigger = '<div class="ddb-omkea-colorbox-copyright-trigger">&copy;</div>';
                 }
                 //  link
                 if (typeof(this.dataset.linktext) != 'undefined' && this.dataset.linktext.length > 0) {
@@ -124,9 +127,10 @@
                 }
                 // title
                 if (typeof(this.dataset.title) != 'undefined' && this.dataset.title.length > 0) {
-                    title =  '<div class="ddb-omkea-colorbox-title-trigger"><i class="icon-info2"></i> </div><div class="ddb-omkea-colorbox-title"> ' + this.dataset.title + '</div>';
+                    title =  '<div class="ddb-omkea-colorbox-title"> ' + this.dataset.title + '</div>';
+                    titleTrigger =  '<div class="ddb-omkea-colorbox-title-trigger"><i class="icon-info2"></i> </div>';
                 }
-                return title + copyright + link;
+                return title + copyright + '<div class="ddb-omkea-colorbox-info-triggers">' + titleTrigger + copyrightTrigger + link + '</div>';
             },
             onComplete: function() {
                 $('.ddb-omkea-colorbox-copyright-trigger').click(function() {
