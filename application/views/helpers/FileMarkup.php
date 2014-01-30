@@ -809,8 +809,6 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
             // throw some exception?
             return '';
         }
-
-        echo $file->getProperty('mime_type');
         
         if ($file->hasThumbnail()) {
             $uri = html_escape($file->getWebPath($format));
