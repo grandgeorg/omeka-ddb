@@ -809,9 +809,15 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
             // throw some exception?
             return '';
         }
+
+        echo $file->getProperty('mime_type');
         
         if ($file->hasThumbnail()) {
             $uri = html_escape($file->getWebPath($format));
+        // Grandgeorg Websolutions
+        } elseif (substr($file->getProperty('mime_type'), 0, 5) == 'audio') {
+            $uri = img('music-fallback-file.png');
+        // END Grandgeorg Websolutions
         } else {
             $uri = img('fallback-file.png');
         }
