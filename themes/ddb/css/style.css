@@ -638,6 +638,15 @@
 }
 /* END colorbox */
 
+/* audio item */
+audio {
+    display: block;
+    margin: 0 auto;
+    padding: 16px 0 0 0;
+}
+
+/* END audio item */
+
 /* footer */
 #footer-text p {
     /*font-size: 11px; */

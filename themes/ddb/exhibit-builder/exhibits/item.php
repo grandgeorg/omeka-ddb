@@ -2,25 +2,45 @@
 $width = 0; $height = 0;
 $files = $item->getFiles();
 $countFiles = count($files);
+$additionalWrapperOpen = '';
+$additionalWrapperClose = '';
+$wrapperAttributes = array('class'=>'inline-lightbox-element');
 foreach ($files as $file) {
     if (isset($file->metadata)) {
         $metadata = json_decode($file->metadata);
+        // var_dump($metadata);
         if (isset($metadata->video->resolution_x) && 
             $metadata->video->resolution_x > $width) {
 
             $width = $metadata->video->resolution_x;
+        } else {
+            $width = 280;
         }
         if (isset($metadata->video->resolution_y) && 
             $metadata->video->resolution_y > 0) {
 
             $height = $height + $metadata->video->resolution_y;
+        } else {
+            $height = 100;
+        }
+        if (isset($metadata->mime_type) && 
+            ($metadata->mime_type == 'audio/mpeg' || 
+                $metadata->mime_type == 'application/ogg')) {
+                $additionalWrapperOpen = '<audio controls>';
+                $additionalWrapperClose = '</audio>';
+                $wrapperAttributes = array();
+                $width = 540;
         }
     }
 }
 ?>
 <div class="inline-lightbox-container" style="min-width:280px; min-height:100px;">
-<?php echo files_for_item(array('imageSize' => 'fullsize', 'linkToFile' => true), 
-    array('class'=>'inline-lightbox-element')); ?></div>
+<?php echo $additionalWrapperOpen; ?>
+<?php echo files_for_item(
+    array('imageSize' => 'fullsize', 'linkToFile' => true), 
+    $wrapperAttributes); ?>
+<?php echo $additionalWrapperClose; ?>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -81,36 +101,6 @@ foreach ($files as $file) {
             }
             
         }
-
         $.Gina.sizeColorBoxItem();
-
-
-
-
-
-        // // container width
-        // if (mediaWidth > winW) {
-        //     $('.inline-lightbox-container').css({'width': winW, margin: '0 17px'});
-        //     withType = 'window';
-        // } else {
-        //     $('.inline-lightbox-container').css({'width': mediaWidth, margin: 0});
-        // }
-        // // container height
-        // if (mediaHeight > winH) {
-        //     if (withType == 'window') {
-        //         var newHeight = ((mediaHeight / mediaWidth) * winW);
-        //         if (newHeight < winH) {
-        //             // adjust height in proportion to with
-        //             $('.inline-lightbox-container').css({'height': newHeight});
-        //         } else {
-        //             $('.inline-lightbox-container').css({'height': winH});
-        //         }
-        //     } else {
-        //         $('.inline-lightbox-container').css({'height': winH});
-        //     }
-        // } else {
-        //     $('.inline-lightbox-container').css({'height': mediaHeight});
-        // }
-
     });
 </script>

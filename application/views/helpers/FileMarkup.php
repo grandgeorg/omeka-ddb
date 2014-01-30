@@ -464,6 +464,11 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
      */
     private function _audio($file, array $options, $type)
     {
+        
+        // Grandgeorg Websolutions
+        return $this->_ddbaudio($file, $options, $type);
+        // END Grandgeorg Websolutions
+
         $path = html_escape($file->getWebPath('original'));
         $html = '<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="'.$options['width'].'" height="'.$options['height'].'">'
               . '<param name="src" value="'.$path.'" />'
@@ -480,6 +485,29 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
               . '</object>';
         return $html;
     }
+
+    /**
+     * Grandgeorg Websolutions
+     * Default display of audio files via <object> tags.
+     * 
+     * @param File $file
+     * @param array $options The set of default options for this includes:
+     *  width, height, autoplay, controller, loop
+     * @param string $type The Internet media type of the file
+     * @return string
+     */
+    private function _ddbaudio($file, array $options, $type)
+    {
+        $path = html_escape($file->getWebPath('original'));
+        // $html = '<audio controls>';
+        $html = '<source src="' . $path . '" type="' . $type . '">';
+        // $html .= 'Your browser does not support the audio tag.';
+        // $html .= ' </audio>';
+        return $html;
+    }
+    // END Grandgeorg Websolutions
+
+
     
     /**
      * Display OGG audio files.
