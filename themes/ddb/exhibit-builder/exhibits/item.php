@@ -47,9 +47,9 @@ foreach ($files as $file) {
 
         $.Gina.sizeColorBoxItem = function(loaded) {
 
-            if (loaded) {
-                $.Gina.setWindowSizes();
-            }
+            // if (loaded) {
+            //     $.Gina.setWindowSizes();
+            // }
 
             var mediaWidth = <?php echo $width; ?>;
             var mediaHeight = <?php echo $height; ?>;

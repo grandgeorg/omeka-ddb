@@ -45,10 +45,12 @@
             $.Gina = $.Gina;
         } else {
             $.Gina = {
+
                 offsetX: 63, /*63*/
                 offsetY: 95, /*95*/
                 winW: 0,
                 winH: 0,
+
                 setWindowSizes: function(loaded) {
                     this.winW = $(window).innerWidth();
                     this.winH = $(window).innerHeight();
@@ -58,17 +60,39 @@
                     }
                     this.winW = this.winW - this.offsetX;
                     this.winH = this.winH - this.offsetY;
-                    // if(!loaded) {
-                    //     $(window).resize(function() {
-                    //         $.Gina.setWindowSizes(!loaded);
-                    //     });
-                    // }
-                }
+                    if(!loaded) {
+                        $(window).resize(function() {
+                            $.Gina.setWindowSizes(!loaded);
+                        });
+                    }
+                },
 
+                setThumbGallerImageSizes: function(loaded) {
+                    var thumbnailGalleryClass = '#thumbnail-gallery-carousel-wrapper';
+                    var offset = 74;
+                    if ($(thumbnailGalleryClass)) {
+                        var colWidth = $('.secondary').width();
+                        var imgWidth = Math.round((colWidth - offset) / 3);
+                        var prevnextHeight = 65;
+                        var prevnextMargin = 0;
+                        $(thumbnailGalleryClass + ' div').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
+                        prevnextMargin = Math.round((imgWidth - prevnextHeight) / 2);
+                        if (prevnextMargin > 0) {
+                            $('.ddb-omeka-carousel-gallery-controlls').css('margin', 
+                                prevnextMargin + 'px 0');
+                        }
+                        if(!loaded) {
+                            $(window).resize(function() {
+                                $.Gina.setThumbGallerImageSizes(!loaded);
+                            });
+                        }
+                    }
+                }
 
             }
         }
         $.Gina.setWindowSizes();
+        $.Gina.setThumbGallerImageSizes();
 
 
         /* Toottip - JQueryUI */
@@ -111,6 +135,34 @@
             },
             cookie: true,
         });
+        /* Carousel Thubnail Gallery 
+         */
+        $('#thumbnail-gallery-carousel-wrapper').carouFredSel({
+            circular: false,
+            infinite: false,
+            auto    : {play : false},
+            // resposive    : true,
+            // width: '100%',
+            items   : {
+                visible: 3,
+                // minimum: 3,
+
+            },
+            // items: 3,
+            // direction: "left",
+            prev    : { 
+                button  : "#ddb-omeka-carousel-gallery_prev",
+                // key     : "left"
+            },
+            next    : { 
+                button  : "#ddb-omeka-carousel-gallery_next",
+                // key     : "right",
+            },
+            cookie: false,
+        });
+
+
+
 
         /*  Lightbox - ColorBox  */
         $(".ddb-omeka-gallery a").colorbox({

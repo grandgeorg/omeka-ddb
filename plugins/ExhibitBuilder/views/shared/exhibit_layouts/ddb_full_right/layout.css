@@ -39,3 +39,15 @@ h1 {
     display: block;
     line-height: 1;
 }
+
+/* real width should be 490px */
+@media (max-width: 550px) {
+    .primary,
+    .secondary,
+    .tertiary {
+        float:none;
+        width: 100%
+    }
+    .tertiary img { display: none; }
+
+}

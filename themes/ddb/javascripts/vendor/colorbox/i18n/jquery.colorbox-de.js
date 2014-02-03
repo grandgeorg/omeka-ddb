@@ -4,7 +4,7 @@
 	translated by: wallenium
 */
 jQuery.extend(jQuery.colorbox.settings, {
-	current: "Objekt {current} von {total}",
+	current: "{current} von {total}",
 	previous: "Zurück",
 	next: "Vor",
 	close: "Schließen",
