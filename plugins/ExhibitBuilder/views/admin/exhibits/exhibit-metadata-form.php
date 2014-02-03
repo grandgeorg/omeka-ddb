@@ -46,6 +46,14 @@
         </div>
         <div class="field">
             <div class="two columns alpha">
+                <?php echo $this->formLabel('banner', __('Exhibit Banner')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                <?php echo $this->formText('banner', $exhibit->banner); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
                 <?php echo $this->formLabel('theme', __('Theme')); ?>
             </div>
             <div class="five columns omega inputs">

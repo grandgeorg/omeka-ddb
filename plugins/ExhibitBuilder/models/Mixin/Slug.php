@@ -23,7 +23,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
 
         $defaultOptions = array(
             'parentFields' => array(),
-            'slugMaxLength' => 30,
+            'slugMaxLength' => 255,
             'slugSeedFieldName' => 'title');
 
         $errorMsgs = array(
@@ -64,6 +64,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
             $seedValue = $this->_record->slug;
         }
         $this->_record->slug = exhibit_builder_generate_slug($seedValue);
+
 
         if(trim($this->_record->slug) == '') {
             $this->_record->addError('slug', $this->options['slugEmptyErrorMessage']);

@@ -405,10 +405,31 @@ function exhibit_builder_page_summary($exhibitPage = null)
  * @param string $text
  * @return string
  */
-function exhibit_builder_generate_slug($text)
+function exhibit_builder_generate_slug($text, $replacement = '-', $lang = 'de')
 {
+
+    $langSpecial = array(
+        'Ä' => 'Ae',
+        'Ö' => 'Oe',
+        'Ü' => 'Ue',
+        'ä' => 'ae',
+        'ö' => 'oe',
+        'ü' => 'ue',
+        'ß' => 'ss',
+        '@' => $replacement . 'at' . $replacement,
+        '&' => $replacement . 'and' . $replacement
+    );
+    if ('de' == $lang) {
+        $langSpecial['@'] = $replacement . 'bei' . $replacement;
+        $langSpecial['&'] = $replacement . 'und' . $replacement;
+    }
+    $noalpha = 'ÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÀÈÌÒÙàèìòùÄËÏÖÜäëïöüÿÃãÕõÅåÑñÇç@°ºªß&';
+    $alpha   = 'AEIOUYaeiouyAEIOUaeiouAEIOUaeiouAEIOUaeiouyAaOoAaNnCcaooas-';
+    $text = strtr($text, $langSpecial);
+    $text = strtr($text, $noalpha, $alpha);
+
     // Remove characters other than alphanumeric, hyphen, underscore.
     $slug = preg_replace('/[^a-z0-9\-_]/', '-', strtolower(trim($text)));
     // Trim down to 30 characters.
-    return substr($slug, 0, 30);
+    return substr($slug, 0, 255);
 }

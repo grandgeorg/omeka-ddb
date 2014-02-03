@@ -141,7 +141,7 @@
             circular: false,
             infinite: false,
             auto    : {play : false},
-            // resposive    : true,
+            resposive    : true,
             // width: '100%',
             items   : {
                 visible: 3,
