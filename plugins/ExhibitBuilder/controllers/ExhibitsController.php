@@ -46,6 +46,32 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         parent::browseAction();
     }
 
+    public function editAction()
+    {
+        var_dump($_FILES);
+        $fileField = 'banner';
+        // echo FILES_DIR;
+        if ($this->getRequest()->isPost() && isset($_FILES[$fileField]) && 
+            isset($_FILES[$fileField]['error']) && $_FILES[$fileField]['error'] == 0) {
+            $uploadedFile = $_FILES[$fileField];
+            $fileName = preg_replace('/[^a-zA-Z0-9\-_\.]/', '-', str_replace('.', '', microtime(true)) 
+                . '-' . trim($uploadedFile['name']));
+            if (move_uploaded_file($uploadedFile['tmp_name'], FILES_DIR . '/layout/' . $fileName)) {
+                $_POST[$fileField] = $fileName;
+            }
+                
+            // echo 'fun';
+            // $formData = $this->getRequest()->getPost();
+            // var_dump($formData);
+            // $uploadedData = $this->view->form->getValues();
+        }
+        // die();
+            // var_dump($_FILES, $_POST, $this->getRequest(), $formData, $this->view, $this );
+            // var_dump( $this );
+            // die();
+        parent::editAction();
+    }
+
     protected function _findByExhibitSlug($exhibitSlug = null)
     {
         if (!$exhibitSlug) {
@@ -317,7 +343,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $db = $this->_helper->db->getDb();
         $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
         $exhibit = $db->getTable('Exhibit')->find($exhibitPage->exhibit_id);
-
 
 
         if (!$this->_helper->acl->isAllowed('edit', $exhibit)) {

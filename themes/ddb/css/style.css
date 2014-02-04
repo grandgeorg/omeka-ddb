@@ -718,3 +718,16 @@ audio {
 }
 
 #footer-text p a { color: #666;}
+
+/* widget */
+.ddb-omeka-exhibit-widget {
+    background-color: #f3f3f3;
+    margin: 16px 0 0 0;
+    padding: 8px;
+    font-size: 12px;
+}
+
+/* link */
+.primary a, .secondary a, .tertiary a {
+    text-decoration: underline;
+}

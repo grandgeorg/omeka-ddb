@@ -30,7 +30,15 @@
     // var_dump($fileMeta, $attMeta, $attachment['caption']);
      ?>
     <div class="tertiary">
-        <img src="/themes/ddb/images/banner_moosgruen.jpg">
+    <?php 
+    $exhibit = $exhibitPage->getExhibit();
+    if (isset($exhibit->banner) && !empty($exhibit->banner) && 
+        file_exists(FILES_DIR . '/layout/' . $exhibit->banner)): ?>
+        <img src="<?php echo substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/' . $exhibit->banner; ?>" alt="<?php echo $exhibit->banner; ?>">
+    <?php endif; ?>
+    <?php if (isset($exhibit->widget) && !empty($exhibit->widget)): ?>
+        <div class="ddb-omeka-exhibit-widget"><?php echo $exhibit->widget; ?></div>
+    <?php endif; ?>
     </div>
     <div class="secondary">
         <?php 
