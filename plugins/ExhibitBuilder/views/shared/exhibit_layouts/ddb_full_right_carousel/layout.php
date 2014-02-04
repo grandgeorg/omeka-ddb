@@ -132,8 +132,12 @@
         </div>
         <?php } ?>
         <div id="thumbnail-gallery-carousel-elements">
-            <div id="ddb-omeka-carousel-gallery_next" class="ddb-omeka-carousel-gallery-controlls"><img src="/themes/ddb/images/carousel-arrow-right.png"></div>
-            <div id="ddb-omeka-carousel-gallery_prev" class="ddb-omeka-carousel-gallery-controlls"><img src="/themes/ddb/images/carousel-arrow-left.png"></div>
+            <div id="ddb-omeka-carousel-gallery_next" class="ddb-omeka-carousel-gallery-controlls">
+                <!-- <img src="/themes/ddb/images/carousel-arrow-right.png"> -->
+            </div>
+            <div id="ddb-omeka-carousel-gallery_prev" class="ddb-omeka-carousel-gallery-controlls">
+                <!-- <img src="/themes/ddb/images/carousel-arrow-left.png"> -->
+            </div>
             <div id="thumbnail-gallery-carousel-container">
                 <div class="gallery ddb-omeka-gallery" id="thumbnail-gallery-carousel-wrapper">
                     <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 12, array('class'=>'permalink'), 'square_thumbnail'); ?>

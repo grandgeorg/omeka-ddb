@@ -4,6 +4,8 @@ echo head(array(
     'bodyclass' => 'exhibits show'));
 ?>
 
+<div class="ddb-omeka-exhibit-title"><a href="/">Ausstellungen</a>&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;<span class="help-bc-active"><?php echo metadata('exhibit', 'title'); ?></span></div>
+
 <nav id="exhibit-pages" class="exhibit-page-navigation-bar">
     <?php echo exhibit_builder_page_nav(); ?>
 </nav>

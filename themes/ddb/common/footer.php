@@ -69,13 +69,18 @@
 
                 setThumbGallerImageSizes: function(loaded) {
                     var thumbnailGalleryClass = '#thumbnail-gallery-carousel-wrapper';
-                    var offset = 74;
+                    var offset = 94;
                     if ($(thumbnailGalleryClass)) {
                         var colWidth = $('.secondary').width();
                         var imgWidth = Math.round((colWidth - offset) / 3);
-                        var prevnextHeight = 65;
+                        var prevnextHeight = 41;
                         var prevnextMargin = 0;
-                        $(thumbnailGalleryClass + ' div').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
+                        $(thumbnailGalleryClass + ' div.exhibit-item').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
+                        $('#thumbnail-gallery-carousel-container').css({'height' : imgWidth + 'px'});
+                        $('#thumbnail-gallery-carousel-container .caroufredsel_wrapper').css({
+                            'height' : imgWidth + 'px', 
+                            'width' : ((imgWidth * 3) + 30) + 'px'});
+                        $(thumbnailGalleryClass).css({'height' : imgWidth + 'px'});
                         prevnextMargin = Math.round((imgWidth - prevnextHeight) / 2);
                         if (prevnextMargin > 0) {
                             $('.ddb-omeka-carousel-gallery-controlls').css('margin', 

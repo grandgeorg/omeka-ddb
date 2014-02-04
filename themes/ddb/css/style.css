@@ -247,12 +247,12 @@
 .exhibit-page-navigation-bar {
 
     margin: 0 auto 24px auto;
-    padding: 10px 0 0 0;
+    /*padding: 10px 0 0 0;*/
     overflow: hidden;
     position: relative;
     width: 100%;
-    max-width: 1158px;
-    height: 76px;
+    max-width: 1170px;
+    height: 87px;
 
     -webkit-box-shadow: 0 1px 6px 0 #ccc;
     box-shadow: 0 1px 6px 0 #ccc;
@@ -329,11 +329,14 @@
     position: absolute;
     overflow: hidden;
     z-index: 10;
-    top:16px;
+    top:23px;
     display: block;
-    background: url('/themes/ddb/images/carousel-sprite.png') no-repeat transparent;
-    width: 31px;
-    height: 31px;
+    /*background: url('/themes/ddb/images/carousel-sprite.png') no-repeat transparent;*/
+    background: url('/themes/ddb/css/ddb-arrows.png') no-repeat transparent;
+   /* width: 31px;
+    height: 31px;*/
+    width: 27px;
+    height: 41px;
 }
 #ddb-omeka-carousel_next span, #ddb-omeka-carousel_prev span {
     display: none;
@@ -341,20 +344,20 @@
 
 #secondary-nav #ddb-omeka-carousel_next {
     right:21px;
-    background-position: -54px -6px; 
+    background-position: -5px -154px;
 }
 
-#secondary-nav #ddb-omeka-carousel_next:hover { background-position: -54px -57px; }
-#secondary-nav #ddb-omeka-carousel_next.disabled { background-position: -50px -100px !important; }
+#secondary-nav #ddb-omeka-carousel_next:hover { background-position: -5px -204px; }
+#secondary-nav #ddb-omeka-carousel_next.disabled { background-position: -5px -297px !important; }
 #secondary-nav #ddb-omeka-carousel_next.disabled,
 #secondary-nav #ddb-omeka-carousel_prev.disabled { cursor: default; }
 
 #secondary-nav #ddb-omeka-carousel_prev {
     left:21px;
-    background-position: -11px -6px;
+    background-position: -5px -4px;
 }
-#secondary-nav #ddb-omeka-carousel_prev:hover { background-position: -11px -57px; }
-#secondary-nav #ddb-omeka-carousel_prev.disabled { background-position: 0 -100px !important; }
+#secondary-nav #ddb-omeka-carousel_prev:hover { background-position: -5px -54px; }
+#secondary-nav #ddb-omeka-carousel_prev.disabled { background-position: -5px -297px !important; }
 
 
 
@@ -378,9 +381,10 @@
     width: 72px;
     height:51px;
     
-    margin: 4px 4px 8px 0;
+    margin: 16px 4px 16px 0;
     /*padding:21px 4px 4px 4px;*/
     text-align: center;
+    /*padding: 10px 0 0 0;*/
     
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -397,14 +401,17 @@
 /*        -webkit-box-shadow: inset  0 0 3px 2px rgba(0, 0, 0, 0.5);
     box-shadow: inset  0 0 4px 2px rgba(0, 0, 0, 0.5);*/
 }
-#secondary-nav .nav-carusel-item.current a {
+#secondary-nav .current a {
     border-color: #ab102d;
+    width: 92px;
+    height:71px;
+    margin: 6px 4px 6px 0;
 
 }
 
 #secondary-nav .nav-carusel-item.current a:before {
-    width: 72px;
-    height: 51px;
+    width: 92px;
+    height: 71px;
     position: absolute;
     top: -3px;
     left: 0;
@@ -412,6 +419,7 @@
     margin: 0;
     padding: 0;
     content:url('/themes/ddb/images/current-page-arrow.png');
+    text-align: center;
 }
 
 #secondary-nav .nav-carusel-item a span {
@@ -477,6 +485,12 @@
     background-color: #ab102d;
 }
 
+#secondary-nav .nav-carusel-item.current .ddb-omeka-pagecounter {
+    left:32px;
+    top:52px;
+}
+
+
 .ddb-omeka-two-col {
     clear: all;
     width: 83.4%;
@@ -508,18 +522,24 @@
 }
 
 /*jquery ui tooltip*/
-.ddb-omeka-tooltip-styling, .ui-tooltip { font-size: 12px;  box-shadow: 0 0 0 transparent;}
-.ui-tooltip, .arrow:after {
-    background: #fc0;
-    border: 2px solid #fff;
+.ddb-omeka-tooltip-styling, .ui-tooltip { 
+    font-size: 12px;  
+    /*box-shadow: 0 0 0 transparent;*/
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
-.ui-tooltip {
+.ui-tooltip, .arrow:after {
+    background: #fff;
+    border: 1px solid #999;
+}
+body .ui-tooltip {
     padding: 5px 10px;
     color: #000;
     border-radius: 4px;
+    border: 1px solid #999;
     font: normal 12px "Helvetica Neue", Sans-Serif;
-    box-shadow: 0 0 4px #ccc;
-    box-shadow: 0;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 0 4px #ddd;*/
+    /*box-shadow: 0;*/
 }
 .arrow {
     width: 70px;
@@ -544,7 +564,8 @@
     top: -20px;
     width: 25px;
     height: 25px;
-    box-shadow: 6px 5px 9px -9px #ccc;
+    /*box-shadow: 6px 5px 9px -9px #ccc;*/
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -683,27 +704,30 @@ audio {
 
 /* page prev next navigation */
 #exhibit-nav-prev .previous-page, #exhibit-nav-next .next-page {
-    line-height: 31px;
+    line-height: 41px;
 }
 #exhibit-nav-prev .previous-page .nav-icon-prev, #exhibit-nav-next .next-page .nav-icon-next {
     display: block;
-    background: url('/themes/ddb/images/carousel-sprite.png') no-repeat transparent;
-    width: 31px;
-    height: 31px;
+    /*background: url('/themes/ddb/images/carousel-sprite.png') no-repeat transparent;*/
+    background: url('/themes/ddb/css/ddb-arrows.png') no-repeat transparent;
+    width: 27px;
+    height: 41px;
 }
 #exhibit-nav-next .next-page .nav-icon-next {
     float: right;
-    background-position: -54px -6px;
+    background-position: -5px -154px;
     margin-left: 8px;
 }
-#exhibit-nav-next .next-page:hover .nav-icon-next { background-position: -54px -57px; }
+#exhibit-nav-next .next-page:hover .nav-icon-next { background-position: -5px -204px; }
 #exhibit-nav-prev .previous-page .nav-icon-prev {
     float: left;
-    background-position: -11px -6px;
+    background-position: -5px -4px;
     margin-right: 8px;
 }
-#exhibit-nav-prev .previous-page:hover .nav-icon-prev { background-position: -11px -57px; }
-
+#exhibit-nav-prev .previous-page:hover .nav-icon-prev { background-position: -5px -54px; }
+#exhibit-nav-up {
+    line-height: 41px;
+}
 #exhibit-nav-up .current-page {
     color: #666;
     font-style: italic;
@@ -721,13 +745,25 @@ audio {
 
 /* widget */
 .ddb-omeka-exhibit-widget {
-    background-color: #f3f3f3;
+    background-color: #f5f5f5;
     margin: 16px 0;
     padding: 8px;
     font-size: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 /* link */
 .primary a, .secondary a, .tertiary a {
     text-decoration: underline;
+}
+
+/* breadcrumb */
+.ddb-omeka-exhibit-title {
+    margin: 15px 0;
+    padding: 0 0 10px 0;
+    font-size: 0.875em;
+    /*border-bottom: 2px solid #EFEBE8;*/
 }
