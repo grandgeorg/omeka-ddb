@@ -1,0 +1,131 @@
+.omeka-exhibit-content-wrapper {
+    clear: both;
+    overflow: visible;
+    position: relative;
+}
+
+h1 {
+    clear: both;
+    display: block;
+
+}
+
+.primary,
+.secondary,
+.tertiary {
+    width:41.7%;
+    overflow:hidden;
+    zoom:1;
+}
+
+.primary {
+    float:left; 
+    margin: 0 0.5% 0 0;
+
+}
+
+.secondary {
+    float:right; 
+    margin: 0 15.1% 0 0.5%
+
+}
+.tertiary {
+    /*float:right; */
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right:0;
+    margin: 0;
+    width:13.6%;
+}
+
+.tertiary img {
+    border:0;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 1;
+}
+
+/* real width should be 490px */
+@media (max-width: 550px) {
+    .primary,
+    .secondary,
+    .tertiary {
+        float:none;
+        width: 100%
+    }
+    .tertiary { position: relative;}
+    .tertiary img { display: none; }
+
+}
+
+/* thumbnail gallery carousel */
+#thumbnail-gallery-carousel-elements {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+#thumbnail-gallery-carousel-elements .disabled img {
+    display: none;
+}
+#thumbnail-gallery-carousel-container {
+    position: absolute;
+    overflow: hidden;
+    right: 27px;
+    left: 37px;
+    top: 0;
+
+/*    position: relative;
+    float: left;
+    margin: 0 0 0 0;*/
+}
+#ddb-omeka-carousel-gallery_prev, #ddb-omeka-carousel-gallery_next {
+    background: url('/themes/ddb/css/ddb-arrows.png') no-repeat transparent;
+    width: 27px;
+    height: 41px;
+}
+/*#ddb-omeka-carousel-gallery_prev img, #ddb-omeka-carousel-gallery_next img {
+    margin: 0;
+    padding: 0;
+}*/
+#ddb-omeka-carousel-gallery_prev {
+    float: left;
+    background-position: -5px -4px;
+}
+#ddb-omeka-carousel-gallery_prev:hover {
+    background-position: -5px -54px;
+}
+#ddb-omeka-carousel-gallery_next {
+    float: right;
+    background-position: -5px -154px;
+}
+#ddb-omeka-carousel-gallery_next:hover {
+    background-position: -5px -204px;
+}
+#thumbnail-gallery-carousel-elements .disabled {
+    background-position: -5px -297px !important;
+}
+#thumbnail-gallery-carousel-wrapper {
+    width: 100%;
+    /*min-height: 65px;*/
+    /*overflow: hidden;*/
+}
+
+#thumbnail-gallery-carousel-wrapper div {
+    /*position: relative;*/
+    float:left;
+    width: 131px;
+    margin:0 10px 0 0;
+    padding: 0;
+    /*min-height: 65px;*/
+}
+#thumbnail-gallery-carousel-wrapper img {
+    /*width: 152px;*/
+    /*height: 152px;*/
+    margin: 0;
+    /*display: block;*/
+    /*position: relative;*/
+}
+.exhibit-item-link { display:block; overflow: hidden; text-decoration: none; }

@@ -544,6 +544,94 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
     return apply_filters('exhibit_builder_thumbnail_gallery', $html,
         array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
 }
+
+
+
+function ddb_exhibit_builder_attachment_markup($attachment) {
+    $file = $attachment['file'];
+    $attachmentTitle = '';
+    $attachmentTitleFromCaption = strip_tags($attachment['caption']);
+    $attachmentTitleFromObject = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Title')));
+    $attachmentTitleFromFile = strip_tags(metadata($file, array('Dublin Core', 'Title')));
+    if (!empty($attachmentTitleFromCaption)) {
+        $attachmentTitle = $attachmentTitleFromCaption;
+    } elseif(!empty($attachmentTitleFromObject)) {
+        $attachmentTitle = $attachmentTitleFromObject;
+    } elseif (!empty($attachmentTitleFromFile)) {
+        $attachmentTitle = $attachmentTitleFromFile;
+    }
+    $attachmentRights = '';
+    $attachmentRightsFromObject = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Rights')));
+    $attachmentRightsFromFile = strip_tags(metadata($file, array('Dublin Core', 'Rights')));
+    if(!empty($attachmentRightsFromObject)) {
+        $attachmentRights = $attachmentRightsFromObject;
+    } elseif (!empty($attachmentRightsFromFile)) {
+        $attachmentRights = $attachmentRightsFromFile;
+    }
+
+    // Source 
+    $attachmenLinkText = '';
+    $attachmenLinkTitle = '';
+    $attachmenLinkUrl = '';
+    $attachmenLinkTextFromObject = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Source')));
+    $attachmenLinkTextFromFile = strip_tags(metadata($file, array('Dublin Core', 'Source')));
+    if(!empty($attachmenLinkTextFromObject)) {
+        $attachmenLinkText = $attachmenLinkTextFromObject;
+    } elseif (!empty($attachmenLinkTextFromFile)) {
+        $attachmenLinkText = $attachmenLinkTextFromFile;
+    }
+
+    if (1 === preg_match('@title="([^"]*)@', 
+        metadata($attachment['item'], array('Dublin Core', 'Source')), $attachmenLinkTitleFromObject)) {
+        $attachmenLinkTitle = $attachmenLinkTitleFromObject[1];
+    } elseif (1 === preg_match('@title="([^"]*)@', 
+        metadata($file, array('Dublin Core', 'Source')), $attachmenLinkTitleFromFile)) {
+        $attachmenLinkTitle = $attachmenLinkTitleFromFile[1];
+    }
+
+    if (1 === preg_match('@href="([^"]*)@', 
+        metadata($attachment['item'], array('Dublin Core', 'Source')), $attachmenLinkUrlFromObject)) {
+        $attachmenLinkUrl = $attachmenLinkUrlFromObject[1];
+    } elseif (1 === preg_match('@href="([^"]*)@', 
+        metadata($file, array('Dublin Core', 'Source')), $attachmenLinkUrlFromFile)) {
+        $attachmenLinkUrl = $attachmenLinkUrlFromFile[1];
+    }
+
+    // if (1 != 1 && count($attachment{'item'}->getFiles()) == 1) {
+    //     // There is only one file attached to the object
+    //     $metadata = json_decode($file->metadata);
+    //     if (isset($metadata->mime_type) && substr($metadata->mime_type, 0, 5) == 'image') {
+    //         // The file is an image, so link to the fullsize image
+    //         return files_for_item(array(
+    //             'imageSize' => 'fullsize', 
+    //             'linkToFile' => true,
+    //             'linkAttributes'=>array(
+    //                 // 'rel'=>'ddb-omeka-gallery-1',
+    //                 'data-title' => $attachmentTitle,
+    //                 'data-linktext' => $attachmenLinkText,
+    //                 'data-linkurl' => $attachmenLinkUrl,
+    //                 'data-linktitle' => $attachmenLinkTitle,
+    //                 'data-copyright' => $attachmentRights
+    //         )), array('class'=>'permalink'), $attachment['item']); 
+    //     }
+    // } 
+
+    return exhibit_builder_attachment_markup(
+        $attachment, 
+        array(
+            'imageSize' => 'fullsize', 
+            'linkAttributes'=>array(
+                // 'rel'=>'ddb-omeka-gallery-1',
+                'data-title' => $attachmentTitle,
+                'data-linktext' => $attachmenLinkText,
+                'data-linkurl' => $attachmenLinkUrl,
+                'data-linktitle' => $attachmenLinkTitle,
+                'data-copyright' => $attachmentRights
+        )), 
+        array('class' => 'permalink'));
+}
+
+
 // END Grandgeorg Websolutions
 
 /**
