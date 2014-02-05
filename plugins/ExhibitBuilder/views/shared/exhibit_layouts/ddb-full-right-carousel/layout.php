@@ -76,13 +76,13 @@
     </div>
 </div>
 <?php if ($text = exhibit_builder_page_text(3)):?>
-<div class="ddb-omkeka-subtitle"><?php echo $text; ?></div>
+<div class="ddb-omeka-subtitle"><?php echo $text; ?></div>
 <?php endif; ?>
 <?php if ($text = exhibit_builder_page_text(4)):?>
 <div class="ddb-omeka-two-col"><?php echo $text; ?></div>
 <?php endif; ?>
 <?php if ($text = exhibit_builder_page_text(5)):?>
-<div class="ddb-omkeka-subtitle"><?php echo $text; ?></div>
+<div class="ddb-omeka-subtitle"><?php echo $text; ?></div>
 <?php endif; ?>
 <?php if ($text = exhibit_builder_page_text(6)):?>
 <div class="ddb-omeka-two-col"><?php echo $text; ?></div>

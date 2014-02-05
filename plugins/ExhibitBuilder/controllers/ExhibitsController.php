@@ -373,7 +373,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
                 ->setQuality(90)
                 ->setUrl('http://' . $_SERVER['SERVER_NAME'] . '/exhibits/show/' . $exhibit->slug . '/' . $exhibitPage->slug)
                 // ->setOptions('--crop-y 244 --crop-x 38 --crop-h 952 --crop-w 946')
-                ->setOptions('--username omeka --password ddb2013 --crop-y 244 --crop-x 38 --crop-h 952 --crop-w 946')
+                ->setOptions('--username omeka --password ddb2013 --crop-y 347 --crop-x 38 --crop-h 952 --crop-w 946')
                 ->setResizedOutputFile($wtiOutputPath . $exhibit->slug . '-' . $exhibitPage->slug . '.jpg')
                 ->setResize('150x150')
                 ->start();

@@ -1,21 +1,65 @@
-/* CSS for the image-list-right layout */
+.omeka-exhibit-content-wrapper {
+    clear: both;
+    overflow: visible;
+    position: relative;
+}
 
-.image-text-group {
+h1 {
+    clear: both;
+    display: block;
+
+}
+
+.primary,
+.secondary,
+.tertiary {
+    width:41.7%;
     overflow:hidden;
     zoom:1;
 }
 
-.exhibit-item {
+.primary {
+    float:left; 
+    margin: 0 0.5% 0 0;
+
+}
+
+.secondary {
     float:right; 
-    width: 48%;
-    margin-bottom:2%;
+    margin: 0 14.9% 0 0.5%
+
+}
+.tertiary {
+    /*float:right; */
+    position: absolute;
+    top: 0;
+    right:0;
+    margin: 0;
+    width:13.6%;
 }
 
-.exhibit-item img {
-    max-width:100%;
+.tertiary img {
+    border:0;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 1;
 }
 
-.exhibit-text {
-    float:left;
-    width: 48%;
+/* real width should be 490px */
+@media (max-width: 550px) {
+    .primary,
+    .secondary,
+    .tertiary {
+        float:none;
+        width: 100%
+    }
+    .tertiary { position: relative;}
+    .tertiary img { display: none; }
+
+}
+
+.ddb-omeka-col-container {
+    overflow: hidden;
+    width: 100%;
 }
