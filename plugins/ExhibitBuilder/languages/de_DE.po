@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-02-03 20:51+0100\n"
+"PO-Revision-Date: 2014-02-07 15:32+0100\n"
 "Last-Translator: Viktor Grandgeorg <viktor@grandgeog.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/omeka/"
 "language/de_DE/)\n"
@@ -326,3 +326,12 @@ msgstr "Inhaltswidget"
 
 msgid "Exhibit Banner"
 msgstr "Banner der Ausstellung"
+
+msgid "Exhibit Cover"
+msgstr "Cover der Ausstellung"
+
+msgid "Page Navigation Thumbnail"
+msgstr "Thumbnail für die Seitennavigation"
+
+msgid "Minimum size for image (width x height) is %d x %d pixel"
+msgstr "Mindestgröße des Bildes (Breite x Höhe) ist %d x %d Pixel"

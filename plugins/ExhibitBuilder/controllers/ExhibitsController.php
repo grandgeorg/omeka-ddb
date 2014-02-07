@@ -48,27 +48,21 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
     public function editAction()
     {
-        var_dump($_FILES);
-        $fileField = 'banner';
-        // echo FILES_DIR;
-        if ($this->getRequest()->isPost() && isset($_FILES[$fileField]) && 
-            isset($_FILES[$fileField]['error']) && $_FILES[$fileField]['error'] == 0) {
-            $uploadedFile = $_FILES[$fileField];
-            $fileName = preg_replace('/[^a-zA-Z0-9\-_\.]/', '-', str_replace('.', '', microtime(true)) 
-                . '-' . trim($uploadedFile['name']));
-            if (move_uploaded_file($uploadedFile['tmp_name'], FILES_DIR . '/layout/' . $fileName)) {
-                $_POST[$fileField] = $fileName;
+        $fileFields = array('banner', 'cover');
+        foreach ($fileFields as $fileField) {
+            if ($this->getRequest()->isPost() && isset($_FILES[$fileField]) && 
+                isset($_FILES[$fileField]['error']) && $_FILES[$fileField]['error'] == 0) {
+                $uploadedFile = $_FILES[$fileField];
+                $fileName = preg_replace('/[^a-zA-Z0-9\-_\.]/', '-', str_replace('.', '', microtime(true)) 
+                    . '-' . trim($uploadedFile['name']));
+                if (!is_dir(FILES_DIR . '/layout/' . $fileField)) {
+                    mkdir(FILES_DIR . '/layout/' . $fileField, 0755, true);
+                }
+                if (move_uploaded_file($uploadedFile['tmp_name'], FILES_DIR . '/layout/' . $fileField . '/' . $fileName)) {
+                    $_POST[$fileField] = $fileName;
+                }
             }
-                
-            // echo 'fun';
-            // $formData = $this->getRequest()->getPost();
-            // var_dump($formData);
-            // $uploadedData = $this->view->form->getValues();
         }
-        // die();
-            // var_dump($_FILES, $_POST, $this->getRequest(), $formData, $this->view, $this );
-            // var_dump( $this );
-            // die();
         parent::editAction();
     }
 
@@ -372,8 +366,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
                 ->setOutputFile($wtiOutputPath . $exhibit->slug . '-' . $exhibitPage->slug . '-temp.jpg')
                 ->setQuality(90)
                 ->setUrl('http://' . $_SERVER['SERVER_NAME'] . '/exhibits/show/' . $exhibit->slug . '/' . $exhibitPage->slug)
-                // ->setOptions('--crop-y 244 --crop-x 38 --crop-h 952 --crop-w 946')
-                ->setOptions('--username omeka --password ddb2013 --crop-y 347 --crop-x 38 --crop-h 952 --crop-w 946')
+                // ->setOptions('--crop-y 347 --crop-x 38 --crop-h 952 --crop-w 946')
+                ->setOptions('--username omeka --password ddb2013 --crop-y 347 --crop-x 38 --crop-h 952 --crop-w 810')
                 ->setResizedOutputFile($wtiOutputPath . $exhibit->slug . '-' . $exhibitPage->slug . '.jpg')
                 ->setResize('150x150')
                 ->start();
@@ -422,6 +416,23 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $this->view->assign(compact('exhibit', 'actionName'));
         $this->view->exhibit_page = $exhibitPage;
         if ($this->getRequest()->isPost()) {
+            // Grandgeorg Websolutions
+            $fileFields = array('pagethumbnail');
+            foreach ($fileFields as $fileField) {
+                if ($this->getRequest()->isPost() && isset($_FILES[$fileField]) && 
+                    isset($_FILES[$fileField]['error']) && $_FILES[$fileField]['error'] == 0) {
+                    $uploadedFile = $_FILES[$fileField];
+                    $fileName = preg_replace('/[^a-zA-Z0-9\-_\.]/', '-', str_replace('.', '', microtime(true)) 
+                        . '-' . trim($uploadedFile['name']));
+                    if (!is_dir(FILES_DIR . '/layout/' . $fileField)) {
+                        mkdir(FILES_DIR . '/layout/' . $fileField, 0755, true);
+                    }
+                    if (move_uploaded_file($uploadedFile['tmp_name'], FILES_DIR . '/layout/' . $fileField . '/' . $fileName)) {
+                        $_POST[$fileField] = $fileName;
+                    }
+                }
+            }
+            //  END Grandgeorg Websolutions
             $exhibitPage->setPostData($_POST);
             try {
                 $success = $exhibitPage->save();

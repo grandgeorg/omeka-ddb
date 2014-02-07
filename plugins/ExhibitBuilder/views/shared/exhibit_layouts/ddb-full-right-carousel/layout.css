@@ -82,9 +82,9 @@ h1 {
     margin: 0 0 0 0;*/
 }
 #ddb-omeka-carousel-gallery_prev, #ddb-omeka-carousel-gallery_next {
-    background: url('/themes/ddb/css/ddb-arrows.png') no-repeat transparent;
-    width: 27px;
-    height: 41px;
+    background: url('/themes/ddb/css/ddb-arrows-small.png') no-repeat transparent;
+    width: 22px;
+    height: 31px;
 }
 /*#ddb-omeka-carousel-gallery_prev img, #ddb-omeka-carousel-gallery_next img {
     margin: 0;
@@ -92,20 +92,20 @@ h1 {
 }*/
 #ddb-omeka-carousel-gallery_prev {
     float: left;
-    background-position: -5px -4px;
+    background-position: -3px -3px;
 }
 #ddb-omeka-carousel-gallery_prev:hover {
-    background-position: -5px -54px;
+    background-position: -3px -41px;
 }
 #ddb-omeka-carousel-gallery_next {
     float: right;
-    background-position: -5px -154px;
+    background-position: -3px -116px;
 }
 #ddb-omeka-carousel-gallery_next:hover {
-    background-position: -5px -204px;
+    background-position: -3px -154px;
 }
 #thumbnail-gallery-carousel-elements .disabled {
-    background-position: -5px -297px !important;
+    background-position: -3px -225px !important;
 }
 #thumbnail-gallery-carousel-wrapper {
     width: 100%;

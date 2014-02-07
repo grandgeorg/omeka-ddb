@@ -3,7 +3,7 @@ $title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page "%s"', $exhibit
 echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 ?>
 <?php echo flash(); ?>
-<form method="post" id="choose-layout">
+<form method="post" id="choose-layout" enctype="multipart/form-data">
     <div id="exhibits-breadcrumb">
         <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
         <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
@@ -27,6 +27,28 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             <div class="inputs five columns omega">
                 <p class="explanation"><?php echo __('No spaces or special characters allowed'); ?></p>
                 <?php echo $this->formText('slug', $exhibit_page->slug); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('widget', __('Widget Content')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                <?php echo $this->formTextarea('widget', $exhibit_page->widget, array('rows'=>'8','cols'=>'40')); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('pagethumbnail', __('Page Navigation Thumbnail')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                 <p class="explanation"><?php echo sprintf(
+                     __('Minimum size for image (width x height) is %d x %d pixel'), 92, 71); ?></p>
+                <?php if (!empty($exhibit_page->pagethumbnail) && 
+                    is_file(FILES_DIR . '/layout/pagethumbnail/' . $exhibit_page->pagethumbnail)): ?>
+                <a href="/files/layout/pagethumbnail/<?php echo $exhibit_page->pagethumbnail; ?>" target="_blank"><img src="/files/layout/pagethumbnail/<?php echo $exhibit_page->pagethumbnail; ?>" style="diplay:block; float:left; height:80px; margin:0 10px 0 0;"></a>
+                <?php endif; ?>
+                <?php echo $this->formFile('pagethumbnail'); ?>
             </div>
         </div>
     </fieldset>
@@ -94,6 +116,11 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             jQuery(this).find('input').attr('checked', true);
         });
     }
+
+    jQuery(window).load(function() {
+        Omeka.ExhibitBuilder.wysiwyg();
+    });
+
 //]]>
 </script>
 <?php echo foot(); ?>

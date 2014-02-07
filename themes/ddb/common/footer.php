@@ -74,7 +74,7 @@
                     if ($(thumbnailGalleryClass)) {
                         var colWidth = $('.secondary').width();
                         var imgWidth = Math.round((colWidth - offset) / 3);
-                        var prevnextHeight = 41;
+                        var prevnextHeight = 31;
                         var prevnextMargin = 0;
                         $(thumbnailGalleryClass + ' div.exhibit-item').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
                         $('#thumbnail-gallery-carousel-container').css({'height' : imgWidth + 'px'});

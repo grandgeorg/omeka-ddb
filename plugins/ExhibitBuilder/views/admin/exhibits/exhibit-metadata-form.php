@@ -49,8 +49,8 @@
                 <?php echo $this->formLabel('banner', __('Exhibit Banner')); ?>
             </div>
             <div class="five columns omega inputs">
-                <?php if (!empty($exhibit->banner) && is_file(FILES_DIR . '/layout/' . $exhibit->banner)): ?>
-                <a href="/files/layout/<?php echo $exhibit->banner; ?>" target="_blank"><img src="/files/layout/<?php echo $exhibit->banner; ?>" style="diplay:block; float:left; height:80px; margin:0 10px 0 0;"></a>
+                <?php if (!empty($exhibit->banner) && is_file(FILES_DIR . '/layout/banner/' . $exhibit->banner)): ?>
+                <a href="/files/layout/banner/<?php echo $exhibit->banner; ?>" target="_blank"><img src="/files/layout/banner/<?php echo $exhibit->banner; ?>" style="diplay:block; float:left; height:80px; margin:0 10px 0 0;"></a>
                 <?php endif; ?>
                 <?php echo $this->formFile('banner'); ?>
             </div>
@@ -61,6 +61,17 @@
             </div>
             <div class="five columns omega inputs">
                 <?php echo $this->formTextarea('widget', $exhibit->widget, array('rows'=>'8','cols'=>'40')); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('cover', __('Exhibit Cover')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                <?php if (!empty($exhibit->cover) && is_file(FILES_DIR . '/layout/cover/' . $exhibit->cover)): ?>
+                <a href="/files/layout/cover/<?php echo $exhibit->cover; ?>" target="_blank"><img src="/files/layout/cover/<?php echo $exhibit->cover; ?>" style="diplay:block; float:left; height:56px; margin:0 10px 0 0;"></a>
+                <?php endif; ?>
+                <?php echo $this->formFile('cover'); ?>
             </div>
         </div>
         <div class="field">

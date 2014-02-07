@@ -11,9 +11,12 @@
     <div class="tertiary">
         <?php $exhibit = $exhibitPage->getExhibit();
         if (isset($exhibit->banner) && !empty($exhibit->banner) && 
-            file_exists(FILES_DIR . '/layout/' . $exhibit->banner)): ?>
-        <img src="<?php echo substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/' 
+            file_exists(FILES_DIR . '/layout/banner/' . $exhibit->banner)): ?>
+        <img src="<?php echo substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/banner/' 
             . $exhibit->banner; ?>" alt="<?php echo $exhibit->banner; ?>">
+        <?php endif; ?>
+        <?php if (isset($exhibitPage->widget) && !empty($exhibitPage->widget)): ?>
+        <div class="ddb-omeka-exhibit-widget"><?php echo $exhibitPage->widget; ?></div>
         <?php endif; ?>
         <?php if (isset($exhibit->widget) && !empty($exhibit->widget)): ?>
         <div class="ddb-omeka-exhibit-widget"><?php echo $exhibit->widget; ?></div>

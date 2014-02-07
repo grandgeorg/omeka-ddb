@@ -24,14 +24,21 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
 <?php foreach (loop('exhibit') as $exhibit): ?>
     <?php if($exhibit->public == 1): ?>
     <?php $exhibitCount++; ?>
-    <div class="exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
-        <h2><?php echo link_to_exhibit(); ?></h2>
-        <?php if ($exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true))): ?>
-        <div class="description"><?php echo $exhibitDescription; ?></div>
+    <div class="ddb-omeka-exhibit-list exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
+        <?php if ($exhibit->cover): ?>
+        <div class="ddb-omeka-exhibit-cover">
+            <img alt="<?php echo $exhibit->cover; ?>" src="/files/layout/cover/<?php echo $exhibit->cover; ?>">
+        </div>
         <?php endif; ?>
-        <?php if ($exhibitTags = tag_string('exhibit', 'exhibits')): ?>
-        <p class="tags"><?php echo $exhibitTags; ?></p>
+        <div class="ddb-omeka-exhibit-info">
+            <h2><?php echo link_to_exhibit(); ?></h2>
+            <?php if ($exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true))): ?>
+            <div class="description"><?php echo $exhibitDescription; ?></div>
+            <?php endif; ?>
+            <?php if ($exhibitTags = tag_string('exhibit', 'exhibits')): ?>
+            <p class="tags"><?php echo $exhibitTags; ?></p>
         <?php endif; ?>
+        </div>
     </div>
     <?php endif; ?>
 <?php endforeach; ?>

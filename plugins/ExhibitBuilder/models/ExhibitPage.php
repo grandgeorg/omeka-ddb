@@ -19,6 +19,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public $slug;
     public $title;
     public $order;
+    public $widget;
+    public $pagethumbnail;
 
     protected $_related = array('ExhibitPageEntry'=>'loadOrderedChildren');
 

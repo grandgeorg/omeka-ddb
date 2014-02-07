@@ -135,6 +135,7 @@ function exhibit_builder_page_nav($exhibitPage = null)
 
         $pageCounter = 1;
         $wtiOutputPath = dirname(dirname(__FILE__)) . '/views/public/images/';
+        $pageThumbnailPath = FILES_DIR . '/layout/pagethumbnail/';
         $defaultPageIcon = '/plugins/ExhibitBuilder/views/public/images/default-page-icon.jpg';
         // $html .= "<li>\n<ul>\n";
         foreach ($pageSiblings as $pageSibling) {
@@ -143,12 +144,20 @@ function exhibit_builder_page_nav($exhibitPage = null)
             $html .= html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling));
             $html .= '" title="' . html_escape($pageSibling->title) . '">';
             // $html .= '<div class="ddb-omeka-navigation-background-image">';
-
-            if (file_exists($wtiOutputPath . $exhibit->slug . '-' . $pageSibling->slug . '.jpg')) {
-                $html .= '<img class="ddb-omeka-navigation-background-image" src="/plugins/ExhibitBuilder/views/public/images/' 
+            if (file_exists($pageThumbnailPath . $pageSibling->pagethumbnail) && 
+                is_file($pageThumbnailPath . $pageSibling->pagethumbnail)) {
+                $html .= '<img class="ddb-omeka-navigation-background-image" '
+                      . 'alt="page-' . $pageCounter . '" '
+                      . 'src="' . substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/pagethumbnail/' 
+                      . $pageSibling->pagethumbnail . '">';
+            } elseif (file_exists($wtiOutputPath . $exhibit->slug . '-' . $pageSibling->slug . '.jpg')) {
+                $html .= '<img class="ddb-omeka-navigation-background-image" '
+                      . 'alt="page-' . $pageCounter . '" '
+                      . 'src="/plugins/ExhibitBuilder/views/public/images/' 
                       . $exhibit->slug . '-' . $pageSibling->slug . '.jpg">';
             } else {
-                $html .= '<img class="ddb-omeka-navigation-background-image" src="' . $defaultPageIcon . '">';
+                $html .= '<img class="ddb-omeka-navigation-background-image" alt="page-' 
+                      . $pageCounter . '" src="' . $defaultPageIcon . '">';
             }
 
             // $html .= '</div>';

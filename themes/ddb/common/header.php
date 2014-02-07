@@ -90,7 +90,7 @@
             <a href="https://www.deutsche-digitale-bibliothek.de/content/about">
               Über uns
             </a>
-            <ul class="nav">
+<!--             <ul class="nav">
               <li class="">
                 <a href="https://www.deutsche-digitale-bibliothek.de/content/news">Aktuelles</a>
               </li>
@@ -106,7 +106,8 @@
               <li class="">
                 <a href="https://www.deutsche-digitale-bibliothek.de/content/faq">Fragen &amp; Antworten</a>
               </li>
-            </ul><!-- /end of .nav -->
+            </ul> -->
+            <!-- /end of .nav -->
           </li>
           <li>
             <a href="https://www.deutsche-digitale-bibliothek.de/content/help">Hilfe</a>
@@ -115,7 +116,7 @@
             <a href="/">
              Ausstellungen
             </a>
-            <ul class="nav">
+<!--             <ul class="nav">
               <li>
                 <a href="/exhibits">Liste der Ausstellungen</a>
               </li>
@@ -125,10 +126,10 @@
               <li>
                 <a href="/items/browse">Objekte</a>
               </li>
-            </ul>
+            </ul> -->
           </li>
             
-            <li class=""><a>
+<!--             <li class=""><a>
               Sprache ändern
             </a>
             <ul class="nav">
@@ -141,13 +142,13 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="">
+          </li> -->
+<!--           <li class="">
             
               <a href="https://www.deutsche-digitale-bibliothek.de/login">Anmelden</a>
             
             
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -177,16 +178,17 @@
             <div role="navigation">
               <ul class="navigation inline">
                 <li class="root">
-                  <a href="https://www.deutsche-digitale-bibliothek.de/">Suche</a>
-                  <ul>
+                  <a href="https://www.deutsche-digitale-bibliothek.de/">Suche</a><br>
+<!--                   <ul>
+
                     <li class="">
                       <a href="https://www.deutsche-digitale-bibliothek.de/advancedsearch">Erweiterte Suche</a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li>
                   <a href="https://www.deutsche-digitale-bibliothek.de/content/about">Über uns</a>
-                  <ul>
+                  <!-- <ul>
                     <li class="">
                       <a href="https://www.deutsche-digitale-bibliothek.de/content/news">Aktuelles</a>
                     </li>
@@ -202,50 +204,47 @@
                     <li class="">
                       <a href="https://www.deutsche-digitale-bibliothek.de/content/faq">Fragen &amp; Antworten</a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li>
                   <a href="https://www.deutsche-digitale-bibliothek.de/content/help">Hilfe</a>
                 </li>
-
-
-
                 <li class="keep-in-front active-default">
                     <a href="/exhibits">Ausstellungen</a>
                 <?php 
-                $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
-                $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName(); 
+                // $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+                // $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName(); 
             /* Controllers are: 
             exhibits
             items
             collections
             */
             ?>
-                  <ul>
-                    <li class="<?php echo ($controller == 'exhibits' && $action == 'browse')? 'active-default': ''; ?>">
+<!--                   <ul>
+                    <li class="<?php // echo ($controller == 'exhibits' && $action == 'browse')? 'active-default': ''; ?>">
                       <a href="/exhibits">Liste der Ausstellungen</a>
                     </li>
-                    <li class="<?php echo ($controller == 'collections' && $action == 'browse')? 'active-default': ''; ?>">
+                    <li class="<?php // echo ($controller == 'collections' && $action == 'browse')? 'active-default': ''; ?>">
                       <a href="/collections/browse">Sammlungen</a>
                     </li>
-                    <li class="<?php echo ($controller == 'items' && $action == 'browse')? 'active-default': ''; ?>">
+                    <li class="<?php // echo ($controller == 'items' && $action == 'browse')? 'active-default': ''; ?>">
                       <a href="/items/browse">Objekte</a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </li>
               </ul>
             </div>
           </div>
           <div class="span5 toolbar">
-            <div class="status-bar">
+            <div class="status-bar" style="height:19px">
               
-                <div class="login-wrapper">
+<!--                 <div class="login-wrapper">
                   <a href="https://www.deutsche-digitale-bibliothek.de/login">Anmelden</a>
-                </div>
+                </div> -->
               
               
-              <div class="header-spacer"></div>
-              <div class="language-wrapper">
+              <!-- <div class="header-spacer"></div> -->
+<!--               <div class="language-wrapper">
                 <a href="#"> Deutsch
                 </a>
                 <ul class="selector language">
@@ -254,29 +253,29 @@
                       English
                     </a></li>
                 </ul>
-              </div>
+              </div> -->
             </div>
             <div class="search-header hidden-phone">
-              <form action="/searchresults" method="get" role="search" id="form-search-header">
+
+              <?php echo search_form(array(
+                'show_advanced' => false, 
+                'form_attributes' => array(
+                  'id' => 'form-search-header',
+                  'role' => 'search',
+                ))); ?>
+
+<!--               <form action="/searchresults" method="get" role="search" id="form-search-header-x">
                 <label for="search-small"> <span>Suchtext-Feld</span>
                 </label>
                 <input id="querycache" value="" type="hidden">
                 <input id="search-small" class="query" name="query" autocomplete="off" type="search">
-                <button type="submit">
-                  <!--[if !IE]><!-->
-                  Suche
-                  <!--<![endif]-->
-                  <!--[if gt IE 8]>
-                        Suche
-                      <![endif]-->
-                </button>
                 <span class="contextual-help hidden-phone hidden-tablet" data-content="Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste. &lt;a href=&quot;/content/help/search-simple&quot;&gt; Hilfe zur einfachen Suche &lt;/a&gt;">
                 </span>
                 <a href="https://www.deutsche-digitale-bibliothek.de/advancedsearch" class="link-adv-search">
                   Erweiterte Suche
                 </a>
                 <div style="display: none;" class="tooltip hasArrow">Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste. <a href="https://www.deutsche-digitale-bibliothek.de/content/help/search-simple"> Hilfe zur einfachen Suche </a><div class="arrow"></div></div>
-              </form>
+              </form> -->
             </div>
           </div>
         </div>
@@ -290,11 +289,6 @@
 <!--[if lt IE 9]>
   </div>
 <![endif]-->
-            
-      <!-- <div id="search-wrap-ddb2omeka">
-          <h2>Omeka-Search</h2>
-          <?php echo search_form(array('show_advanced' => true)); ?>
-      </div> -->
             
         <div id="wrap" class="container">
             <div id="content">
