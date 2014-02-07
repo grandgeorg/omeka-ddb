@@ -799,7 +799,7 @@ audio {
 .ddb-omeka-gallery-medium-size img {
     margin: 0 auto 16px auto;
     padding: 0;
-    max-height: 350px;
+    max-height: 300px;
     display: block;
 }
 .ddb-omeka-gallery-medium-size .exhibit-item-caption {

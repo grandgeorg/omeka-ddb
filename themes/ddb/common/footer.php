@@ -70,6 +70,7 @@
                 setThumbGallerImageSizes: function(loaded) {
                     var thumbnailGalleryClass = '#thumbnail-gallery-carousel-wrapper';
                     var offset = 94;
+                    $('.omeka-exhibit-content-wrapper').css('min-height', $('.tertiary').height());
                     if ($(thumbnailGalleryClass)) {
                         var colWidth = $('.secondary').width();
                         var imgWidth = Math.round((colWidth - offset) / 3);
@@ -150,8 +151,11 @@
             // width: '100%',
             items   : {
                 visible: 3,
-                // minimum: 3,
+                minimum: 4,
 
+            },
+            scroll : {
+                items           : 3
             },
             // items: 3,
             // direction: "left",
