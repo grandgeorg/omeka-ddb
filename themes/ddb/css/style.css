@@ -431,7 +431,14 @@
     display: none;
 }
 
-#secondary-nav .nav-carusel-item a .ddb-omeka-navigation-background-image{
+#secondary-nav .nav-carusel-item a:hover {
+    /*background-color: #ab102d;*/
+    color: #fff;
+    text-decoration: none;
+    border-color: #e6183c;
+}
+
+#secondary-nav a .ddb-omeka-navigation-background-image {
     display: block;
     width: 100%;
     z-index:-1;
@@ -441,18 +448,12 @@
     margin: 0;
     padding: 0;
     opacity:0.6;
-/*    
+    
     transition: all 0.4s linear 0s;
-    -webikit-transition: all 0.2s linear 0s;*/
+    -webikit-transition: all 0.2s linear 0s;
 }
 
-#secondary-nav .nav-carusel-item a:hover {
-    /*background-color: #ab102d;*/
-    color: #fff;
-    text-decoration: none;
-    border-color: #e6183c;
-}
-#secondary-nav .nav-carusel-item a:hover .ddb-omeka-navigation-background-image{
+#secondary-nav a:hover .ddb-omeka-navigation-background-image {
     opacity:1;
 /*    -webkit-transform: scale(1.6);
     -moz-transform: scale(1.6);
@@ -460,7 +461,13 @@
     -o-transform: scale(1.6);
     transform: scale(1.6);*/
 }
+
+#secondary-nav .current .ddb-omeka-navigation-background-image {
+    opacity:0.8;
+}
+
 #secondary-nav .nav-carusel-item a .ddb-omeka-pagecounter {
+    /*opacity:0.6;*/
     position: absolute;
     display: block;
 
@@ -486,6 +493,7 @@
     border-top-right-radius: 4px;*/
 
 }
+
 
 #secondary-nav .nav-carusel-item a:hover .ddb-omeka-pagecounter,
 #secondary-nav .nav-carusel-item.current .ddb-omeka-pagecounter {
