@@ -549,10 +549,40 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                     'data-linktext' => $attachmenLinkText,
                     'data-linkurl' => $attachmenLinkUrl,
                     'data-linktitle' => $attachmenLinkTitle,
-                    'data-copyright' => $attachmentRights
+                    'data-copyright' => $attachmentRights,
+                    'title' => $attachmentTitle,
+                    'alt' => $attachmentTitle
+                ));
+                $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
+                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $linkOptions, $attachment['item']);
+            } elseif(metadata($attachment['item'], array('Dublin Core', 'Identifier'))) {
+
+                $itemMetaIdentifier = metadata($attachment['item'], array('Dublin Core', 'Identifier'));
+                $title = metadata($attachment['item'], array('Dublin Core', 'Title'));
+                if (!$title && !empty($videoInfo[0]['title'])) {
+                    $title = $videoInfo[0]['title'];
+                }
+                $linkOptions = array_merge($linkOptions, array(
+                    'title' => $title,
+                    'alt' => $title,
                 ));
 
-                $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
+                $thumbnail = null;
+                switch (true) {
+                    case (false !== stristr($itemMetaIdentifier, 'vimeo:')):
+                    $videoId = substr($itemMetaIdentifier, 6);
+                    $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
+                    // echo $videoInfo[0]['thumbnail_small']; die();
+                    if (isset($videoInfo[0]['thumbnail_medium']) && !empty($videoInfo[0]['thumbnail_medium'])) {
+                        $thumbnail = '<div class="etxernal-thumbnail" style="background-image:url(\'' . $videoInfo[0]['thumbnail_medium'] . '\');"><div class="blurb">Video</div></div>';
+                    }
+                    
+                    break;
+                    
+                    default:
+                    break;
+                }
+
                 $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $linkOptions, $attachment['item']);
             }
             $html .= '</div>' . "\n";

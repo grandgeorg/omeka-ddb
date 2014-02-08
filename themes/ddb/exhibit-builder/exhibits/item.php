@@ -1,4 +1,6 @@
 <?php
+$containerMinWidth = 280;
+$containerMinHeight = 100;
 $width = 0; $height = 0;
 $files = $item->getFiles();
 $countFiles = count($files);
@@ -33,8 +35,33 @@ foreach ($files as $file) {
         }
     }
 }
+$embedVideo = '';
+$videoWidth = 0;
+$videoHeight = 0;
+$itemMetaIdentifier = metadata($item, array('Dublin Core', 'Identifier'));
+    switch (true) {
+        case (false !== stristr($itemMetaIdentifier, 'vimeo:')):
+            $videoId = substr($itemMetaIdentifier, 6);
+            $containerMinWidth = 500;
+            $containerMinHeight = 281;
+            $embedVideo = '<iframe src="//player.vimeo.com/video/' . $videoId . '?color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+            // . '<p><a href="http://vimeo.com/' . $videoId . '">' . metadata($item, array('Dublin Core', 'Title'))  . '</a>';
+            $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
+            // var_dump($videoInfo);
+            if(isset($videoInfo[0]['width']) && !empty($videoInfo[0]['width'])) {
+                $videoWidth = $videoInfo[0]['width'];
+            }
+            if(isset($videoInfo[0]['height']) && !empty($videoInfo[0]['height'])) {
+                $videoHeight = $videoInfo[0]['height'];
+            }
+            break;
+        
+        default:
+            break;
+    }
 ?>
-<div class="inline-lightbox-container" style="min-width:280px; min-height:100px;">
+<div class="inline-lightbox-container" style="min-width: <?php echo $containerMinWidth; ?>px; min-height: <?php echo $containerMinHeight; ?>px;">
+<?php echo $embedVideo; ?>
 <?php echo $additionalWrapperOpen; ?>
 <?php echo files_for_item(
     array('imageSize' => 'fullsize', 'linkToFile' => true), 
@@ -58,7 +85,15 @@ foreach ($files as $file) {
             var newHeight = 0;
             var newWidth = 0;
             var checkWidth = 0;
+            var videoWidth = <?php echo $videoWidth; ?>;
+            var videoHeight = <?php echo $videoHeight; ?>;
 
+
+            // check if we have video media
+            if (0 == mediaWidth && 0 == mediaHeight && 0 < videoWidth && 0 < videoHeight) {
+                mediaWidth = videoWidth;
+                mediaHeight = videoHeight;
+            }
 
             // container width
             if (mediaWidth > $.Gina.winW) {
@@ -87,8 +122,15 @@ foreach ($files as $file) {
             }
             $('.inline-lightbox-container').css({'height': newHeight});
 
-            // set img
-            $('.inline-lightbox-element img').css({'max-height': newHeight, 'max-width': newWidth});
+            // set img & extarnal media
+            if ($('.inline-lightbox-element img')) {
+                $('.inline-lightbox-element img').css({'max-height': newHeight, 'max-width': newWidth});
+            }
+            if ($('.inline-lightbox-container iframe')[0]) {
+                $('.inline-lightbox-container iframe').attr({'width': newWidth, 'height' : newHeight});
+                // $('.inline-lightbox-container iframe')[0].setAttribute({'width': newWidth, 'height' : newHeight});
+            }
+
 
             
 
