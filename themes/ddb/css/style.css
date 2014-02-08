@@ -197,15 +197,19 @@
     overflow: visible;
     display: inline-block;
     vertical-align: top;
-    width: 131px;
-    margin:0 10px 0 0;
-    /*width: 31.33%;*/
+    /*width: 131px;*/
+    /*margin:0 10px 0 0;*/
+    width: 31.33%;
+    margin:0 3% 3% 0;
     padding: 0;
     display: block;
     float: left;
     zoom: 1;
 }
 
+#thumbnail-gallery-carousel-wrapper .exhibit-item {
+    margin:0 10px 0 0;
+}
 .gallery .exhibit-item .blurb {
     position:absolute;
     width: 100%; 
@@ -230,6 +234,9 @@
 }
 .gallery .exhibit-item.last-item-in-line {
     margin-right: 0; 
+}
+#thumbnail-gallery-carousel-wrapper .last-item-in-line {
+     margin-right: 10px; 
 }
 .gallery .exhibit-item-caption { display: none;}
 .ddb-omeka-main-exhibit-item {
@@ -269,7 +276,7 @@
 .gallery .exhibit-item img {
     /*max-width: 174.3px;*/
     /*max-width: 150px;*/
-    margin: 0;
+    /*margin: 0;*/
 }
 .exhibit-page-navigation-bar {
 
