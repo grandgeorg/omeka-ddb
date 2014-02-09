@@ -46,7 +46,23 @@ $itemMetaIdentifier = metadata($item, array('Dublin Core', 'Identifier'));
             $containerMinHeight = 281;
             $embedVideo = '<iframe src="//player.vimeo.com/video/' . $videoId . '?color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
             // . '<p><a href="http://vimeo.com/' . $videoId . '">' . metadata($item, array('Dublin Core', 'Title'))  . '</a>';
-            $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
+            // $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
+
+            // create curl resource
+            $ch = curl_init();
+
+            // set url
+            curl_setopt($ch, CURLOPT_URL, 'http://vimeo.com/api/v2/video/' . $videoId . '.php');
+
+            //return the transfer as a string
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+            // $output contains the output string
+            $videoInfo = unserialize(curl_exec($ch));
+
+            // close curl resource to free up system resources
+            curl_close($ch); 
+
             // var_dump($videoInfo);
             if(isset($videoInfo[0]['width']) && !empty($videoInfo[0]['width'])) {
                 $videoWidth = $videoInfo[0]['width'];
@@ -123,10 +139,10 @@ $itemMetaIdentifier = metadata($item, array('Dublin Core', 'Identifier'));
             $('.inline-lightbox-container').css({'height': newHeight});
 
             // set img & extarnal media
-            if ($('.inline-lightbox-element img')) {
+            if ($('.inline-lightbox-element img').get(0)) {
                 $('.inline-lightbox-element img').css({'max-height': newHeight, 'max-width': newWidth});
             }
-            if ($('.inline-lightbox-container iframe')[0]) {
+            if ($('.inline-lightbox-container iframe').get(0)) {
                 $('.inline-lightbox-container iframe').attr({'width': newWidth, 'height' : newHeight});
                 // $('.inline-lightbox-container iframe')[0].setAttribute({'width': newWidth, 'height' : newHeight});
             }

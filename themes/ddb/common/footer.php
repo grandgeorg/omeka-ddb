@@ -71,22 +71,16 @@
                     var thumbnailGalleryClass = '#thumbnail-gallery-carousel-wrapper';
                     var offset = 94;
                     $('.omeka-exhibit-content-wrapper').css('min-height', $('.tertiary').height());
-                    if ($(thumbnailGalleryClass)) {
+                    // console.log($('#thumbnail-gallery-carousel-wrapper').get(0));
+                    if ($(thumbnailGalleryClass).get(0)) {
                         var colWidth = $('.secondary').width();
                         var imgWidth = Math.round((colWidth - offset) / 3);
                         var prevnextHeight = 31;
                         var prevnextMargin = 0;
                         $(thumbnailGalleryClass + ' div.exhibit-item').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
-                        if ($('.etxernal-thumbnail')) {
-                            $('.etxernal-thumbnail').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
+                        if ($('.external-thumbnail').get(0)) {
+                            $('.external-thumbnail').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
                         }
-                        // console.log($(thumbnailGalleryClass + ' img').height() + '---' + "\n");
-                        // if ($(thumbnailGalleryClass + ' img').height() < imgWidth) {
-                        //     $(thumbnailGalleryClass + ' img').css({ 
-                        //         height: imgWidth, 
-                        //         width: auto,
-                        //     })
-                        // }
                         $('#thumbnail-gallery-carousel-container').css({'height' : imgWidth + 'px'});
                         $('#thumbnail-gallery-carousel-container .caroufredsel_wrapper').css({
                             'height' : imgWidth + 'px', 
@@ -102,7 +96,10 @@
                                 $.Gina.setThumbGallerImageSizes(!loaded);
                             });
                         }
-                    }
+                    } 
+                    // else if($('.external-thumbnail').get(0)) {
+                        // $('.etxernal-thumbnail').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
+                    // }
                 }
 
             }

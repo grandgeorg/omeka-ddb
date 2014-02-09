@@ -543,8 +543,8 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                     $attachmenLinkUrl = $attachmenLinkUrlFromFile[1];
                 }
 
-
-                $linkOptions = array_merge($linkOptions, array(
+                $currentLinkOptions = array();
+                $currentLinkOptions = array_merge($linkOptions, array(
                     'data-title' => $attachmentTitle,
                     'data-linktext' => $attachmenLinkText,
                     'data-linkurl' => $attachmenLinkUrl,
@@ -554,7 +554,7 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                     'alt' => $attachmentTitle
                 ));
                 $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
-                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $linkOptions, $attachment['item']);
+                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $currentLinkOptions, $attachment['item']);
             } elseif(metadata($attachment['item'], array('Dublin Core', 'Identifier'))) {
 
                 $itemMetaIdentifier = metadata($attachment['item'], array('Dublin Core', 'Identifier'));
@@ -562,7 +562,8 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                 if (!$title && !empty($videoInfo[0]['title'])) {
                     $title = $videoInfo[0]['title'];
                 }
-                $linkOptions = array_merge($linkOptions, array(
+                $currentLinkOptions = array();
+                $currentLinkOptions = array_merge($linkOptions, array(
                     'title' => $title,
                     'alt' => $title,
                 ));
@@ -571,10 +572,26 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                 switch (true) {
                     case (false !== stristr($itemMetaIdentifier, 'vimeo:')):
                     $videoId = substr($itemMetaIdentifier, 6);
-                    $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
+                    // $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
+
+                    // create curl resource
+                    $ch = curl_init();
+
+                    // set url
+                    curl_setopt($ch, CURLOPT_URL, 'http://vimeo.com/api/v2/video/' . $videoId . '.php');
+
+                    //return the transfer as a string
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                    // $output contains the output string
+                    $videoInfo = unserialize(curl_exec($ch));
+
+                    // close curl resource to free up system resources
+                    curl_close($ch);      
+
                     // echo $videoInfo[0]['thumbnail_small']; die();
                     if (isset($videoInfo[0]['thumbnail_medium']) && !empty($videoInfo[0]['thumbnail_medium'])) {
-                        $thumbnail = '<div class="etxernal-thumbnail" style="background-image:url(\'' . $videoInfo[0]['thumbnail_medium'] . '\');"><div class="blurb">Video</div></div>';
+                        $thumbnail = '<div class="external-thumbnail" style="background-image:url(\'' . $videoInfo[0]['thumbnail_medium'] . '\');"><img src="' . img('thnplaceholder.gif') . '" alt="video" style="visibility:hidden;"><div class="blurb">Video</div></div>';
                     }
                     
                     break;
@@ -583,7 +600,7 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                     break;
                 }
 
-                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $linkOptions, $attachment['item']);
+                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $currentLinkOptions, $attachment['item']);
             }
             $html .= '</div>' . "\n";
         }
