@@ -541,6 +541,8 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                 } elseif (null !== $file && 1 === preg_match('@href="([^"]*)@', 
                     metadata($file, array('Dublin Core', 'Source')), $attachmenLinkUrlFromFile)) {
                     $attachmenLinkUrl = $attachmenLinkUrlFromFile[1];
+                } else {
+                    $attachmenLinkUrl = record_url($attachment['item'], 'show', false);
                 }
 
                 $currentLinkOptions = array();
