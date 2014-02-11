@@ -30,37 +30,51 @@
 ?>
 
 <div class="gallery-full-left omeka-exhibit-content-wrapper clearfix">
-    <div class="secondary">
-        <?php if ($attachment = exhibit_builder_page_attachment(1)): ?>
-        <div class="exhibit-item ddb-omeka-gallery ddb-omeka-main-exhibit-item">
-            <?php echo ddb_exhibit_builder_attachment_markup($attachment); ?>
+    <div class="ddb-omeka-two-col-wrapper">
+        <div class="primary">
+            <?php if ($text = exhibit_builder_page_text(1)):?>
+            <div class="exhibit-text">
+                <?php echo $text; ?>
+            </div>
+            <?php endif; ?>
         </div>
-        <?php endif; ?>
-        <div id="thumbnail-gallery-carousel-elements">
-            <div id="ddb-omeka-carousel-gallery_next" class="ddb-omeka-carousel-gallery-controlls">
+        <div class="secondary">
+            <?php if ($attachment = exhibit_builder_page_attachment(1)): ?>
+            <div class="exhibit-item ddb-omeka-gallery ddb-omeka-main-exhibit-item">
+                <?php echo ddb_exhibit_builder_attachment_markup($attachment); ?>
             </div>
-            <div id="ddb-omeka-carousel-gallery_prev" class="ddb-omeka-carousel-gallery-controlls">
-            </div>
-            <div id="thumbnail-gallery-carousel-container">
-                <div class="gallery ddb-omeka-gallery" id="thumbnail-gallery-carousel-wrapper">
-                    <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 12, 
-                        array('class'=>'permalink'), 'square_thumbnail'); ?>
+            <?php endif; ?>
+            <div id="thumbnail-gallery-carousel-elements">
+                <div id="ddb-omeka-carousel-gallery_next" class="ddb-omeka-carousel-gallery-controlls">
+                </div>
+                <div id="ddb-omeka-carousel-gallery_prev" class="ddb-omeka-carousel-gallery-controlls">
+                </div>
+                <div id="thumbnail-gallery-carousel-container">
+                    <div class="gallery ddb-omeka-gallery" id="thumbnail-gallery-carousel-wrapper">
+                        <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 12, 
+                            array('class'=>'permalink'), 'square_thumbnail'); ?>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <?php if ($text = exhibit_builder_page_text(2)):?>
-        <div class="exhibit-text">
-            <?php echo $text; ?>
+            <?php if ($text = exhibit_builder_page_text(2)):?>
+            <div class="exhibit-text">
+                <?php echo $text; ?>
+            </div>
+            <?php endif; ?>
         </div>
+        <?php if ($text = exhibit_builder_page_text(3)):?>
+        <div class="ddb-omeka-subtitle"><?php echo $text; ?></div>
         <?php endif; ?>
-    </div>
-    <div class="primary">
-        <?php if ($text = exhibit_builder_page_text(1)):?>
-        <div class="exhibit-text">
-            <?php echo $text; ?>
-        </div>
+        <?php if ($text = exhibit_builder_page_text(4)):?>
+        <div class="ddb-omeka-two-col"><?php echo $text; ?></div>
+        <?php endif; ?>
+        <?php if ($text = exhibit_builder_page_text(5)):?>
+        <div class="ddb-omeka-subtitle"><?php echo $text; ?></div>
+        <?php endif; ?>
+        <?php if ($text = exhibit_builder_page_text(6)):?>
+        <div class="ddb-omeka-two-col"><?php echo $text; ?></div>
         <?php endif; ?>
     </div>
     <div class="tertiary">
@@ -68,7 +82,7 @@
         if (isset($exhibit->banner) && !empty($exhibit->banner) && 
             file_exists(FILES_DIR . '/layout/banner/' . $exhibit->banner)): ?>
         <img src="<?php echo substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/banner/' 
-            . $exhibit->banner; ?>" alt="<?php echo $exhibit->banner; ?>">
+            . $exhibit->banner; ?>" alt="exihibition banner" class="exhibition-banner">
         <?php endif; ?>
         <?php if (isset($exhibitPage->widget) && !empty($exhibitPage->widget)): ?>
         <div class="ddb-omeka-exhibit-widget"><?php echo $exhibitPage->widget; ?></div>
@@ -78,15 +92,3 @@
         <?php endif; ?>
     </div>
 </div>
-<?php if ($text = exhibit_builder_page_text(3)):?>
-<div class="ddb-omeka-subtitle"><?php echo $text; ?></div>
-<?php endif; ?>
-<?php if ($text = exhibit_builder_page_text(4)):?>
-<div class="ddb-omeka-two-col"><?php echo $text; ?></div>
-<?php endif; ?>
-<?php if ($text = exhibit_builder_page_text(5)):?>
-<div class="ddb-omeka-subtitle"><?php echo $text; ?></div>
-<?php endif; ?>
-<?php if ($text = exhibit_builder_page_text(6)):?>
-<div class="ddb-omeka-two-col"><?php echo $text; ?></div>
-<?php endif; ?>

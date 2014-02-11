@@ -70,8 +70,6 @@
                 setThumbGallerImageSizes: function(loaded) {
                     var thumbnailGalleryClass = '#thumbnail-gallery-carousel-wrapper';
                     var offset = 94;
-                    $('.omeka-exhibit-content-wrapper').css('min-height', $('.tertiary').height());
-                    // console.log($('#thumbnail-gallery-carousel-wrapper').get(0));
                     if ($(thumbnailGalleryClass).get(0)) {
                         var colWidth = $('.secondary').width();
                         var imgWidth = Math.round((colWidth - offset) / 3);
@@ -146,39 +144,39 @@
                 button  : "#ddb-omeka-carousel_next",
                 key     : "right",
             },
-            cookie: true,
+            cookie: false,
+            items: {start: $('#nav-carousel .current')}
         });
+        // $('#nav-carousel').carouFredSel.slideTo($('#nav-carousel .current'));
         /* Carousel Thubnail Gallery 
          */
-        $('#thumbnail-gallery-carousel-wrapper').carouFredSel({
-            circular: false,
-            infinite: false,
-            auto    : {play : false},
-            resposive    : true,
-            // width: '100%',
-            items   : {
-                visible: 3,
-                minimum: 4,
-
-            },
-            scroll : {
-                items           : 3
-            },
-            // items: 3,
-            // direction: "left",
-            prev    : { 
-                button  : "#ddb-omeka-carousel-gallery_prev",
-                // key     : "left"
-            },
-            next    : { 
-                button  : "#ddb-omeka-carousel-gallery_next",
-                // key     : "right",
-            },
-            cookie: false,
-        });
-
-
-
+        if ($('#thumbnail-gallery-carousel-wrapper').get(0)) {
+            $('#thumbnail-gallery-carousel-wrapper').carouFredSel({
+                circular: false,
+                infinite: false,
+                auto    : {play : false},
+                resposive    : true,
+                // width: '100%',
+                items   : {
+                    visible: 3,
+                    minimum: 4,
+                },
+                scroll : {
+                    items           : 3
+                },
+                // items: 3,
+                // direction: "left",
+                prev    : { 
+                    button  : "#ddb-omeka-carousel-gallery_prev",
+                    // key     : "left"
+                },
+                next    : { 
+                    button  : "#ddb-omeka-carousel-gallery_next",
+                    // key     : "right",
+                },
+                cookie: false,
+            });
+        }
 
         /*  Lightbox - ColorBox  */
         $(".ddb-omeka-gallery a").colorbox({

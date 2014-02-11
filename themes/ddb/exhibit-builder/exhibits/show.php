@@ -21,12 +21,12 @@ echo head(array(
 <div id="exhibit-page-navigation" class="exhibit-page-prevnext-bar">
     <?php if ($prevLink = exhibit_builder_link_to_previous_page()): ?>
     <div id="exhibit-nav-prev">
-    <?php echo str_replace(array('</a>', '&rarr;', '&larr;'), array('<span class="nav-icon-prev"></a>', '', ''), $prevLink); ?>
+    <?php echo str_replace(array('</a>', '&rarr;', '&larr;'), array('<span class="nav-icon-prev"></span></a>', '', ''), $prevLink); ?>
     </div>
     <?php endif; ?>
     <?php if ($nextLink = exhibit_builder_link_to_next_page()): ?>
     <div id="exhibit-nav-next">
-    <?php echo str_replace(array('</a>', '&rarr;', '&larr;'), array('<span class="nav-icon-next"></a>', '', ''), $nextLink); ?>
+    <?php echo str_replace(array('</a>', '&rarr;', '&larr;'), array('<span class="nav-icon-next"></span></a>', '', ''), $nextLink); ?>
     </div>
     <?php endif; ?>
     <div id="exhibit-nav-up">

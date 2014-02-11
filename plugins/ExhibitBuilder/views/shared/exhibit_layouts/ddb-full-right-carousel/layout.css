@@ -1,65 +1,3 @@
-.omeka-exhibit-content-wrapper {
-    clear: both;
-    overflow: visible;
-    position: relative;
-}
-
-h1 {
-    clear: both;
-    display: block;
-
-}
-
-.primary,
-.secondary,
-.tertiary {
-    width:41.7%;
-    overflow:hidden;
-    zoom:1;
-}
-
-.primary {
-    float:left; 
-    margin: 0 0.5% 0 0;
-
-}
-
-.secondary {
-    float:right; 
-    margin: 0 15.1% 0 0.5%
-
-}
-.tertiary {
-    /*float:right; */
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right:0;
-    margin: 0;
-    width:13.6%;
-}
-
-.tertiary img {
-    border:0;
-    margin: 0;
-    padding: 0;
-    display: block;
-    line-height: 1;
-}
-
-/* real width should be 490px */
-@media (max-width: 550px) {
-    .primary,
-    .secondary,
-    .tertiary {
-        float:none;
-        width: 100%
-    }
-    .tertiary { position: relative;}
-    .tertiary img { display: none; }
-
-}
-
 /* thumbnail gallery carousel */
 #thumbnail-gallery-carousel-elements {
     position: relative;
@@ -76,10 +14,6 @@ h1 {
     right: 27px;
     left: 37px;
     top: 0;
-
-/*    position: relative;
-    float: left;
-    margin: 0 0 0 0;*/
 }
 #ddb-omeka-carousel-gallery_prev, #ddb-omeka-carousel-gallery_next {
     background: url('/themes/ddb/css/ddb-arrows-small.png') no-repeat transparent;
@@ -109,7 +43,5 @@ h1 {
 }
 #thumbnail-gallery-carousel-wrapper {
     width: 100%;
-    /*min-height: 65px;*/
-    /*overflow: hidden;*/
 }
 .exhibit-item-link { display:block; overflow: hidden; text-decoration: none; }

@@ -1,34 +1,40 @@
-<div class="image-list-left omeka-exhibit-content-wrapper clearfix">
-    <?php 
-    for ($i = 1; $i <= 8; $i++):
-    $text = exhibit_builder_page_text($i);
-    $attachment = exhibit_builder_page_attachment($i);
-    if ($attachment || $text): ?>
-    <div class="ddb-omeka-col-container">
-    <?php 
-    $firstCol = 'primary'; 
-    $secondCol = 'secondary';
-    if (($i % 2) == 0) { 
-        $firstCol = 'secondary'; 
-        $secondCol = 'primary'; 
-    } ?>
-    <?php if ($attachment): ?>
-    <div class="<?php echo $firstCol; ?>">
-        <div class="exhibit-item ddb-omeka-gallery ddb-omeka-main-exhibit-item">
-            <?php echo ddb_exhibit_builder_attachment_markup($attachment); ?>
+<div class="omeka-exhibit-content-wrapper clearfix">
+    <div class="ddb-omeka-two-col-wrapper">
+        <?php 
+        for ($i = 1; $i <= 8; $i++):
+        $text = exhibit_builder_page_text($i);
+        $attachment = exhibit_builder_page_attachment($i);
+        if ($attachment || $text): ?>
+        <div class="ddb-omeka-col-container">
+            <?php $colType = (($i % 2) == 0)? 'even' : 'odd'; ?>
+            <div class="primary">
+                <?php if ('odd' == $colType && $attachment): ?>
+                <div class="exhibit-item ddb-omeka-gallery ddb-omeka-main-exhibit-item">
+                    <?php echo ddb_exhibit_builder_attachment_markup($attachment); ?>
+                </div>
+                <?php endif; ?>
+                <?php if ('even' == $colType && $text): ?>
+                <div class="exhibit-text">
+                    <?php echo $text; ?>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="secondary">
+                <?php if ('odd' == $colType && $text): ?>
+                <div class="exhibit-text">
+                    <?php echo $text; ?>
+                </div>
+                <?php endif; ?>
+                <?php if ('even' == $colType && $attachment): ?>
+                <div class="exhibit-item ddb-omeka-gallery ddb-omeka-main-exhibit-item">
+                    <?php echo ddb_exhibit_builder_attachment_markup($attachment); ?>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
+        <?php endif; ?>
+        <?php endfor; ?>
     </div>
-    <?php endif; ?>
-    <?php if ($text): ?>
-    <div class="<?php echo $secondCol; ?>">
-        <div class="exhibit-text">
-            <?php echo $text; ?>
-        </div>
-    </div>
-    <?php endif; ?>
-    </div>
-    <?php endif; ?>
-    <?php endfor; ?>
     <div class="tertiary">
         <?php $exhibit = $exhibitPage->getExhibit();
         if (isset($exhibit->banner) && !empty($exhibit->banner) && 

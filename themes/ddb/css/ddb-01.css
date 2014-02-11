@@ -2841,7 +2841,9 @@ footer, .footer,
 .favorites-results-head hr, #favorite-confirmation, .item-detail .favorite, #favoritesModal, #msDeleteFavorites,
  #favoritesDeleteConfirmDialog, .favorites-results-controls, #sendSavedSearchesModal, #deleteSavedSearchesModal,
  #editSavedSearchModal {
-  display: none;
+  /* Grandgeorg Websolutions */
+  /*display: none;*/
+  /* END Grandgeorg Websolutions */
 }
 
 .fl {
