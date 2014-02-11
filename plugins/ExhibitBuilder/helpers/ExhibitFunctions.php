@@ -494,6 +494,17 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                 } elseif (!empty($attachmentTitleFromFile)) {
                     $attachmentTitle = $attachmentTitleFromFile;
                 }
+
+                $attachmentDescription = '';
+                if (null !== $attachment['item']) {
+                    $attachmentDescription = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Description')));
+                }
+                if (null !== $file && empty($attachmentDescription)) {
+                    $attachmentTitleFromFile = strip_tags(metadata($file, array('Dublin Core', 'Description')));
+                }
+
+
+
                 $attachmentRights = '';
                 $attachmentRightsFromObject = '';
                 $attachmentRightsFromFile = '';
@@ -535,6 +546,14 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                     $attachmenLinkTitle = $attachmenLinkTitleFromFile[1];
                 }
 
+                if (null !== $attachment['item'] && empty($attachmenLinkTitle)) {
+                    $attachmenLinkTitle = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Title')));
+                }
+
+                if (null !== $file && empty($attachmenLinkTitle)) {
+                    $attachmenLinkTitle = strip_tags(metadata($file, array('Dublin Core', 'Title')));
+                }
+
                 if (null !== $attachment['item'] && 1 === preg_match('@href="([^"]*)@', 
                     metadata($attachment['item'], array('Dublin Core', 'Source')), $attachmenLinkUrlFromObject)) {
                     $attachmenLinkUrl = $attachmenLinkUrlFromObject[1];
@@ -548,6 +567,7 @@ function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
                 $currentLinkOptions = array();
                 $currentLinkOptions = array_merge($linkOptions, array(
                     'data-title' => $attachmentTitle,
+                    'data-description' => $attachmentDescription,
                     'data-linktext' => $attachmenLinkText,
                     'data-linkurl' => $attachmenLinkUrl,
                     'data-linktitle' => $attachmenLinkTitle,
@@ -633,6 +653,15 @@ function ddb_exhibit_builder_attachment_markup($attachment) {
     } elseif (!empty($attachmentTitleFromFile)) {
         $attachmentTitle = $attachmentTitleFromFile;
     }
+
+    $attachmentDescription = '';
+    if (null !== $attachment['item']) {
+        $attachmentDescription = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Description')));
+    }
+    if (null !== $file && empty($attachmentDescription)) {
+        $attachmentTitleFromFile = strip_tags(metadata($file, array('Dublin Core', 'Description')));
+    }
+
     $attachmentRights = '';
     $attachmentRightsFromObject = '';
     $attachmentRightsFromFile = '';
@@ -666,6 +695,7 @@ function ddb_exhibit_builder_attachment_markup($attachment) {
         $attachmenLinkText = $attachmenLinkTextFromFile;
     }
 
+
     if (null !== $attachment['item'] && 1 === preg_match('@title="([^"]*)@', 
         metadata($attachment['item'], array('Dublin Core', 'Source')), $attachmenLinkTitleFromObject)) {
         $attachmenLinkTitle = $attachmenLinkTitleFromObject[1];
@@ -674,12 +704,23 @@ function ddb_exhibit_builder_attachment_markup($attachment) {
         $attachmenLinkTitle = $attachmenLinkTitleFromFile[1];
     }
 
+    if (null !== $attachment['item'] && empty($attachmenLinkTitle)) {
+        $attachmenLinkTitle = strip_tags(metadata($attachment['item'], array('Dublin Core', 'Title')));
+    }
+
+    if (null !== $file && empty($attachmenLinkTitle)) {
+        $attachmenLinkTitle = strip_tags(metadata($file, array('Dublin Core', 'Title')));
+    }
+
+
     if (null !== $attachment['item'] && 1 === preg_match('@href="([^"]*)@', 
         metadata($attachment['item'], array('Dublin Core', 'Source')), $attachmenLinkUrlFromObject)) {
         $attachmenLinkUrl = $attachmenLinkUrlFromObject[1];
     } elseif (null !== $file && 1 === preg_match('@href="([^"]*)@', 
         metadata($file, array('Dublin Core', 'Source')), $attachmenLinkUrlFromFile)) {
         $attachmenLinkUrl = $attachmenLinkUrlFromFile[1];
+    } else {
+        $attachmenLinkUrl = record_url($attachment['item'], 'show', false);
     }
 
     // if (1 != 1 && count($attachment{'item'}->getFiles()) == 1) {
@@ -708,6 +749,7 @@ function ddb_exhibit_builder_attachment_markup($attachment) {
             'linkAttributes'=>array(
                 // 'rel'=>'ddb-omeka-gallery-1',
                 'data-title' => $attachmentTitle,
+                'data-description' => $attachmentDescription,
                 'data-linktext' => $attachmenLinkText,
                 'data-linkurl' => $attachmenLinkUrl,
                 'data-linktitle' => $attachmenLinkTitle,

@@ -193,7 +193,7 @@
                 //  copyright
                 if (typeof(this.dataset.copyright) != 'undefined' && this.dataset.copyright.length > 0) {
                     copyright = '<div class="ddb-omkea-colorbox-copyright">' + this.dataset.copyright + '</div>';
-                    copyrightTrigger = '<div class="ddb-omkea-colorbox-copyright-trigger">&copy;</div>';
+                    copyrightTrigger = '<div class="ddb-omkea-colorbox-copyright-trigger"><i>&copy;</i></div>';
                 }
                 //  link
                 if (typeof(this.dataset.linktext) != 'undefined' && this.dataset.linktext.length > 0) {
@@ -202,15 +202,15 @@
                 if (typeof(this.dataset.linkurl) != 'undefined' && this.dataset.linkurl.length > 0) {
                     if (link.length == 0) {
                         if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
-                            link = '<a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + '">' + linkIcon + '</a>';
+                            link = '<a target="_blank" href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + '">' + linkIcon + '</a>';
                         } else {
-                            link = '<a href="' + this.dataset.linkurl + '" title="' + this.dataset.linkurl + '">' + linkIcon + '</a>';
+                            link = '<a target="_blank" href="' + this.dataset.linkurl + '" title="' + this.dataset.linkurl + '">' + linkIcon + '</a>';
                         }
                     } else {
                         if (typeof(this.dataset.linktitle) != 'undefined' && this.dataset.linktitle.length > 0) {
-                            link = '<a href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + ' - ' + link + '">' + linkIcon + '</a>';
+                            link = '<a target="_blank" href="' + this.dataset.linkurl + '" title="' + this.dataset.linktitle + ' - ' + link + '">' + linkIcon + '</a>';
                         } else {
-                            link = '<a href="' + this.dataset.linkurl + '" title="' + link + '">' + linkIcon * '</a>';
+                            link = '<a target="_blank" href="' + this.dataset.linkurl + '" title="' + link + '">' + linkIcon + '</a>';
                         }
                     }
                 } else if (link.length > 0) {
@@ -219,10 +219,14 @@
                 if (link.length > 0) {
                     link = '<div class="ddb-omkea-colorbox-link">' + link + '</div>';
                 }
+
                 // title
                 if (typeof(this.dataset.title) != 'undefined' && this.dataset.title.length > 0) {
-                    title =  '<div class="ddb-omkea-colorbox-title"> ' + this.dataset.title + '</div>';
-                    titleTrigger =  '<div class="ddb-omkea-colorbox-title-trigger"><i class="icon-info2"></i> </div>';
+                    title =  '<div class="ddb-omkea-colorbox-title">'
+                        + '<div id="ddb-omkea-colorbox-info-close"></div>'
+                        + '<strong>' + this.dataset.title
+                        + '</strong><br>' + this.dataset.description + '</div>';
+                    titleTrigger =  '<div class="ddb-omkea-colorbox-title-trigger"><i class="active icon-info2"></i> </div>';
                 }
                 return title + copyright + '<div class="ddb-omkea-colorbox-info-triggers">' + titleTrigger + copyrightTrigger + link + '</div>';
             },
@@ -230,10 +234,26 @@
                 $('.ddb-omkea-colorbox-copyright-trigger').click(function() {
                     $('.ddb-omkea-colorbox-title').filter(':visible').toggle();
                     $('.ddb-omkea-colorbox-copyright').toggle();
+                    $('.ddb-omkea-colorbox-title-trigger i').removeClass('active');
+                    if ($('.ddb-omkea-colorbox-copyright-trigger i').hasClass('active')) {
+                        $('.ddb-omkea-colorbox-copyright-trigger i').removeClass('active');
+                    } else {
+                        $('.ddb-omkea-colorbox-copyright-trigger i').addClass('active');
+                    }
                 });
                 $('.ddb-omkea-colorbox-title-trigger').click(function() {
                     $('.ddb-omkea-colorbox-copyright').filter(':visible').toggle();
                     $('.ddb-omkea-colorbox-title').toggle();
+                    $('.ddb-omkea-colorbox-copyright-trigger i').removeClass('active');
+                    if ($('.ddb-omkea-colorbox-title-trigger i').hasClass('active')) {
+                        $('.ddb-omkea-colorbox-title-trigger i').removeClass('active');
+                    } else {
+                        $('.ddb-omkea-colorbox-title-trigger i').addClass('active');
+                    }
+                });
+                $('#ddb-omkea-colorbox-info-close').click(function() {
+                    $('.ddb-omkea-colorbox-title').css('display', 'none');
+                    $('.ddb-omkea-colorbox-title-trigger i').removeClass('active');
                 });
                 $('#cboxLoadedContent').css('overflow-x', 'hidden');
             }

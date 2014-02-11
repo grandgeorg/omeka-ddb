@@ -818,6 +818,12 @@ body .ui-tooltip {
     color: #666;
     cursor: pointer;
 }
+.ddb-omkea-colorbox-link, .ddb-omkea-colorbox-title-trigger .active {
+    color:#a5003b;
+}
+.ddb-omkea-colorbox-link, .ddb-omkea-colorbox-copyright-trigger .active {
+    color:#a5003b;
+}
 .ddb-omkea-colorbox-title-trigger:hover, .ddb-omkea-colorbox-copyright-trigger:hover {
     color:#a5003b;
 }
@@ -833,6 +839,23 @@ body .ui-tooltip {
     color: #333;
     padding: 4px 4px 12px 4px;
     text-align: center;
+}
+.ddb-omkea-colorbox-title {
+    text-align: left;
+    display: block;
+}
+#ddb-omkea-colorbox-info-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background-image: url('../images/ddb-omkea-colorbox-info-close.png');
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+#ddb-omkea-colorbox-info-close:hover {
+    cursor: pointer;
 }
 /* END colorbox */
 
