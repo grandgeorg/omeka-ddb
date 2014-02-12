@@ -144,10 +144,21 @@
                 button  : "#ddb-omeka-carousel_next",
                 key     : "right",
             },
-            cookie: false,
-            items: {start: $('#nav-carousel .current')}
+            cookie: true,
+            // cookie: false,
+            // items: {start: $('#nav-carousel .current')},
+            scroll: {
+                duration : 1500, // 0.2,
+                // easing: 'linear'
+            }
         });
-        // $('#nav-carousel').carouFredSel.slideTo($('#nav-carousel .current'));
+        if ($('#nav-carousel .current').is('#nav-carusel-item-1')) {
+            // alert('ja');
+            $('#nav-carousel').trigger('slideTo', [$('#nav-carousel .current')]);
+        } else {
+            $('#nav-carousel').trigger('slideTo', [$('#nav-carousel .current'), -1]);
+        }
+
         /* Carousel Thubnail Gallery 
          */
         if ($('#thumbnail-gallery-carousel-wrapper').get(0)) {

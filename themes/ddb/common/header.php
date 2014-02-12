@@ -34,8 +34,8 @@
     <?php 
     queue_js_file('vendor/jquery.min');
     queue_js_file('vendor/bootstrap.min');
-    queue_js_file('ddb');
-    queue_js_file('messages');
+    // queue_js_file('ddb');
+    // queue_js_file('messages');
     queue_js_file('globals');
     queue_js_file('vendor/colorbox/jquery.colorbox-min');
     queue_js_file('vendor/colorbox/i18n/jquery.colorbox-de');

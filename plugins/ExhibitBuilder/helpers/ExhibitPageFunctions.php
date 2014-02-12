@@ -139,7 +139,8 @@ function exhibit_builder_page_nav($exhibitPage = null)
         $defaultPageIcon = '/plugins/ExhibitBuilder/views/public/images/default-page-icon.jpg';
         // $html .= "<li>\n<ul>\n";
         foreach ($pageSiblings as $pageSibling) {
-            $html .= '<div class="nav-carusel-item' . ($pageSibling->id == $page->id ? ' current"' : '"') . '>';
+            $html .= '<div id="nav-carusel-item-' . $pageCounter . '" class="nav-carusel-item' 
+                  . ($pageSibling->id == $page->id ? ' current"' : '"') . '>';
             $html .= '<a class="exhibit-page-title" href="';
             $html .= html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling));
             $html .= '" title="' . html_escape($pageSibling->title) . '">';

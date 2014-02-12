@@ -1,8 +1,15 @@
 <?php
 if ($this->pageCount > 1):
     $getParams = $_GET;
+// var_dump($this);
 ?>
 <div class="page-info-nav">
+    <div class="page-info">
+        <span class="results-overall-index"><?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?></span> 
+        <span>von </span> 
+        <span><strong><span class="results-total"><?php echo $this->totalItemCount; ?></span></strong> </span> 
+            <span class="results-label">Ergebnissen</span>
+    </div>
     <div class="page-nav">
         <ul class="pagination inline">
             <?php if (isset($this->previous)): ?>

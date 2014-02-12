@@ -379,6 +379,9 @@
     /*height: 41px;*/
     height: 31px;
 }
+#ddb-omeka-carousel_next:focus, #ddb-omeka-carousel_prev:focus {
+    outline: none;
+}
 #ddb-omeka-carousel_next span, #ddb-omeka-carousel_prev span {
     display: none;
 }
@@ -1004,3 +1007,40 @@ audio {
 .ddb-omeka-exhibit-info {
     margin-left: 32%;
 }
+/* search */
+.page-info-nav .page-info {
+    margin: 0;
+    line-height: 42px;
+}
+.page-nav {
+    float: right;
+}
+.page-nav ul {
+    margin:0;
+}
+.omeka-results-list .omeka-item {
+    display: block;
+    padding: 15px 0;
+    position: relative;
+    overflow: hidden;
+}
+.omeka-summary-main-wrapper {
+    width: 58.5%;
+    margin-right: 1.5%;
+    clear: left;
+    float: left;
+}
+.omeka-summary-thumbnail-wrapper {
+    width: 38.5%;
+    margin-right: 1.5%;
+    float:right;
+}
+.omeka-summary-thumbnail-wrapper img {
+    display: block;
+    margin: 0 auto;
+    max-height: 105px;
+    max-width: 100%;
+    height: auto;
+
+}
+/* end search */
