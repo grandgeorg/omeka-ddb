@@ -24,7 +24,7 @@
     </fieldset>
     <?php endif; ?>
     <?php echo $this->formButton('submit', __('Search'), array('type' => 'submit')); ?>
-    <span class="contextual-help hidden-phone hidden-tablet" data-content="Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste. &lt;a href=&quot;/content/help/search-simple&quot;&gt; Hilfe zur einfachen Suche &lt;/a&gt;"></span>
-    <div style="text-align:left; padding-left:2px;">Suche in der Ausstellung</div>
-    <div style="display: none;" class="tooltip hasArrow">Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste. <a href="https://www.deutsche-digitale-bibliothek.de/content/help/search-simple"> Hilfe zur einfachen Suche </a><div class="arrow"></div></div>
+    <span class="contextual-help hidden-phone hidden-tablet" data-content="Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste, um eine &lt;strong style=&quot;color:#000;&quot;&gt;Suche in der Ausstellung&lt;/strong&gt; durchzuführen."></span>
+    <div style="text-align:left; padding-left:2px;"><a href="https://www.deutsche-digitale-bibliothek.de/">Suche im DDB-Portal</a></div>
+    <div style="display: none;" class="tooltip hasArrow">Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste, um eine <strong>Suche in der Ausstellung</strong> durchzuführen.<div class="arrow"></div></div>
 </form>

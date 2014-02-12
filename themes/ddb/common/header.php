@@ -36,6 +36,7 @@
     queue_js_file('vendor/bootstrap.min');
     // queue_js_file('ddb');
     // queue_js_file('messages');
+    queue_js_file('ddbtooltip');
     queue_js_file('globals');
     queue_js_file('vendor/colorbox/jquery.colorbox-min');
     queue_js_file('vendor/colorbox/i18n/jquery.colorbox-de');
@@ -79,11 +80,12 @@
       </a>
       <div class="nav-collapse collapse">
         <ul class="nav nav-list">
-          <li class=""><form action="/searchresults" method="get" class="navbar-search pull-left" role="search" id="form-search-header-mobile">
+          <li class=""><form action="/search" method="get" class="navbar-search pull-left" role="search" id="form-search-header-mobile">
               <input class="query" name="query" placeholder="Suche" type="search">
               <button type="submit">
                 Suche
               </button>
+              <a href="https://www.deutsche-digitale-bibliothek.de/">Suche im DDB-Portal</a>
             </form></li>
 
           <li class="">

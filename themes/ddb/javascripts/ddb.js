@@ -8439,7 +8439,7 @@ function searchResultsInitializer(){
     
     field_MostRelevant: messages.ddbnext.Most_relevant,
     field_NoAvailableValues: messages.ddbnext.No_Available_Values,
-    field_AddMoreFiltersButtonTooltip: messages.ddbnext.Add_More_Filters_ButtonTooltip,
+    // field_AddMoreFiltersButtonTooltip: messages.ddbnext.Add_More_Filters_ButtonTooltip,
     field_SearchResultsFacetValueNext: messages.ddbnext.SearchResultsFacetValue_Next,
     field_SearchResultsFacetValuePrevious: messages.ddbnext.SearchResultsFacetValue_Previous,
     field_Page: messages.ddbnext.Page,
@@ -8732,7 +8732,7 @@ function searchResultsInitializer(){
         var icon = $(document.createElement('span'));
         
         this.addMoreFilters.attr('data-fctname', facetField);
-        text.html(this.field_AddMoreFiltersButtonTooltip);
+        // text.html(this.field_AddMoreFiltersButtonTooltip);
         
         this.addMoreFilters.addClass('add-more-filters');
         icon.addClass('icon');
