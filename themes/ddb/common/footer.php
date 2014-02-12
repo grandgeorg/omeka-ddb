@@ -131,32 +131,34 @@
         /* Carousel Page Navigation 
          * @see : http://docs.dev7studios.com/jquery-plugins/caroufredsel-advanced
          */
-        $('#nav-carousel').carouFredSel({
-            circular: false,
-            infinite: false,
-            auto    : {play : false},
-            width: '100%',
-            prev    : { 
-                button  : "#ddb-omeka-carousel_prev",
-                key     : "left"
-            },
-            next    : { 
-                button  : "#ddb-omeka-carousel_next",
-                key     : "right",
-            },
-            cookie: true,
-            // cookie: false,
-            // items: {start: $('#nav-carousel .current')},
-            scroll: {
-                duration : 1500, // 0.2,
-                // easing: 'linear'
+        if ($('#nav-carousel').get(0)) {
+            $('#nav-carousel').carouFredSel({
+                circular: false,
+                infinite: false,
+                auto    : {play : false},
+                width: '100%',
+                prev    : { 
+                    button  : "#ddb-omeka-carousel_prev",
+                    key     : "left"
+                },
+                next    : { 
+                    button  : "#ddb-omeka-carousel_next",
+                    key     : "right",
+                },
+                cookie: true,
+                // cookie: false,
+                // items: {start: $('#nav-carousel .current')},
+                scroll: {
+                    duration : 1500, // 0.2,
+                    // easing: 'linear'
+                }
+            });
+            if ($('#nav-carousel .current').is('#nav-carusel-item-1')) {
+                // alert('ja');
+                $('#nav-carousel').trigger('slideTo', [$('#nav-carousel .current')]);
+            } else {
+                $('#nav-carousel').trigger('slideTo', [$('#nav-carousel .current'), -1]);
             }
-        });
-        if ($('#nav-carousel .current').is('#nav-carusel-item-1')) {
-            // alert('ja');
-            $('#nav-carousel').trigger('slideTo', [$('#nav-carousel .current')]);
-        } else {
-            $('#nav-carousel').trigger('slideTo', [$('#nav-carousel .current'), -1]);
         }
 
         /* Carousel Thubnail Gallery 
