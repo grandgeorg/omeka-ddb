@@ -815,15 +815,18 @@ body .ui-tooltip {
     min-width: 22px;
     width: 22px;
     float: left;
-    margin: 0 5px 0 0;
+    margin: 2px 5px 0 0;
     font-size: 19px;
     line-height: 1;
     color: #666;
     cursor: pointer;
 }
+.ddb-omkea-colorbox-title-trigger {
+    /*margin: 2px 5px 0 0;*/
+}
 .ddb-omkea-colorbox-link {
     width: auto;
-    margin:2px 0 0 0;
+    margin: 4px 0 0 0;
     font-size: 16px;
     line-height: 1;
 }
