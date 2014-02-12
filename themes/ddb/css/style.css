@@ -1044,3 +1044,29 @@ audio {
 
 }
 /* end search */
+
+/* global item page */
+#item-images img {
+    margin: 0 0 10px 0;
+}
+#item-citation, #item-citation h3 {
+    font-size: 0.8em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    color: #666;
+}
+#item-citation h3 {
+    font-size: 1em;
+    margin: 20px 0 0.5em 0;
+}
+.omeka-item-pagination {
+    position: relative;
+    text-align: center;
+    margin: 32px 0 0 0;
+}
+.omeka-item-pagination .previous, .omeka-item-pagination .next {
+    /*position: relative;*/
+
+}
+/* end global item page */

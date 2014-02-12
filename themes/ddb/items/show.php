@@ -34,16 +34,16 @@
 
 <!-- The following prints a citation for this item. -->
 <div id="item-citation" class="element">
-    <h3><?php echo __('Citation'); ?></h3>
+    <h3>Quellenangabe<?php // echo __('Citation'); ?></h3>
     <div class="element-text"><?php echo metadata('item', 'citation', array('no_escape' => true)); ?></div>
 </div>
 
 <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
 
 <nav>
-<ul class="item-pagination navigation">
-    <li id="previous-item" class="previous"><?php echo link_to_previous_item_show(); ?></li>
-    <li id="next-item" class="next"><?php echo link_to_next_item_show(); ?></li>
+<ul class="omeka-item-pagination navigation inline">
+    <li id="previous-item" class="omeka-item-previous"><?php echo link_to_previous_item_show(); ?></li>
+    <li id="next-item" class="omeka-item-next"><?php echo link_to_next_item_show(); ?></li>
 </ul>
 </nav>
 
