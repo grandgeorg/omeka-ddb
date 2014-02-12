@@ -23,26 +23,33 @@
 
 #exhibit-page-navigation {
     clear: both;
+    width: 100%;
+    /*display: block;*/
     /*width: 100%;*/
 /*    margin: 1em 0;
     line-height: 1.2;*/
+    text-align: center;
 }
 
 #exhibit-page-navigation div {
+    display: inline-block;
 /*    width: 33%;*/
 }
 
 #exhibit-nav-prev {
-    float: left;
-    text-align: left;
+    /*float: left;*/
+    /*text-align: left;*/
+    padding: 0 10px 0 0;
 }
 
 #exhibit-nav-next {
-    float: right;
-    text-align: right;
+    /*float: right;*/
+    /*text-align: right;*/
+    padding: 0 0 0 10px;
 }
 
 #exhibit-nav-up {
-    margin: 0 auto;
-    text-align: center;
+    padding: 0 10px;
+    /*margin: 0 auto;*/
+    /*text-align: center;*/
 }
