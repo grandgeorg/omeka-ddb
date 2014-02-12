@@ -202,7 +202,7 @@
                 var copyright = '';
                 var copyrightTrigger = '';
                 var link = '';
-                var linkIcon = '<i class="icon-earth"></i> ';
+                var linkIcon = '<i class="icon-link"></i>  <span>zum Objekt</span>';
                 //  copyright
                 if (typeof(this.dataset.copyright) != 'undefined' && this.dataset.copyright.length > 0) {
                     copyright = '<div class="ddb-omkea-colorbox-copyright">' + this.dataset.copyright + '</div>';
