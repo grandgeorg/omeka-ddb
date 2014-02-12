@@ -38,9 +38,17 @@
 #ddb-omeka-carousel-gallery_next:hover {
     background-position: -3px -154px;
 }
-#thumbnail-gallery-carousel-elements .disabled {
-    background-position: -3px -225px !important;
+#thumbnail-gallery-carousel-elements #ddb-omeka-carousel-gallery_next.disabled,
+#thumbnail-gallery-carousel-elements #ddb-omeka-carousel-gallery_next.disabled:hover {
+    background-position: -3px -191px;
 }
+#thumbnail-gallery-carousel-elements #ddb-omeka-carousel-gallery_prev.disabled,
+#thumbnail-gallery-carousel-elements #ddb-omeka-carousel-gallery_prev.disabled:hover {
+    background-position: -3px -79px;
+}
+/*#thumbnail-gallery-carousel-elements .disabled {
+    background-position: -3px -225px !important;
+}*/
 #thumbnail-gallery-carousel-wrapper {
     width: 100%;
 }
