@@ -508,12 +508,16 @@
     position: absolute;
     display: block;
 
-    width:28px;
-    height: 17px;
+    width:22px;
+    height: 15px;
+
+    font-size: 14px;
+    line-height: 1;
 
     /*left:22px;*/
     left:0;
-    top:32px;
+    /*top:32px;*/
+    bottom: 0;
 
     margin: 0;
     padding: 2px 0 0 0;
@@ -541,7 +545,8 @@
 #secondary-nav .nav-carusel-item.current .ddb-omeka-pagecounter {
     /*left:32px;*/
     left:0;
-    top:52px;
+    /*top:52px;*/
+    bottom: 0;
 }
 
 /* content-wrapper */
