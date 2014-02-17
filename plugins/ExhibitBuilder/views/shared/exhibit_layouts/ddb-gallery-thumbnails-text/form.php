@@ -7,7 +7,7 @@
 <div class="secondary gallery">
     <h3><?php echo 'Bilder'; ?></h3>
     <?php
-        for($i=1;$i<=18;$i++):
+        for($i=1;$i<=24;$i++):
             echo exhibit_builder_layout_form_item($i);
         endfor;
     ?>

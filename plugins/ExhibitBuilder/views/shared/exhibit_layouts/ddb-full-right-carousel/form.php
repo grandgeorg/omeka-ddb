@@ -10,7 +10,7 @@
 <div class="secondary gallery">
     <h3><?php echo 'Bilder'; ?></h3>
     <?php
-        for($i=1;$i<=12;$i++):
+        for($i=1;$i<=13;$i++):
             if (1 == $i) {
                 echo '<h2>Hauptbild</h2>';
             }

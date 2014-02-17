@@ -51,7 +51,7 @@
                 </div>
                 <div id="thumbnail-gallery-carousel-container">
                     <div class="gallery ddb-omeka-gallery" id="thumbnail-gallery-carousel-wrapper">
-                        <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 12, 
+                        <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 13, 
                             array('class'=>'permalink'), 'square_thumbnail'); ?>
                     </div>
                 </div>

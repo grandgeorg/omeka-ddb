@@ -45,7 +45,7 @@ var_dump($exhibitPage);
             </div>
             <?php endif; ?>
             <div class="gallery ddb-omeka-gallery">
-                <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 12,
+                <?php echo ddb_exhibit_builder_thumbnail_gallery(2, 13,
                     array('class'=>'permalink'), 'square_thumbnail'); ?>
             </div>
             <?php if ($text = exhibit_builder_page_text(2)):?>

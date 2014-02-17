@@ -5,7 +5,7 @@
         <?php endif; ?>
         <div class="ddb-omeka-cover-two-col">
             <div class="gallery ddb-omeka-gallery">
-                <?php echo ddb_exhibit_builder_thumbnail_gallery(1, 18,
+                <?php echo ddb_exhibit_builder_thumbnail_gallery(1, 24,
                     array('class'=>'permalink'), 'square_thumbnail'); ?>
             </div>
         </div>
