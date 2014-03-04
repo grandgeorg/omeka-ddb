@@ -44,7 +44,7 @@ $itemMetaIdentifier = metadata($item, array('Dublin Core', 'Identifier'));
             $videoId = substr($itemMetaIdentifier, 6);
             $containerMinWidth = 500;
             $containerMinHeight = 281;
-            $embedVideo = '<iframe src="//player.vimeo.com/video/' . $videoId . '?color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+            $embedVideo = '<iframe src="//player.vimeo.com/video/' . $videoId . '?portrait=0&amp;byline=0&amp;color=E6183C" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
             // . '<p><a href="http://vimeo.com/' . $videoId . '">' . metadata($item, array('Dublin Core', 'Title'))  . '</a>';
             // $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
 

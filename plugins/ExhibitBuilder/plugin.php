@@ -42,3 +42,4 @@ require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitPageFunctions.php';
 
 require_once EXHIBIT_PLUGIN_DIR . '/functions.php';
+require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitDdbHelper.php';

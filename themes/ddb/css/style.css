@@ -864,7 +864,8 @@ body .ui-tooltip {
     background-color: rgba(255, 255, 255, 0.6);
     color: #333;
     padding: 4px 4px 12px 4px;
-    text-align: center;
+    /*text-align: center;*/
+    font-size: 12px;
 }
 .ddb-omkea-colorbox-title {
     text-align: left;
@@ -1096,36 +1097,79 @@ audio {
 
 /* custom styles*/
 blockquote {
-    font-family: Georgia, serif;
+    /*font-family: Georgia, serif;*/
     font-size: 18px;
     font-style: italic;
-    width: 450px;
-    margin: 0.25em 0;
-    padding: 0.25em 40px;
-    line-height: 1.45;
+    /*width: 450px;*/
+    margin: 20px 0 10px 0;
+    padding: 10px 40px;
+    /*line-height: 1.45;*/
     position: relative;
     color: #383838;
-    background:#ececec;
+    /*background:#ececec;*/
+    border: 0 none transparent;
 }
 
 blockquote:before {
+    font-family: Georgia, serif;
     display: block;
     content: "\201C";
     font-size: 80px;
     position: absolute;
-    left: -10px;
-    top: -10px;
+    left: 0;
+    top: 25px;
     color: #7a7a7a;
 }
 
 blockquote cite {
-    color: #999999;
-    font-size: 14px;
+    color: #666;
+    font-size: 16px;
     display: block;
     margin-top: 5px;
+    text-align: right;
+
 }
  
 blockquote cite:before {
-    content: "\2014 \2009";
+    /*content: "\2014 \2009";*/
+}
+
+.exhibit-text h3 {
+    margin-bottom: 0;
 }
 /* end custom styles*/
+
+/* copyright license icons */
+i.license {
+    display: block;
+    overflow: hidden;
+    width: 22px;
+    height: 22px;
+    background-image: url('../images/licenses.png');
+    background-repeat: no-repeat;
+    background-position: -154px 0;
+    float: left;
+
+}
+
+i.license-by {
+    background-position: 0 0;
+}
+i.license-nd {
+    background-position: -22px 0;
+}
+i.license-nc {
+    background-position: -44px 0;
+}
+i.license-sa {
+    background-position: -66px 0;
+}
+i.license-pd {
+    background-position: -88px 0;
+}
+i.license-pdzero {
+    background-position: -110px 0;
+}
+i.license-rr {
+    background-position: -132px 0;
+}
