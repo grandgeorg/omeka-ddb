@@ -35,46 +35,25 @@ foreach ($files as $file) {
         }
     }
 }
+// Video
 $embedVideo = '';
 $videoWidth = 0;
 $videoHeight = 0;
-$itemMetaIdentifier = metadata($item, array('Dublin Core', 'Identifier'));
-    switch (true) {
-        case (false !== stristr($itemMetaIdentifier, 'vimeo:')):
-            $videoId = substr($itemMetaIdentifier, 6);
-            $containerMinWidth = 500;
-            $containerMinHeight = 281;
-            $embedVideo = '<iframe src="//player.vimeo.com/video/' . $videoId . '?portrait=0&amp;byline=0&amp;color=E6183C" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-            // . '<p><a href="http://vimeo.com/' . $videoId . '">' . metadata($item, array('Dublin Core', 'Title'))  . '</a>';
-            // $videoInfo = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
-
-            // create curl resource
-            $ch = curl_init();
-
-            // set url
-            curl_setopt($ch, CURLOPT_URL, 'http://vimeo.com/api/v2/video/' . $videoId . '.php');
-
-            //return the transfer as a string
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-            // $output contains the output string
-            $videoInfo = unserialize(curl_exec($ch));
-
-            // close curl resource to free up system resources
-            curl_close($ch); 
-
-            // var_dump($videoInfo);
-            if(isset($videoInfo[0]['width']) && !empty($videoInfo[0]['width'])) {
-                $videoWidth = $videoInfo[0]['width'];
-            }
-            if(isset($videoInfo[0]['height']) && !empty($videoInfo[0]['height'])) {
-                $videoHeight = $videoInfo[0]['height'];
-            }
-            break;
-        
-        default:
-            break;
+$metaDataVideoSource = metadata($item, array('Item Type Metadata', 'Videoquelle'));
+if (!empty($metaDataVideoSource)) {
+    $embedVideo = ExhibitDdbHelper::getVideoFromShortcode($metaDataVideoSource);
+    if (!empty($embedVideo) && !empty(ExhibitDdbHelper::$videoVimeoInfo)) {
+        $containerMinWidth = 500;
+        $containerMinHeight = 281;
+        $videoInfo = ExhibitDdbHelper::$videoVimeoInfo;
+        if(isset($videoInfo[0]['width']) && !empty($videoInfo[0]['width'])) {
+            $videoWidth = $videoInfo[0]['width'];
+        }
+        if(isset($videoInfo[0]['height']) && !empty($videoInfo[0]['height'])) {
+            $videoHeight = $videoInfo[0]['height'];
+        }
     }
+}
 ?>
 <div class="inline-lightbox-container" style="min-width: <?php echo $containerMinWidth; ?>px; min-height: <?php echo $containerMinHeight; ?>px;">
 <?php echo $embedVideo; ?>
@@ -89,10 +68,6 @@ $itemMetaIdentifier = metadata($item, array('Dublin Core', 'Identifier'));
     $(document).ready(function() {
 
         $.Gina.sizeColorBoxItem = function(loaded) {
-
-            // if (loaded) {
-            //     $.Gina.setWindowSizes();
-            // }
 
             var mediaWidth = <?php echo $width; ?>;
             var mediaHeight = <?php echo $height; ?>;
@@ -146,9 +121,6 @@ $itemMetaIdentifier = metadata($item, array('Dublin Core', 'Identifier'));
                 $('.inline-lightbox-container iframe').attr({'width': newWidth, 'height' : newHeight});
                 // $('.inline-lightbox-container iframe')[0].setAttribute({'width': newWidth, 'height' : newHeight});
             }
-
-
-            
 
             if(!loaded) {
                 $(window).resize(function() {

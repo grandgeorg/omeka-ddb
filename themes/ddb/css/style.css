@@ -866,6 +866,7 @@ body .ui-tooltip {
     padding: 4px 4px 12px 4px;
     /*text-align: center;*/
     font-size: 12px;
+    overflow: hidden;
 }
 .ddb-omkea-colorbox-title {
     text-align: left;

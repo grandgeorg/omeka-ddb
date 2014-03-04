@@ -14,6 +14,12 @@
  */
 class ExhibitDdbHelper
 {
+    
+
+
+    public static $videoVimeoInfo = array();
+
+
     /**
      * Main shortcode parser
      * 
@@ -26,12 +32,76 @@ class ExhibitDdbHelper
         return $matches;
     }
 
-    public static function getVideoShortcode($item) 
+    public static function getVideoThumbnailFromShortcode($metaDataVideoSource) 
     {
-
+        $output = '';
+        $matches = self::parseShortcode($metaDataVideoSource);
+        if (isset($matches[0][2]) && 'video' == $matches[0][2] && isset($matches[0][3])) {
+            list($videoType, $videoId) = explode(":", $matches[0][3]);
+            switch ($videoType) {
+                case 'vimeo':
+                    self::setVideoVimeoInfo($videoId);
+                    $videoInfo = self::getVideoVimeoInfo($videoId);     
+                    if (isset($videoInfo[0]['thumbnail_medium']) && !empty($videoInfo[0]['thumbnail_medium'])) {
+                        $output = '<div class="external-thumbnail" style="background-image:url(\'' 
+                            . $videoInfo[0]['thumbnail_medium'] . '\');"><img src="' 
+                            . img('thnplaceholder.gif') . '" alt="video" style="visibility:hidden;">'
+                            . '<div class="blurb">Video</div></div>';
+                    }
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+        return $output;
     }
 
-    public static function getLicenseShortcode($licenseText) 
+    public static function getVideoFromShortcode($metaDataVideoSource) 
+    {
+        $output = '';
+        $matches = self::parseShortcode($metaDataVideoSource);
+        if (isset($matches[0][2]) && 'video' == $matches[0][2] && isset($matches[0][3])) {
+            list($videoType, $videoId) = explode(":", $matches[0][3]);
+            switch ($videoType) {
+                case 'vimeo':
+                    self::setVideoVimeoInfo($videoId);
+                    if (!empty(self::$videoVimeoInfo)) {
+                        $output = '<iframe src="//player.vimeo.com/video/' . $videoId 
+                            . '?portrait=0&amp;byline=0&amp;color=E6183C" width="500" height="281" '
+                            . 'frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>'
+                            . '</iframe>';
+                    }
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+        return $output;
+    }
+
+    /**
+     * @return void
+     */
+    public static function setVideoVimeoInfo($videoId)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://vimeo.com/api/v2/video/' . $videoId . '.php');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        self::$videoVimeoInfo = unserialize(curl_exec($ch));
+        curl_close($ch);
+    }
+
+    public static function getVideoVimeoInfo($videoId)
+    {
+        if (empty(self::$videoVimeoInfo)) {
+            self::setVideoVimeoInfo($videoId);
+        }
+        return self::$videoVimeoInfo;
+    }
+
+    public static function getLicenseFromShortcode($licenseText) 
     {
         $licenses = array(
             'CC-BY' => array(
@@ -115,11 +185,13 @@ class ExhibitDdbHelper
                 $output .= '<a tagrt="_blank" href="' 
                     . $licenses[$matches[$i][3]]['link'] . '" title="' 
                     . $licenses[$matches[$i][3]]['name'] . '">' 
-                    . $licenses[$matches[$i][3]]['icon'] . '<br style="clear:both;"">'
-                    . $licenses[$matches[$i][3]]['name'] . '</a>';
+                    . $licenses[$matches[$i][3]]['icon'] 
+                    // . '<br style="clear:both;"">'
+                    // . $licenses[$matches[$i][3]]['name'] 
+                    . '</a>';
             }
         }
-        if (0 == $matchesSize && !empty($licenseText)) {
+        if (empty($output) && !empty($licenseText)) {
             $output = strip_tags($licenseText);
         }
         return $output;
@@ -152,6 +224,16 @@ class ExhibitDdbHelper
                 array('Item Type Metadata', 'Weiterer Titel')));
         }
         return $attachmentSubtitle;
+    }
+    
+    public static function getItemInstitution($attachment, $file)
+    {
+        $output = '';
+        if (null !== $attachment['item']) {
+            $output = metadata($attachment['item'], 
+                array('Item Type Metadata', 'Institution'));
+        }
+        return $output;
     }
 
     public static function getItemDescription($attachment, $file)
@@ -187,7 +269,7 @@ class ExhibitDdbHelper
             $attachmentRights = strip_tags(metadata($file, 
                 array('Dublin Core', 'Rights')));
         }
-        return self::getLicenseShortcode($attachmentRights);
+        return self::getLicenseFromShortcode($attachmentRights);
     }
 
     public static function getItemLinkText($attachment, $file)
@@ -281,32 +363,18 @@ class ExhibitDdbHelper
 
                 if ($attachment['file']) {
                     $file = $attachment['file'];
-
-                    // title
                     $attachmentTitle = self::getItemTitle($attachment, $file);
-
-                    // subtitle
                     $attachmentSubtitle = self::getItemSubtitle($attachment, $file);
-
-                    // description
+                    $attachmentInstitution = self::getItemInstitution($attachment, $file);
+                    $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution . '<br>';
                     $attachmentDescription = self::getItemDescription($attachment, $file);
-
-                    // rights
                     $attachmentRights = self::getItemRights($attachment, $file);
-
-                    // Source 
-                    // link text
                     $attachmenLinkText = self::getItemLinkText($attachment, $file);
-
-                    // link title
                     $attachmenLinkTitle = self::getItemLinkTitle($attachment, $file);
                     if (empty($attachmenLinkTitle)) {
                         $attachmenLinkTitle = $attachmentTitle;
                     }
-
-                    // link url
                     $attachmenLinkUrl = self::getItemLinkUrl($attachment, $file);
-
                     $currentLinkOptions = array();
                     $currentLinkOptions = array_merge($linkOptions, array(
                         'data-title' => $attachmentTitle,
@@ -315,67 +383,51 @@ class ExhibitDdbHelper
                         'data-linktext' => $attachmenLinkText,
                         'data-linkurl' => $attachmenLinkUrl,
                         'data-linktitle' => $attachmenLinkTitle,
-                        'data-copyright' => $attachmentRights,
+                        'data-copyright' => $attachmentInstitution . $attachmentRights,
                         'title' => $attachmentTitle,
                         'alt' => $attachmentTitle
                         ));
                     $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
                     $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $currentLinkOptions, $attachment['item']);
 
-                } elseif(metadata($attachment['item'], array('Dublin Core', 'Identifier'))) {
+                } elseif(metadata($attachment['item'], array('Item Type Metadata', 'Videoquelle'))) {
 
-                    $itemMetaIdentifier = metadata($attachment['item'], array('Dublin Core', 'Identifier'));
-                    $title = metadata($attachment['item'], array('Dublin Core', 'Title'));
-                    if (!$title && !empty($videoInfo[0]['title'])) {
-                        $title = $videoInfo[0]['title'];
+                    $thumbnail = self::getVideoThumbnailFromShortcode(
+                        metadata($attachment['item'], array('Item Type Metadata', 'Videoquelle')));
+                    if (!empty($thumbnail)) {
+                        $attachmentTitle = self::getItemTitle($attachment, null);
+                        $attachmentSubtitle = self::getItemSubtitle($attachment, null);
+                        $attachmentInstitution = self::getItemInstitution($attachment, $file);
+                        $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution . '<br>';
+                        $attachmentDescription = self::getItemDescription($attachment, null);
+                        $attachmentRights = self::getItemRights($attachment, null);
+                        $attachmenLinkText = self::getItemLinkText($attachment, null);
+                        $attachmenLinkTitle = self::getItemLinkTitle($attachment, null);
+                        if (empty($attachmenLinkTitle)) {
+                            $attachmenLinkTitle = $attachmentTitle;
+                        }
+                        $attachmenLinkUrl = self::getItemLinkUrl($attachment, null);
+                        $currentLinkOptions = array();
+                        $currentLinkOptions = array_merge($linkOptions, array(
+                            // 'data-title' => $attachmentTitle,
+                            // 'data-subtitle' => $attachmentSubtitle,
+                            // 'data-description' => $attachmentDescription,
+                            'data-linktext' => $attachmenLinkText,
+                            'data-linkurl' => $attachmenLinkUrl,
+                            'data-linktitle' => $attachmenLinkTitle,
+                            'data-copyright' => $attachmentInstitution . $attachmentRights,
+                            'title' => $attachmentTitle,
+                            'alt' => $attachmentTitle,
+                        ));
+                        $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $currentLinkOptions, $attachment['item']);
                     }
-                    $currentLinkOptions = array();
-                    $currentLinkOptions = array_merge($linkOptions, array(
-                        'title' => $title,
-                        'alt' => $title,
-                    ));
-
-                    $thumbnail = null;
-                    switch (true) {
-                        case (false !== stristr($itemMetaIdentifier, 'vimeo:')):
-                            $videoId = substr($itemMetaIdentifier, 6);
-                                // $videoInfo = unserialize(
-                                    // file_get_contents('http://vimeo.com/api/v2/video/' . $videoId . '.php'));
-                                // create curl resource
-                            $ch = curl_init();
-
-                                // set url
-                            curl_setopt($ch, CURLOPT_URL, 'http://vimeo.com/api/v2/video/' . $videoId . '.php');
-
-                                //return the transfer as a string
-                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-                                // $output contains the output string
-                            $videoInfo = unserialize(curl_exec($ch));
-
-                                // close curl resource to free up system resources
-                            curl_close($ch);      
-
-                                // echo $videoInfo[0]['thumbnail_small']; die();
-                            if (isset($videoInfo[0]['thumbnail_medium']) && !empty($videoInfo[0]['thumbnail_medium'])) {
-                                $thumbnail = '<div class="external-thumbnail" style="background-image:url(\'' . $videoInfo[0]['thumbnail_medium'] . '\');"><img src="' . img('thnplaceholder.gif') . '" alt="video" style="visibility:hidden;"><div class="blurb">Video</div></div>';
-                            }
-
-                            break;
-
-                        default:
-                        break;
-                    }
-
-                    $html .= exhibit_builder_link_to_exhibit_item($thumbnail, $currentLinkOptions, $attachment['item']);
+                }
+                $html .= '</div>' . "\n";
             }
-            $html .= '</div>' . "\n";
         }
-    }
 
-    return apply_filters('exhibit_builder_thumbnail_gallery', $html,
-        array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
-
+        return apply_filters('exhibit_builder_thumbnail_gallery', $html,
+            array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
     }
 
     /**
@@ -388,30 +440,17 @@ class ExhibitDdbHelper
     {
 
         $file = $attachment['file'];
-
-        // title
         $attachmentTitle = self::getItemTitle($attachment, $file);
-
-        // subtitle
         $attachmentSubtitle = self::getItemSubtitle($attachment, $file);
-
-        // description
+        $attachmentInstitution = self::getItemInstitution($attachment, $file);
+        $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution . '<br>';
         $attachmentDescription = self::getItemDescription($attachment, $file);
-
-        // rights
         $attachmentRights = self::getItemRights($attachment, $file);
-
-        // Source 
-        // link text
         $attachmenLinkText = self::getItemLinkText($attachment, $file);
-
-        // link title
         $attachmenLinkTitle = self::getItemLinkTitle($attachment, $file);
         if (empty($attachmenLinkTitle)) {
             $attachmenLinkTitle = $attachmentTitle;
         }
-
-        // link url
         $attachmenLinkUrl = self::getItemLinkUrl($attachment, $file);
 
         // if (1 != 1 && count($attachment{'item'}->getFiles()) == 1) {
@@ -445,7 +484,7 @@ class ExhibitDdbHelper
                     'data-linktext' => $attachmenLinkText,
                     'data-linkurl' => $attachmenLinkUrl,
                     'data-linktitle' => $attachmenLinkTitle,
-                    'data-copyright' => $attachmentRights
+                    'data-copyright' => $attachmentInstitution . $attachmentRights
             )), 
             array('class' => 'permalink'));
 
