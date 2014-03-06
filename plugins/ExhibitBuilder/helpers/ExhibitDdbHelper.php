@@ -182,7 +182,7 @@ class ExhibitDdbHelper
         $matchesSize = count($matches);
         for ($i=0; $i < $matchesSize; $i++) { 
             if (isset($matches[$i][2]) && 'license' == $matches[$i][2] && isset($licenses[$matches[$i][3]])) {
-                $output .= '<a tagrt="_blank" href="' 
+                $output .= '<a target="_blank" href="' 
                     . $licenses[$matches[$i][3]]['link'] . '" title="' 
                     . $licenses[$matches[$i][3]]['name'] . '">' 
                     . $licenses[$matches[$i][3]]['icon'] 
@@ -329,16 +329,19 @@ class ExhibitDdbHelper
                 $matches)) {
             $attachmenLinkUrl = $matches[1];
         }
-        if (null !== $attachment['item'] && empty($attachmenLinkUrl) && 
-            1 === preg_match('@href="([^"]*)@', metadata($attachment['item'], 
-                array('Item Type Metadata', 'Link zum Objekt bei der datenliefernden Einrichtung')), 
-                $matches)) {
-            $attachmenLinkUrl = $matches[1];
-        } 
-        if (null !== $file && empty($attachmenLinkUrl) && 1 === preg_match('@href="([^"]*)@', 
-            metadata($file, array('Dublin Core', 'Source')), $matches)) {
-            $attachmenLinkUrl = $matches[1];
-        } else {
+        // if (null !== $attachment['item'] && empty($attachmenLinkUrl) && 
+        //     1 === preg_match('@href="([^"]*)@', metadata($attachment['item'], 
+        //         array('Item Type Metadata', 'Link zum Objekt bei der datenliefernden Einrichtung')), 
+        //         $matches)) {
+        //     $attachmenLinkUrl = $matches[1];
+        // } 
+        // if (null !== $file && empty($attachmenLinkUrl) && 1 === preg_match('@href="([^"]*)@', 
+        //     metadata($file, array('Dublin Core', 'Source')), $matches)) {
+        //     $attachmenLinkUrl = $matches[1];
+        // } else {
+        //     $attachmenLinkUrl = record_url($attachment['item'], 'show', false);
+        // }
+        if (empty($attachmenLinkUr)) {
             $attachmenLinkUrl = record_url($attachment['item'], 'show', false);
         }
         return $attachmenLinkUrl;

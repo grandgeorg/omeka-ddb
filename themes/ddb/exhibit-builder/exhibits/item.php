@@ -54,18 +54,60 @@ if (!empty($metaDataVideoSource)) {
         }
     }
 }
+
+// imgAttributes
+$imgAttributes = array();
+
+// image map
+$imagemap = metadata($item, array('Item Type Metadata', 'Imagemap'), array('no_escape' => true, 'no_filter' => true));
+$usemap = array();
+if (!empty($imagemap)) {
+    $usemap = array(
+        'data-mediawidth' => (string) $width, 
+        'data-mediaheight' => (string) $height,
+        'usemap' => "#imageMap",
+        'id' => 'ddb-imagemap-image'
+    );
+    $imgAttributes = array_merge($imgAttributes, $usemap);
+}
+
 ?>
 <div class="inline-lightbox-container" style="min-width: <?php echo $containerMinWidth; ?>px; min-height: <?php echo $containerMinHeight; ?>px;">
 <?php echo $embedVideo; ?>
 <?php echo $additionalWrapperOpen; ?>
-<?php echo files_for_item(
-    array('imageSize' => 'fullsize', 'linkToFile' => true), 
+<?php echo files_for_item(array(
+        'imageSize' => 'fullsize', 
+        'linkToFile' => true,
+        'imgAttributes'=> $imgAttributes
+        ), 
     $wrapperAttributes); ?>
 <?php echo $additionalWrapperClose; ?>
 </div>
 
+<?php 
+if (!empty($imagemap)) {
+    echo $imagemap;
+    // queue_js_file('vendor/jquery.rwdImageMaps');
+    // echo head_js(); 
+
+    echo '<script src="http:/themes/ddb/javascripts/vendor/jquery.rwdImageMaps.js" type="text/javascript"></script>';
+}
+?>
+
 <script type="text/javascript">
     $(document).ready(function() {
+
+        <?php if (!empty($imagemap)): ?>
+        $('#ddb-imagemap-image').rwdImageMaps();
+        $("area").tooltip({ 
+            track: true,
+            items: "[data-imgmap]",
+            content: function() {
+                return this.dataset.imgmap;
+            }
+        });
+        <?php endif; ?>
+
 
         $.Gina.sizeColorBoxItem = function(loaded) {
 
