@@ -36,17 +36,23 @@
         <?php endfor; ?>
     </div>
     <div class="tertiary">
-        <?php $exhibit = $exhibitPage->getExhibit();
-        if (isset($exhibit->banner) && !empty($exhibit->banner) && 
+        <?php $exhibit = $exhibitPage->getExhibit(); ?>
+        <?php if (isset($exhibit->widget_top_first) && !empty($exhibit->widget_top_first)): ?>
+        <div class="ddb-omeka-exhibit-widget-wrapper"><div class="ddb-omeka-exhibit-widget ddb-omeka-exhibit-widget-top-first"><?php echo $exhibit->widget_top_first; ?></div></div>
+        <?php endif; ?>
+        <?php if (isset($exhibit->widget_top_second) && !empty($exhibit->widget_top_second)): ?>
+        <div class="ddb-omeka-exhibit-widget-wrapper"><div class="ddb-omeka-exhibit-widget ddb-omeka-exhibit-widget-top-second"><?php echo $exhibit->widget_top_second; ?></div></div>
+        <?php endif; ?>
+        <?php if (isset($exhibit->banner) && !empty($exhibit->banner) && 
             file_exists(FILES_DIR . '/layout/banner/' . $exhibit->banner)): ?>
         <img src="<?php echo substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/banner/' 
-            . $exhibit->banner; ?>" alt="<?php echo $exhibit->banner; ?>">
+            . $exhibit->banner; ?>" alt="exihibition banner" class="exhibition-banner">
         <?php endif; ?>
         <?php if (isset($exhibitPage->widget) && !empty($exhibitPage->widget)): ?>
-        <div class="ddb-omeka-exhibit-widget"><?php echo $exhibitPage->widget; ?></div>
+        <div class="ddb-omeka-exhibit-widget-wrapper"><div class="ddb-omeka-exhibit-widget ddb-omeka-exhibit-widget-page"><?php echo $exhibitPage->widget; ?></div></div>
         <?php endif; ?>
         <?php if (isset($exhibit->widget) && !empty($exhibit->widget)): ?>
-        <div class="ddb-omeka-exhibit-widget"><?php echo $exhibit->widget; ?></div>
+        <div class="ddb-omeka-exhibit-widget-wrapper"><div class="ddb-omeka-exhibit-widget ddb-omeka-exhibit-widget-exhibit"><?php echo $exhibit->widget; ?></div></div>
         <?php endif; ?>
     </div>
 </div>

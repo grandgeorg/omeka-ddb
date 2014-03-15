@@ -26,6 +26,8 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public $banner;
     public $widget;
     public $cover;
+    public $widget_top_first;
+    public $widget_top_second;
 
     protected $_related = array(
         'Pages' => 'getPages', 'TopPages' => 'getTopPages', 'Tags' => 'getTags'

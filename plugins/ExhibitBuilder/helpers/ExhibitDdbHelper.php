@@ -200,7 +200,8 @@ class ExhibitDdbHelper
 
     public static function getItemTitle($attachment, $file)
     {
-        $attachmentTitle = strip_tags($attachment['caption']);
+        // $attachmentTitle = strip_tags($attachment['caption']);
+        $attachmentTitle = '';
         if (null !== $attachment['item'] && empty($attachmentTitle)) {
             $attachmentTitle = strip_tags(metadata($attachment['item'], 
                 array('Item Type Metadata', 'Titel')));
@@ -239,9 +240,10 @@ class ExhibitDdbHelper
     public static function getItemDescription($attachment, $file)
     {
         $attachmentDescription = '';
-        if (null !== $attachment['item']) {
+        $attachmentDescription = strip_tags($attachment['caption']);
+        if (null !== $attachment['item'] && empty($attachmentDescription)) {
             $attachmentDescription = strip_tags(metadata($attachment['item'], 
-                array('Item Type Metadata', 'Beschreibung')));
+                array('Item Type Metadata', 'Kurzbeschreibung')));
         }
         if (null !== $attachment['item'] && empty($attachmentDescription)) {
             $attachmentDescription = strip_tags(metadata($attachment['item'], 
@@ -323,28 +325,29 @@ class ExhibitDdbHelper
 
     public static function getItemLinkUrl($attachment, $file)
     {
-        $attachmenLinkUrl = '';
-        if (null !== $attachment['item'] && 1 === preg_match('@href="([^"]*)@', 
+        $attachmentLinkUrl = '';
+        if (null !== $attachment['item'] && 1 === preg_match('|href="([^"]*)|', 
             metadata($attachment['item'], array('Item Type Metadata', 'Link zum Objekt')), 
                 $matches)) {
-            $attachmenLinkUrl = $matches[1];
+            $attachmentLinkUrl = $matches[1];
+            // echo $matches[1];
         }
-        // if (null !== $attachment['item'] && empty($attachmenLinkUrl) && 
+        // if (null !== $attachment['item'] && empty($attachmentLinkUrl) && 
         //     1 === preg_match('@href="([^"]*)@', metadata($attachment['item'], 
         //         array('Item Type Metadata', 'Link zum Objekt bei der datenliefernden Einrichtung')), 
         //         $matches)) {
-        //     $attachmenLinkUrl = $matches[1];
+        //     $attachmentLinkUrl = $matches[1];
         // } 
-        // if (null !== $file && empty($attachmenLinkUrl) && 1 === preg_match('@href="([^"]*)@', 
+        // if (null !== $file && empty($attachmentLinkUrl) && 1 === preg_match('@href="([^"]*)@', 
         //     metadata($file, array('Dublin Core', 'Source')), $matches)) {
-        //     $attachmenLinkUrl = $matches[1];
+        //     $attachmentLinkUrl = $matches[1];
         // } else {
-        //     $attachmenLinkUrl = record_url($attachment['item'], 'show', false);
+        //     $attachmentLinkUrl = record_url($attachment['item'], 'show', false);
         // }
-        if (empty($attachmenLinkUr)) {
-            $attachmenLinkUrl = record_url($attachment['item'], 'show', false);
+        if (empty($attachmentLinkUrl)) {
+            $attachmentLinkUrl = record_url($attachment['item'], 'show', false);
         }
-        return $attachmenLinkUrl;
+        return $attachmentLinkUrl;
     }
 
     public static function getThumbnailGallery($start, $end, $props = array(), 
@@ -377,14 +380,14 @@ class ExhibitDdbHelper
                     if (empty($attachmenLinkTitle)) {
                         $attachmenLinkTitle = $attachmentTitle;
                     }
-                    $attachmenLinkUrl = self::getItemLinkUrl($attachment, $file);
+                    $attachmentLinkUrl = self::getItemLinkUrl($attachment, $file);
                     $currentLinkOptions = array();
                     $currentLinkOptions = array_merge($linkOptions, array(
                         'data-title' => $attachmentTitle,
                         'data-subtitle' => $attachmentSubtitle,
                         'data-description' => $attachmentDescription,
                         'data-linktext' => $attachmenLinkText,
-                        'data-linkurl' => $attachmenLinkUrl,
+                        'data-linkurl' => $attachmentLinkUrl,
                         'data-linktitle' => $attachmenLinkTitle,
                         'data-copyright' => $attachmentInstitution . $attachmentRights,
                         'title' => $attachmentTitle,
@@ -409,14 +412,14 @@ class ExhibitDdbHelper
                         if (empty($attachmenLinkTitle)) {
                             $attachmenLinkTitle = $attachmentTitle;
                         }
-                        $attachmenLinkUrl = self::getItemLinkUrl($attachment, null);
+                        $attachmentLinkUrl = self::getItemLinkUrl($attachment, null);
                         $currentLinkOptions = array();
                         $currentLinkOptions = array_merge($linkOptions, array(
                             // 'data-title' => $attachmentTitle,
                             // 'data-subtitle' => $attachmentSubtitle,
                             // 'data-description' => $attachmentDescription,
                             'data-linktext' => $attachmenLinkText,
-                            'data-linkurl' => $attachmenLinkUrl,
+                            'data-linkurl' => $attachmentLinkUrl,
                             'data-linktitle' => $attachmenLinkTitle,
                             'data-copyright' => $attachmentInstitution . $attachmentRights,
                             'title' => $attachmentTitle,
@@ -454,7 +457,7 @@ class ExhibitDdbHelper
         if (empty($attachmenLinkTitle)) {
             $attachmenLinkTitle = $attachmentTitle;
         }
-        $attachmenLinkUrl = self::getItemLinkUrl($attachment, $file);
+        $attachmentLinkUrl = self::getItemLinkUrl($attachment, $file);
 
         // if (1 != 1 && count($attachment{'item'}->getFiles()) == 1) {
         //     // There is only one file attached to the object
@@ -468,7 +471,7 @@ class ExhibitDdbHelper
         //                 // 'rel'=>'ddb-omeka-gallery-1',
         //                 'data-title' => $attachmentTitle,
         //                 'data-linktext' => $attachmenLinkText,
-        //                 'data-linkurl' => $attachmenLinkUrl,
+        //                 'data-linkurl' => $attachmentLinkUrl,
         //                 'data-linktitle' => $attachmenLinkTitle,
         //                 'data-copyright' => $attachmentRights
         //         )), array('class'=>'permalink'), $attachment['item']); 
@@ -485,7 +488,7 @@ class ExhibitDdbHelper
                     'data-subtitle' => $attachmentSubtitle,
                     'data-description' => $attachmentDescription,
                     'data-linktext' => $attachmenLinkText,
-                    'data-linkurl' => $attachmenLinkUrl,
+                    'data-linkurl' => $attachmentLinkUrl,
                     'data-linktitle' => $attachmenLinkTitle,
                     'data-copyright' => $attachmentInstitution . $attachmentRights
             )), 

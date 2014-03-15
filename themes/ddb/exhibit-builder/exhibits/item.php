@@ -77,7 +77,7 @@ if (!empty($imagemap)) {
 <?php echo $additionalWrapperOpen; ?>
 <?php echo files_for_item(array(
         'imageSize' => 'fullsize', 
-        'linkToFile' => true,
+        'linkToFile' => false,
         'imgAttributes'=> $imgAttributes
         ), 
     $wrapperAttributes); ?>
@@ -98,7 +98,6 @@ if (!empty($imagemap)) {
     $(document).ready(function() {
 
         <?php if (!empty($imagemap)): ?>
-        $('#ddb-imagemap-image').rwdImageMaps();
         $("area").tooltip({ 
             track: true,
             items: "[data-imgmap]",
@@ -107,7 +106,6 @@ if (!empty($imagemap)) {
             }
         });
         <?php endif; ?>
-
 
         $.Gina.sizeColorBoxItem = function(loaded) {
 
@@ -172,7 +170,17 @@ if (!empty($imagemap)) {
                 $.colorbox.resize({width: (newWidth + 63), height: (newHeight + 95)});
             }
             
+            <?php if (!empty($imagemap)): ?>
+            $('#ddb-imagemap-image').rwdImageMaps(newWidth, newHeight);
+            // imagemap.rwdImageMap;
+            // console.log('called gina window ready');
+            <?php endif; ?>
         }
         $.Gina.sizeColorBoxItem();
+        
+        
+    });
+
+    $(window).ready(function() {
     });
 </script>

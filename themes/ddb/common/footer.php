@@ -6,6 +6,7 @@
     <!--[if lt IE 9]>
   <div class="footer container" role="contentinfo">
 <![endif]-->
+
 <footer class="container">
   <div class="row">
     <h1 class="invisible-but-readable">Website-Fußzeile</h1>

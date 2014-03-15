@@ -46,6 +46,22 @@
         </div>
         <div class="field">
             <div class="two columns alpha">
+                <?php echo $this->formLabel('widget_top_first', __('Widget Top First Content')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                <?php echo $this->formTextarea('widget_top_first', $exhibit->widget_top_first, array('rows'=>'8','cols'=>'40')); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('widget_top_second', __('Widget Top Second Content')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                <?php echo $this->formTextarea('widget_top_second', $exhibit->widget_top_second, array('rows'=>'8','cols'=>'40')); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
                 <?php echo $this->formLabel('banner', __('Exhibit Banner')); ?>
             </div>
             <div class="five columns omega inputs">
@@ -57,7 +73,7 @@
         </div>
         <div class="field">
             <div class="two columns alpha">
-                <?php echo $this->formLabel('widget', __('Widget Content')); ?>
+                <?php echo $this->formLabel('widget', __('Widget Bottom Content')); ?>
             </div>
             <div class="five columns omega inputs">
                 <?php echo $this->formTextarea('widget', $exhibit->widget, array('rows'=>'8','cols'=>'40')); ?>

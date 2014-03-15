@@ -15,10 +15,13 @@
 * Licensed under the MIT license
 */
 !function ($) {
-    $.fn.rwdImageMaps = function () {
+    $.fn.rwdImageMaps = function (newWidth, newHeight) {
         var $img = this,
             rwdImageMap = function() {
             $img.each(function() {
+
+                // console.log('called rwdImageMap');
+
                 if (typeof($(this).attr('usemap')) === 'undefined') {
                     return;
                 }
@@ -54,7 +57,13 @@
                     hPercent = $that.height()/100,
                     map = $that.attr('usemap').replace('#', ''),
                     c = 'coords';
-                
+
+                if ($that.width() == 0 || $that.height() == 0) {
+                    wPercent = newWidth/100;
+                    hPercent = newHeight/100;
+                }
+                // console.log(w + ' --- ' + $that.width() + '***');
+
                 $('map[name="' + map + '"]').find('area').each(function() {
                     var $this = $(this);
                     if (!$this.data(c)) {
@@ -75,8 +84,9 @@
                 });
 
             });
-        }
-        $(window).resize(rwdImageMap);
+        };
+        rwdImageMap();
+        // $(window).resize(rwdImageMap);
         return this;
     }
 }(window.jQuery);

@@ -188,7 +188,8 @@
 }
 /* END icon fonts */
 
-
+/* general styles */
+h3 { line-height: 1; }
 
 
 /* gallery navigation */
@@ -930,6 +931,7 @@ audio {
 #exhibit-nav-up {
     line-height: 31px;
 }
+
 #exhibit-nav-up .current-page {
     color: #666;
     font-style: italic;
@@ -945,16 +947,82 @@ audio {
 
 #footer-text p a { color: #666;}
 
+/* content Elements */
+/*.primary li, .secondary li {
+    list-style: none outside none;
+    margin-left: -24px;
+    padding-bottom: 3px;
+    padding-left: 17px;
+    padding-top: 3px;
+    background: url("AYRUQH5T4ENaSz2mixljkzHgqnwvAXgFPAG6D7Pwk42.png") no-repeat scroll 0 4px rgba(0, 0, 0, 0);
+}*/
+
+.primary li a, .secondary li a {
+    /*text-decoration: none;*/
+}
+
 /* widget */
-.ddb-omeka-exhibit-widget {
-    background-color: #f5f5f5;
-    margin: 16px 0;
-    padding: 8px;
+.ddb-omeka-exhibit-widget-wrapper {
+    border-top: 2px solid #EFEBE8;
+    margin: 0 0 10px 0;
+    padding: 10px 0 0 0;
+}
+.ddb-omeka-exhibit-widget-page, 
+.ddb-omeka-exhibit-widget-exhibit,
+.ddb-omeka-exhibit-widget-top-second {
+    background-color: #efebe8;
+    margin: 0;
+    padding: 8px 8px;
     font-size: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    line-height: 16px;
+}
+
+.ddb-omeka-exhibit-widget-top-first {
+    margin: 0;
+    padding: 8px 8px;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.ddb-omeka-exhibit-widget ol
+{
+    margin-left: 18px;
+}
+.ddb-omeka-exhibit-widget ol li
+{
+    /*margin-left: -24px;*/
+    line-height: 16px;
+}
+.ddb-omeka-exhibit-widget ul li {
+    font-size: 12px;
+    line-height: 16px;
+    list-style: none outside none;
+    margin-left: -24px;
+    /*padding-bottom: 3px;*/
+    padding-left: 17px;
+    /*padding-top: 3px;*/
+    background: url("arrow-right.png") no-repeat scroll 0 3px rgba(0, 0, 0, 0);
+}
+.ddb-omeka-exhibit-widget ul li a {
+    /*text-decoration: none;*/
+}
+
+.ddb-omeka-exhibit-widget ul li a:hover, 
+.ddb-omeka-exhibit-widget ul li a:active, 
+.ddb-omeka-exhibit-widget ul li a:focus {
+    color: #A5003B;
+    text-decoration: underline;
+}
+.ddb-omeka-exhibit-widget h1, 
+.ddb-omeka-exhibit-widget h2,
+.ddb-omeka-exhibit-widget h3, 
+.ddb-omeka-exhibit-widget h4, 
+.ddb-omeka-exhibit-widget h5 {
+    line-height: 1.125;
+}
+
+.ddb-omeka-exhibit-widget h2 {
+    color: #3E3A37;
 }
 
 /* link */
