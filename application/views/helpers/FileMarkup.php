@@ -813,10 +813,13 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
         if ($file->hasThumbnail()) {
             $uri = html_escape($file->getWebPath($format));
         // Grandgeorg Websolutions
-        } elseif (substr($file->getProperty('mime_type'), 0, 5) == 'audio') {
+        } elseif (substr($file->getProperty('mime_type'), 0, 5) == 'audio' ||
+            'application/ogg' == $file->getProperty('mime_type')) {
+            
             $uri = img('music-fallback-file.png');
         // END Grandgeorg Websolutions
         } else {
+            // echo $file->getProperty('mime_type');
             $uri = img('fallback-file.png');
         }
         

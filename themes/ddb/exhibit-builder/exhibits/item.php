@@ -89,8 +89,7 @@ if (!empty($imagemap)) {
     echo $imagemap;
     // queue_js_file('vendor/jquery.rwdImageMaps');
     // echo head_js(); 
-
-    echo '<script src="http:/themes/ddb/javascripts/vendor/jquery.rwdImageMaps.js" type="text/javascript"></script>';
+    echo '<script src="/themes/ddb/javascripts/vendor/jquery.rwdImageMaps.js" type="text/javascript"></script>';
 }
 ?>
 
@@ -181,6 +180,4 @@ if (!empty($imagemap)) {
         
     });
 
-    $(window).ready(function() {
-    });
 </script>

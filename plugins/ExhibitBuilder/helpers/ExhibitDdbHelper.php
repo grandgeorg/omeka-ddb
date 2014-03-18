@@ -227,7 +227,7 @@ class ExhibitDdbHelper
         return $attachmentSubtitle;
     }
     
-    public static function getItemInstitution($attachment, $file)
+    public static function getItemInstitution($attachment)
     {
         $output = '';
         if (null !== $attachment['item']) {
@@ -371,8 +371,11 @@ class ExhibitDdbHelper
                     $file = $attachment['file'];
                     $attachmentTitle = self::getItemTitle($attachment, $file);
                     $attachmentSubtitle = self::getItemSubtitle($attachment, $file);
-                    $attachmentInstitution = self::getItemInstitution($attachment, $file);
-                    $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution . '<br>';
+                    $attachmentInstitution = self::getItemInstitution($attachment);
+                    $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution ;
+                    if (!preg_match('|\<\/p\>[\s]*$|', $attachmentInstitution) && !empty($attachmentInstitution)) {
+                        $attachmentInstitution = $attachmentInstitution  . '<br>';
+                    }
                     $attachmentDescription = self::getItemDescription($attachment, $file);
                     $attachmentRights = self::getItemRights($attachment, $file);
                     $attachmenLinkText = self::getItemLinkText($attachment, $file);
@@ -403,8 +406,11 @@ class ExhibitDdbHelper
                     if (!empty($thumbnail)) {
                         $attachmentTitle = self::getItemTitle($attachment, null);
                         $attachmentSubtitle = self::getItemSubtitle($attachment, null);
-                        $attachmentInstitution = self::getItemInstitution($attachment, $file);
-                        $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution . '<br>';
+                        $attachmentInstitution = self::getItemInstitution($attachment);
+                        $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution;
+                        if (!preg_match('|\<\/p\>[\s]*$|', $attachmentInstitution) && !empty($attachmentInstitution)) {
+                            $attachmentInstitution = $attachmentInstitution  . '<br>';
+                        }
                         $attachmentDescription = self::getItemDescription($attachment, null);
                         $attachmentRights = self::getItemRights($attachment, null);
                         $attachmenLinkText = self::getItemLinkText($attachment, null);
@@ -448,8 +454,11 @@ class ExhibitDdbHelper
         $file = $attachment['file'];
         $attachmentTitle = self::getItemTitle($attachment, $file);
         $attachmentSubtitle = self::getItemSubtitle($attachment, $file);
-        $attachmentInstitution = self::getItemInstitution($attachment, $file);
-        $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution . '<br>';
+        $attachmentInstitution = self::getItemInstitution($attachment);
+        $attachmentInstitution = (empty($attachmentInstitution))? '' : $attachmentInstitution;
+        if (!preg_match('|\<\/p\>[\s]*$|', $attachmentInstitution) && !empty($attachmentInstitution)) {
+            $attachmentInstitution = $attachmentInstitution  . '<br>';
+        }
         $attachmentDescription = self::getItemDescription($attachment, $file);
         $attachmentRights = self::getItemRights($attachment, $file);
         $attachmenLinkText = self::getItemLinkText($attachment, $file);

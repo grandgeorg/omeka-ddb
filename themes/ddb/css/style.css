@@ -1242,3 +1242,35 @@ i.license-pdzero {
 i.license-rr {
     background-position: -132px 0;
 }
+
+/* default item page */
+.ddb-full-item a {
+    text-decoration: underline;
+}
+.ddb-omeka-itempage-full-item-container {
+    margin: 15px 0;
+    padding: 0;
+}
+.ddb-omeka-itempage-full-item-container img {
+    margin: 0;
+    padding: 0;
+}
+
+.ddb-full-item .element-text {
+    overflow: hidden;
+    display: block;
+    float: none;
+    position: relative;
+    width: 100%;
+}
+
+
+/*.tertiary .ddb-omeka-exhibit-widget-wrapper:first-child{ 
+    border-top:0 none transparent; 
+    padding-top: 0;
+}
+
+.ddb-omeka-exhibit-widget-top-first {
+    padding-top: 0;
+
+}*/
