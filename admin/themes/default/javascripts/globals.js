@@ -13,16 +13,29 @@ if (!Omeka) {
     Omeka.wysiwyg = function (params) {
         // Default parameters
         initParams = {
+                
+/*
+                style_formats: [
+        {title: 'Bold text', inline: 'b'},
+        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+        {title: 'Example 1', inline: 'span', classes: 'example1'},
+        {title: 'Example 2', inline: 'span', classes: 'example2'},
+        {title: 'Table styles'},
+        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+    ], */
+            language : 'de',
             convert_urls: false,
             mode: "textareas", // All textareas
             theme: "advanced",
             theme_advanced_toolbar_location: "top",
             theme_advanced_statusbar_location: "none",
             theme_advanced_toolbar_align: "left",
-            theme_advanced_buttons1: "bold,italic,underline,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,|,link,formatselect,code",
+            // theme_advanced_blockformats : "p,address,pre,h1,h2,h3,h4,h5",
+            theme_advanced_buttons1: "bold,italic,underline,|,justifyleft,justifycenter,justifyright,|,bullist,numlist,blockquote,cite,|,link,formatselect,code,fullscreen",
             theme_advanced_buttons2: "",
             theme_advanced_buttons3: "",
-            plugins: "paste,inlinepopups,media",
+            plugins: "paste,inlinepopups,media,fullscreen,xhtmlxtras",
             media_strict: false,
             width: "100%"
         };
