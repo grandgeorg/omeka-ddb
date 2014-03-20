@@ -587,7 +587,7 @@ h1 {
 
 .tertiary img {
     border:0;
-    margin: 0;
+    margin: 0 0 10px 0;
     padding: 0;
     display: block;
     line-height: 1;
@@ -1003,8 +1003,9 @@ audio {
     /*padding-top: 3px;*/
     background: url("arrow-right.png") no-repeat scroll 0 3px rgba(0, 0, 0, 0);
 }
-.ddb-omeka-exhibit-widget ul li a {
-    /*text-decoration: none;*/
+.ddb-omeka-exhibit-widget ul li a, 
+.ddb-omeka-exhibit-widget ol li a {
+    text-decoration: none;
 }
 
 .ddb-omeka-exhibit-widget ul li a:hover, 
@@ -1245,7 +1246,7 @@ i.license-rr {
 
 /* default item page */
 .ddb-full-item a {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 .ddb-omeka-itempage-full-item-container {
     margin: 15px 0;

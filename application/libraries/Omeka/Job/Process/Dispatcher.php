@@ -110,6 +110,7 @@ class Omeka_Job_Process_Dispatcher
         $command = escapeshellcmd($cliPath).' -v';
         $output = array();
         exec($command, $output, $returnCode);
+
         
         if ($returnCode != 0) {
             throw new RuntimeException(__('The configured PHP path (%s) is invalid.', $cliPath));
