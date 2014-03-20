@@ -91,6 +91,8 @@ h3, h3 a {
     font-weight: bold;
 }
 
+h3 { margin-bottom: 0; }
+
 a {
     color: #3E3A37;
     text-decoration: underline;

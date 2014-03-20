@@ -802,6 +802,12 @@ body .ui-tooltip {
 .cboxIE #cboxMiddleRight {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
 }
+
+#cboxTitle div p {
+    margin: 0;
+}
+
+
 /* colorbox custumisations */
 .inline-lightbox-container { background-color: #222;}
 .inline-lightbox-element { background-color: #222; }
