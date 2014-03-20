@@ -487,8 +487,8 @@ h3 { line-height: 1; }
     padding: 0;
     opacity:0.6;
     
-    transition: all 0.4s linear 0s;
-    -webikit-transition: all 0.2s linear 0s;
+/*    transition: all 0.4s linear 0s;
+    -webikit-transition: all 0.2s linear 0s;*/
 }
 
 #secondary-nav a:hover .ddb-omeka-navigation-background-image {
