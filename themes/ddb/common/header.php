@@ -115,7 +115,7 @@
             <a href="https://www.deutsche-digitale-bibliothek.de/content/help">Hilfe</a>
           </li><!-- /end of help -->
           <li class="active">
-            <a href="http://dev.escidoc.org/current/content/exhibits/">
+            <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">
              Ausstellungen
             </a>
 <!--             <ul class="nav">
@@ -212,7 +212,7 @@
                   <a href="https://www.deutsche-digitale-bibliothek.de/content/help">Hilfe</a>
                 </li>
                 <li class="keep-in-front active-default">
-                    <a href="http://dev.escidoc.org/current/content/exhibits/">Ausstellungen</a>
+                    <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Ausstellungen</a>
                 <?php 
                 // $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
                 // $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName(); 
