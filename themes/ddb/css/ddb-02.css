@@ -289,7 +289,9 @@ a:hover {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  /*width: 940px;*/
+  max-width: 1170px;
+  padding:0 10px;
 }
 
 .span12 {
@@ -6159,6 +6161,7 @@ a.badge:hover {
   .navbar-fixed-top .container,
   .navbar-fixed-bottom .container {
     width: 1170px;
+    padding:0 10px;
   }
   .span12 {
     width: 1170px;
@@ -6508,7 +6511,10 @@ a.badge:hover {
   .navbar-static-top .container,
   .navbar-fixed-top .container,
   .navbar-fixed-bottom .container {
-    width: 724px;
+    /*width: 724px;*/
+    width: auto;
+    max-width: 979px;
+    padding:0 10px;
   }
   .span12 {
     width: 724px;

@@ -430,7 +430,11 @@ BookReader.prototype.drawLeafsOnePage = function() {
         var topInView    = (leafTop >= scrollTop) && (leafTop <= scrollBottom);
         var bottomInView = (leafBottom >= scrollTop) && (leafBottom <= scrollBottom);
         var middleInView = (leafTop <=scrollTop) && (leafBottom>=scrollBottom);
-        if (topInView | bottomInView | middleInView) {
+        // Grandgeorg Websolutions
+        // if (topInView | bottomInView | middleInView) {
+        // modified to:
+        if (topInView || bottomInView || middleInView) {
+        // Grandgeorg Websolutions END
             //console.log('displayed: ' + this.displayedIndices);
             //console.log('to display: ' + i);
             indicesToDisplay.push(i);
@@ -3714,7 +3718,7 @@ BookReader.prototype.initToolbar = function(mode, ui) {
 BookReader.prototype.blankInfoDiv = function() {
     return $([
         '<div class="BRfloat" id="BRinfo">',
-            '<div class="BRfloatHead">About this book',
+            '<div class="BRfloatHead">Über dieses Buch',
                 '<a class="floatShut" href="javascript:;" onclick="$.fn.colorbox.close();"><span class="shift">Close</span></a>',
             '</div>',
             '<div class="BRfloatBody">',

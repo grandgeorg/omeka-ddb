@@ -357,8 +357,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             require_once dirname(dirname(__FILE__)) . '/vendor/WebsiteToImage.php';
             $websiteToImage = new WebsiteToImage();
 
-            // $wtiEngine = 'wkhtmltoimage-amd64-0.10.0';
+
+
             $wtiEngine = 'wkhtmltoimage-i386-0.10.0';
+            $unameM = array();
+            exec ( 'uname -m', $unameM , $returnUnameMCheck);
+            if (0 == $returnUnameMCheck && isset($unameM[0]) && $unameM[0] == 'x86_64') {
+                $wtiEngine = 'wkhtmltoimage-amd64-0.10.0';
+            }
             $wtiPath = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/bin/';
             $wtiOutputPath = dirname(dirname(__FILE__)) . '/views/public/images/';
 
