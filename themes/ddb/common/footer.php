@@ -81,6 +81,8 @@
                             $('.external-thumbnail').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
                         }
                         $('#thumbnail-gallery-carousel-container').css({'height' : imgWidth + 'px'});
+                        $('#thumbnail-gallery-carousel-elements').css({'min-height' : imgWidth + 'px'});
+
                         $('#thumbnail-gallery-carousel-container .caroufredsel_wrapper').css({
                             'height' : imgWidth + 'px', 
                             'width' : ((imgWidth * 3) + 30) + 'px'});

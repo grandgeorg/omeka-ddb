@@ -4,6 +4,7 @@
     width: 100%;
     overflow: hidden;
     margin-bottom: 10px;
+    min-height: 132px;
 }
 #thumbnail-gallery-carousel-elements .disabled img {
     display: none;
