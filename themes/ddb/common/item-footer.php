@@ -37,6 +37,45 @@
   </div>
 <![endif]-->
 <!-- end footer -->
+<script type="text/javascript">
+    if (typeof variable === 'undefined') {
+        de = {};
+        de.ddb = {};
+        de.ddb.next = {};
+    }
+</script>
+
+<?php echo js_tag('searchCookie'); ?>
+<script type="text/javascript">
+$(window).on('load', function () {
+
+  $('#cookie-notice').each(function () {
+    var cookieBar = $(this),
+    p = cookieBar.find('p'),
+    closeButton = cookieBar.find('.close');
+
+    var cookie = de.ddb.next.search.readCookie("cb_cookie_notice");
+
+    window.setTimeout(function(){
+      if(cookie!=1){
+        cookieBar.fadeIn('fast');
+        document.cookie = 'cb_cookie_notice=1';
+      }
+    },300);
+
+
+    closeButton.on('click', function (evt) {
+      evt.preventDefault();
+
+      cookieBar.removeClass('visible');
+      cookieBar.fadeOut('fast');
+
+      return false;
+    });
+
+  });
+});
+</script>
 <!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];

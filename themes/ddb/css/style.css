@@ -9,7 +9,7 @@
     font-weight: normal;
     font-style: normal;
 }
-
+.test { color:#060; }
 [class^="icon-"], [class*=" icon-"] {
     font-family: 'icomoon';
     speak: none;
@@ -216,10 +216,10 @@ h3 { line-height: 1; }
 }
 .gallery .exhibit-item .blurb {
     position:absolute;
-    width: 100%; 
-    bottom:0; 
-    background-color: #000; 
-    color:#fff; 
+    width: 100%;
+    bottom:0;
+    background-color: #000;
+    color:#fff;
     text-align:center; opacity: 0.6;
 }
 
@@ -234,14 +234,14 @@ h3 { line-height: 1; }
 .gallery .exhibit-item .external-thumbnail {
     background-repeat:no-repeat;
     /*background-attachment:fixed;*/
-    background-position:center center; 
+    background-position:center center;
     /*height: 100%;*/
 }
 .gallery .exhibit-item.last-item-in-line {
-    margin-right: 0; 
+    margin-right: 0;
 }
 #thumbnail-gallery-carousel-wrapper .last-item-in-line {
-     margin-right: 10px; 
+     margin-right: 10px;
 }
 .gallery .exhibit-item-caption { display: none;}
 .ddb-omeka-main-exhibit-item {
@@ -396,21 +396,21 @@ h3 { line-height: 1; }
     right:21px;
     background-position: -3px -116px;
 }
-#secondary-nav #ddb-omeka-carousel_next:hover { 
-    background-position: -3px -154px; 
+#secondary-nav #ddb-omeka-carousel_next:hover {
+    background-position: -3px -154px;
 }
-#secondary-nav #ddb-omeka-carousel_next.disabled { 
-    background-position: -3px -225px !important; 
+#secondary-nav #ddb-omeka-carousel_next.disabled {
+    background-position: -3px -225px !important;
 }
 #secondary-nav #ddb-omeka-carousel_prev {
     left:21px;
     background-position: -3px -3px;
 }
-#secondary-nav #ddb-omeka-carousel_prev:hover { 
-    background-position: -3px -41px; 
+#secondary-nav #ddb-omeka-carousel_prev:hover {
+    background-position: -3px -41px;
 }
-#secondary-nav #ddb-omeka-carousel_prev.disabled { 
-    background-position: -3px -225px !important; 
+#secondary-nav #ddb-omeka-carousel_prev.disabled {
+    background-position: -3px -225px !important;
 }
 
 #secondary-nav .nav-carusel-item {
@@ -428,20 +428,20 @@ h3 { line-height: 1; }
 
     background-color: transparent;
     color: #fff;
-    
+
     width: 72px;
     height:51px;
-    
+
     margin: 16px 4px 16px 0;
     text-align: center;
-    
+
 /*    -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;*/
     /*border: 2px solid #e6183c;*/
     border: 1px solid #A5003B;
-    
-    
+
+
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 
@@ -489,7 +489,7 @@ h3 { line-height: 1; }
     margin: 0;
     padding: 0;
     opacity:0.6;
-    
+
 /*    transition: all 0.4s linear 0s;
     -webikit-transition: all 0.2s linear 0s;*/
 }
@@ -525,7 +525,7 @@ h3 { line-height: 1; }
 
     margin: 0;
     padding: 2px 0 0 0;
-        
+
     /*background-color: #e6183c;*/
     background-color: #A5003B;
     line-height: 1;
@@ -699,8 +699,8 @@ h1 {
 /* end two columns */
 
 /*jquery ui tooltip*/
-.ddb-omeka-tooltip-styling, .ui-tooltip { 
-    font-size: 12px;  
+.ddb-omeka-tooltip-styling, .ui-tooltip {
+    font-size: 12px;
     /*box-shadow: 0 0 0 transparent;*/
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
@@ -773,7 +773,7 @@ body .ui-tooltip {
 .cboxIframe{width:100%; height:100%; display:block; border:0;}
 #colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
 
-/* 
+/*
     User Style:
     Change the following styles to modify the appearance of Colorbox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -792,7 +792,7 @@ body .ui-tooltip {
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{margin-bottom:32px; position: relative;}
-        #cboxTitle{position:absolute; bottom:0; left:0; right:0; text-align:left; color:#999; overflow: hidden; 
+        #cboxTitle{position:absolute; bottom:0; left:0; right:0; text-align:left; color:#999; overflow: hidden;
             /*min-height: 32px;*/
         }
         #cboxCurrent{position:absolute; bottom:2px; left:56px; color:#999; font-size: 14px;}
@@ -801,7 +801,7 @@ body .ui-tooltip {
 
         /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
         #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }
-        
+
         /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
         #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
 
@@ -949,16 +949,16 @@ audio {
     background-position: -3px -116px;
     margin-left: 8px;
 }
-#exhibit-nav-next .next-page:hover .nav-icon-next { 
-    background-position: -3px -154px; 
+#exhibit-nav-next .next-page:hover .nav-icon-next {
+    background-position: -3px -154px;
 }
 #exhibit-nav-prev .previous-page .nav-icon-prev {
     float: left;
     background-position: -3px -3px;
     margin-right: 8px;
 }
-#exhibit-nav-prev .previous-page:hover .nav-icon-prev { 
-    background-position: -3px -41px; 
+#exhibit-nav-prev .previous-page:hover .nav-icon-prev {
+    background-position: -3px -41px;
 }
 #exhibit-nav-up {
     line-height: 31px;
@@ -999,7 +999,7 @@ audio {
     margin: 0 0 10px 0;
     padding: 10px 0 0 0;
 }
-.ddb-omeka-exhibit-widget-page, 
+.ddb-omeka-exhibit-widget-page,
 .ddb-omeka-exhibit-widget-exhibit,
 .ddb-omeka-exhibit-widget-top-second {
     background-color: #efebe8;
@@ -1044,21 +1044,21 @@ audio {
     /*padding-top: 3px;*/
     background: url("arrow-right.png") no-repeat scroll 0 3px rgba(0, 0, 0, 0);
 }
-.ddb-omeka-exhibit-widget ul li a, 
+.ddb-omeka-exhibit-widget ul li a,
 .ddb-omeka-exhibit-widget ol li a {
     text-decoration: none;
 }
 
-.ddb-omeka-exhibit-widget ul li a:hover, 
-.ddb-omeka-exhibit-widget ul li a:active, 
+.ddb-omeka-exhibit-widget ul li a:hover,
+.ddb-omeka-exhibit-widget ul li a:active,
 .ddb-omeka-exhibit-widget ul li a:focus {
     color: #A5003B;
     text-decoration: underline;
 }
-.ddb-omeka-exhibit-widget h1, 
+.ddb-omeka-exhibit-widget h1,
 .ddb-omeka-exhibit-widget h2,
-.ddb-omeka-exhibit-widget h3, 
-.ddb-omeka-exhibit-widget h4, 
+.ddb-omeka-exhibit-widget h3,
+.ddb-omeka-exhibit-widget h4,
 .ddb-omeka-exhibit-widget h5 {
     line-height: 1.125;
 }
@@ -1117,11 +1117,11 @@ audio {
     padding: 0;
 }
 
-.ddb-omeka-exhibit-list h1, 
-.ddb-omeka-exhibit-list h2, 
-.ddb-omeka-exhibit-list h3, 
-.ddb-omeka-exhibit-list h4, 
-.ddb-omeka-exhibit-list h5, 
+.ddb-omeka-exhibit-list h1,
+.ddb-omeka-exhibit-list h2,
+.ddb-omeka-exhibit-list h3,
+.ddb-omeka-exhibit-list h4,
+.ddb-omeka-exhibit-list h5,
 .ddb-omeka-exhibit-list h6 {
     margin-top: 0;
     padding: 0;
@@ -1240,7 +1240,7 @@ blockquote cite {
     text-align: right;
 
 }
- 
+
 blockquote cite:before {
     /*content: "\2014 \2009";*/
 }
@@ -1307,8 +1307,8 @@ i.license-rr {
 }
 
 
-/*.tertiary .ddb-omeka-exhibit-widget-wrapper:first-child{ 
-    border-top:0 none transparent; 
+/*.tertiary .ddb-omeka-exhibit-widget-wrapper:first-child{
+    border-top:0 none transparent;
     padding-top: 0;
 }
 
@@ -1316,3 +1316,47 @@ i.license-rr {
     padding-top: 0;
 
 }*/
+
+
+.visible {
+  display: block;
+}
+/* cookie notice */
+#cookie-notice {
+  background: #efebe8;
+  padding-top: 5px;
+  padding-bottom: 0;
+  display: none;
+  color: #3e3a37;
+  font-size: 15px;
+  line-height: 18px;
+}
+#cookie-notice .container{
+  position: relative;
+}
+#cookie-notice p{
+  padding-right: 50px;
+  padding-left: 5px;
+}
+#cookie-notice p a{
+  text-decoration:underline;
+}
+#cookie-notice .close{
+  width: 20px;
+  height: 20px;
+  background: url(../images/icons/ddbIkonographie.png) no-repeat -27px -474px;
+  background-color: #e6e6e6;
+  border: #ddd 1px solid;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+@media (max-width: 767px){
+  #cookie-notice {
+    padding: 10px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
+/* cookie notice -end */

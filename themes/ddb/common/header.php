@@ -11,6 +11,7 @@
     ?>
     <title><?php echo implode(' &middot; ', $titleParts); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="<?php echo img('favicon.ico'); ?>" rel="shortcut icon" />
     <?php if ( $description = option('description')): ?>
     <meta name="description" content="<?php echo $description; ?>" />
     <?php endif; ?>
@@ -31,7 +32,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <?php 
+    <?php
     queue_js_file('vendor/jquery.min');
     queue_js_file('vendor/bootstrap.min');
     // queue_js_file('ddb');
@@ -42,7 +43,7 @@
     queue_js_file('vendor/colorbox/i18n/jquery.colorbox-de');
     queue_js_url('//code.jquery.com/ui/1.10.3/jquery-ui.js');
     queue_js_file('vendor/caroufredsel/jquery.carouFredSel-6.2.1-packed');
-    echo head_js(); 
+    echo head_js();
     ?>
 
 </head>
@@ -66,6 +67,21 @@
 <![endif]-->
 
 <!--[if !IE]><!-->
+
+<div class="cookie-notice visible" id="cookie-notice">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <p>
+          Diese Website setzt Cookies ein. Für die Nutzungsanalyse wird die Software Piwik verwendet. Wenn Sie der Nutzungsanalyse widersprechen oder mehr über Cookies erfahren möchten, klicken Sie bitte auf die <a href="https://www.deutsche-digitale-bibliothek.de/content/privacy">Datenschutzerklärung</a>.
+        </p>
+        <a class="close" aria-controls="cookie-notice"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <header class="navbar navbar-fixed-top visible-phone">
   <div class="navbar-inner">
     <div class="container">
@@ -130,7 +146,7 @@
               </li>
             </ul> -->
           </li>
-            
+
 <!--             <li class=""><a>
               Sprache ändern
             </a>
@@ -146,10 +162,10 @@
             </ul>
           </li> -->
 <!--           <li class="">
-            
+
               <a href="https://www.deutsche-digitale-bibliothek.de/login">Anmelden</a>
-            
-            
+
+
           </li> -->
         </ul>
       </div>
@@ -213,10 +229,10 @@
                 </li>
                 <li class="keep-in-front active-default">
                     <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Ausstellungen</a>
-                <?php 
+                <?php
                 // $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
-                // $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName(); 
-            /* Controllers are: 
+                // $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+            /* Controllers are:
             exhibits
             items
             collections
@@ -239,12 +255,12 @@
           </div>
           <div class="span5 toolbar">
             <div class="status-bar" style="height:19px">
-              
+
 <!--                 <div class="login-wrapper">
                   <a href="https://www.deutsche-digitale-bibliothek.de/login">Anmelden</a>
                 </div> -->
-              
-              
+
+
               <!-- <div class="header-spacer"></div> -->
 <!--               <div class="language-wrapper">
                 <a href="#"> Deutsch
@@ -260,7 +276,7 @@
             <div class="search-header hidden-phone">
 
               <?php echo search_form(array(
-                'show_advanced' => false, 
+                'show_advanced' => false,
                 'form_attributes' => array(
                   'id' => 'form-search-header',
                   'role' => 'search',
@@ -291,7 +307,7 @@
 <!--[if lt IE 9]>
   </div>
 <![endif]-->
-            
+
         <div id="wrap" class="container">
             <div id="content">
                 <?php fire_plugin_hook('public_content_top', array('view'=>$this)); ?>
