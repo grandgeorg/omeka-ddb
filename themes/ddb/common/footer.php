@@ -1,7 +1,7 @@
         </div><!-- end content -->
 
     </div><!-- end wrap -->
-    
+
 
     <!--[if lt IE 9]>
   <div class="footer container" role="contentinfo">
@@ -84,12 +84,12 @@
                         $('#thumbnail-gallery-carousel-elements').css({'min-height' : imgWidth + 'px'});
 
                         $('#thumbnail-gallery-carousel-container .caroufredsel_wrapper').css({
-                            'height' : imgWidth + 'px', 
+                            'height' : imgWidth + 'px',
                             'width' : ((imgWidth * 3) + 30) + 'px'});
                         $(thumbnailGalleryClass).css({'height' : imgWidth + 'px'});
                         prevnextMargin = Math.round((imgWidth - prevnextHeight) / 2);
                         if (prevnextMargin > 0) {
-                            $('.ddb-omeka-carousel-gallery-controlls').css('margin', 
+                            $('.ddb-omeka-carousel-gallery-controlls').css('margin',
                                 prevnextMargin + 'px 0');
                         }
                         if(!loaded) {
@@ -97,7 +97,7 @@
                                 $.Gina.setThumbGallerImageSizes(!loaded);
                             });
                         }
-                    } 
+                    }
                     // else if($('.external-thumbnail').get(0)) {
                         // $('.etxernal-thumbnail').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
                     // }
@@ -110,7 +110,7 @@
 
 
         /* Toottip - JQueryUI */
-        $('nav').tooltip({ 
+        $('nav').tooltip({
             tooltipClass: "ddb-omeka-tooltip-styling",
             position: {
                 my: "center top+9",
@@ -127,11 +127,11 @@
         });
 
         /* Omeka core js */
-        // Omeka.showAdvancedForm();   ---------enable again?     
-        // Omeka.moveNavOnResize();        
-        // Omeka.mobileMenu();   
+        // Omeka.showAdvancedForm();   ---------enable again?
+        // Omeka.moveNavOnResize();
+        // Omeka.mobileMenu();
 
-        /* Carousel Page Navigation 
+        /* Carousel Page Navigation
          * @see : http://docs.dev7studios.com/jquery-plugins/caroufredsel-advanced
          */
         if ($('#nav-carousel').get(0)) {
@@ -140,11 +140,11 @@
                 infinite: false,
                 auto    : {play : false},
                 width: '100%',
-                prev    : { 
+                prev    : {
                     button  : "#ddb-omeka-carousel_prev",
                     key     : "left"
                 },
-                next    : { 
+                next    : {
                     button  : "#ddb-omeka-carousel_next",
                     key     : "right",
                 },
@@ -164,7 +164,7 @@
             }
         }
 
-        /* Carousel Thubnail Gallery 
+        /* Carousel Thubnail Gallery
          */
         if ($('#thumbnail-gallery-carousel-wrapper').get(0)) {
             $('#thumbnail-gallery-carousel-wrapper').carouFredSel({
@@ -182,11 +182,11 @@
                 },
                 // items: 3,
                 // direction: "left",
-                prev    : { 
+                prev    : {
                     button  : "#ddb-omeka-carousel-gallery_prev",
                     // key     : "left"
                 },
-                next    : { 
+                next    : {
                     button  : "#ddb-omeka-carousel-gallery_next",
                     // key     : "right",
                 },
@@ -196,8 +196,8 @@
 
         /*  Lightbox - ColorBox  */
         $(".ddb-omeka-gallery a").colorbox({
-            rel:'ddb-omake-colorbox', 
-            maxWidth:"100%", 
+            rel:'ddb-omake-colorbox',
+            maxWidth:"100%",
             maxHeight:"100%",
             title: function(){
                 var title = '';
@@ -278,5 +278,25 @@
 
     });
     </script>
+
+    <!-- Piwik -->
+    <script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(["trackPageView"]);
+        _paq.push(["enableLinkTracking"]);
+
+        (function() {
+            var u=(("https:" == document.location.protocol) ? "https" : "http") + "://report.deutsche-digitale-bibliothek.de/";
+            _paq.push(["setTrackerUrl", u+"piwik.php"]);
+            _paq.push(["setSiteId", "5"]);
+            _paq.push(['setVisitorCookieTimeout', '604800']);
+            _paq.push(['setSessionCookieTimeout', '0']);
+            var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+            g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <noscript><img src="https://report.deutsche-digitale-bibliothek.de/piwik.php?idsite=5&amp;rec=1" style="border:0" alt="" /></noscript>
+    <!-- End Piwik Code -->
+
 </body>
 </html>
