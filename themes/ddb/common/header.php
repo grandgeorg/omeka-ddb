@@ -91,8 +91,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar" style="visibility: hidden;"></span>
       </button>
-      <a href="https://www.deutsche-digitale-bibliothek.de/" class="brand" title="Deutsche Digitale Bibliothek" tabindex="-1">
-        <img src="/themes/ddb/images/sRYhYiO0w9nju9HVzfQu5axabySW4rDmAurg7wk1Kth.png" alt="Deutsche Digitale Bibliothek">
+      <a href="https://www.deutsche-digitale-bibliothek.de/" class="brand" title="Zur Startseite" tabindex="-1">
+        <img src="<?php echo img('logo-phone.png'); ?>" alt="Logo: Deutsche Digitale Bibliothek">
       </a>
       <div class="nav-collapse collapse">
         <ul class="nav nav-list">
@@ -125,48 +125,24 @@
                 <a href="https://www.deutsche-digitale-bibliothek.de/content/faq">Fragen &amp; Antworten</a>
               </li>
             </ul> -->
-            <!-- /end of .nav -->
           </li>
           <li>
             <a href="https://www.deutsche-digitale-bibliothek.de/content/help">Hilfe</a>
-          </li><!-- /end of help -->
+          </li>
           <li class="active">
-            <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">
-             Ausstellungen
-            </a>
+            <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Ausstellungen</a>
 <!--             <ul class="nav">
-              <li>
-                <a href="/exhibits">Liste der Ausstellungen</a>
+              <li class="active">
+                <a href="/content/exhibits/">Ausstellungen</a>
               </li>
               <li>
-                <a href="/collections/browse">Sammlungen</a>
+                <a href="/lists">Favoritenlisten</a>
               </li>
               <li>
-                <a href="/items/browse">Objekte</a>
+                <a href="/persons">Personen</a>
               </li>
             </ul> -->
           </li>
-
-<!--             <li class=""><a>
-              Sprache ändern
-            </a>
-            <ul class="nav">
-              <li class="selected-language">
-                <a class="nopointer">Deutsch</a>
-              </li>
-              <li class="">
-                <a href="https://www.deutsche-digitale-bibliothek.de/content/help?lang=en">
-                  English
-                </a>
-              </li>
-            </ul>
-          </li> -->
-<!--           <li class="">
-
-              <a href="https://www.deutsche-digitale-bibliothek.de/login">Anmelden</a>
-
-
-          </li> -->
         </ul>
       </div>
     </div>
@@ -179,9 +155,7 @@
 <header class="ie-mobile">
 <![endif]-->
 
-  <h1 class="invisible-but-readable">
-    Website-Kopfzeile
-  </h1>
+  <h1 class="invisible-but-readable">Website-Kopfzeile</h1>
   <div class="container">
     <div class="row">
       <!--[if lt IE 9]>
@@ -190,19 +164,13 @@
       <nav class="widget span12" data-widget="NavigationWidget">
         <div class="row">
           <div class="span7">
-            <a href="https://www.deutsche-digitale-bibliothek.de/" class="navigation-header-logo" title="Deutsche Digitale Bibliothek" tabindex="-1">
-              <img src="/themes/ddb/images/V9TNJKGP7lFAGbHQemMycKXTdwYjbtw8l0bX2ODHwYd.png" alt="Deutsche Digitale Bibliothek">
+            <a href="https://www.deutsche-digitale-bibliothek.de/" class="navigation-header-logo" title="Zur Startseite" tabindex="-1">
+              <img src="/themes/ddb/images/logo.png" alt="Logo: Deutsche Digitale Bibliothek">
             </a>
             <div role="navigation">
               <ul class="navigation inline">
                 <li class="root">
-                  <a href="https://www.deutsche-digitale-bibliothek.de/">Suche</a><br>
-<!--                   <ul>
-
-                    <li class="">
-                      <a href="https://www.deutsche-digitale-bibliothek.de/advancedsearch">Erweiterte Suche</a>
-                    </li>
-                  </ul> -->
+                  <a href="https://www.deutsche-digitale-bibliothek.de/">Startseite</a><br>
                 </li>
                 <li>
                   <a href="https://www.deutsche-digitale-bibliothek.de/content/about">Über uns</a>
@@ -254,7 +222,7 @@
             </div>
           </div>
           <div class="span5 toolbar">
-            <div class="status-bar" style="height:19px">
+            <div class="status-bar" style="height:20px">
 
 <!--                 <div class="login-wrapper">
                   <a href="https://www.deutsche-digitale-bibliothek.de/login">Anmelden</a>

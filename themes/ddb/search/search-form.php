@@ -1,8 +1,11 @@
-    <?php 
-    echo $this->form('search-form', $options['form_attributes']); 
+    <?php
+    echo $this->form('search-form', $options['form_attributes']);
     echo $this->formLabel('search-small', '<span>Suchtext-Feld</span>', array('escape' => false));
     echo $this->formText('query', $filters['query'], array(
-            'class' => 'query', 'autocomplete' => 'off', 'id' => 'search-small')); 
+            'class' => 'query',
+            'autocomplete' => 'off',
+            'id' => 'search-small'
+    ));
     ?>
     <?php if ($options['show_advanced']): ?>
     <fieldset id="advanced-form">
@@ -24,7 +27,5 @@
     </fieldset>
     <?php endif; ?>
     <?php echo $this->formButton('submit', __('Search'), array('type' => 'submit')); ?>
-    <span class="contextual-help hidden-phone hidden-tablet" data-content="Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste, um eine &lt;strong style=&quot;color:#000;&quot;&gt;Suche in der Ausstellung&lt;/strong&gt; durchzuführen."></span>
     <div style="text-align:left; padding-left:2px;"><a href="https://www.deutsche-digitale-bibliothek.de/">Suche im DDB-Portal</a></div>
-    <div style="display: none;" class="tooltip hasArrow">Geben Sie Ihren Suchbegriff in das Suchfeld ein. Klicken Sie auf das Lupensymbol oder drücken Sie die Eingabetaste, um eine <strong>Suche in der Ausstellung</strong> durchzuführen.<div class="arrow"></div></div>
 </form>
