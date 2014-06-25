@@ -130,7 +130,7 @@
             <a href="https://www.deutsche-digitale-bibliothek.de/content/help">Hilfe</a>
           </li>
           <li class="active">
-            <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Ausstellungen</a>
+            <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Entdecken</a>
 <!--             <ul class="nav">
               <li class="active">
                 <a href="/content/exhibits/">Ausstellungen</a>
@@ -196,7 +196,7 @@
                   <a href="https://www.deutsche-digitale-bibliothek.de/content/help">Hilfe</a>
                 </li>
                 <li class="keep-in-front active-default">
-                    <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Ausstellungen</a>
+                    <a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Entdecken</a>
                 <?php
                 // $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
                 // $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
