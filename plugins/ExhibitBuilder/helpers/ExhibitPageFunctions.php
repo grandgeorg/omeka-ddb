@@ -65,7 +65,7 @@ function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0
     if (!isset($entries[$entryIndex])) {
         return null;
     }
-    
+
     $entry = $entries[$entryIndex];
 
     $item = null;
@@ -73,7 +73,7 @@ function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0
     $file_specified = false;
     $caption = null;
 
-    if (($item = $entry->Item)) { 
+    if (($item = $entry->Item)) {
         if (($file = $entry->File)) {
             $file_specified = true;
         } else if (isset($item->Files[$fallbackFileIndex])) {
@@ -116,8 +116,8 @@ function exhibit_builder_page_nav($exhibitPage = null)
     }
 
     $exhibit = $exhibitPage->getExhibit();
-    
-    // Grandgeorg Websolutions start (modified original)    
+
+    // Grandgeorg Websolutions start (modified original)
     $html = '<div class="exhibit-page-nav navigation" id="secondary-nav">' . "\n";
     $html .= '<a id="ddb-omeka-carousel_next" href="#"><span>next</span></a>' . "\n";
     $html .= '<a id="ddb-omeka-carousel_prev" href="#"><span>prev</span></a>' . "\n";
@@ -131,39 +131,45 @@ function exhibit_builder_page_nav($exhibitPage = null)
         $linkText = $page->title;
         $pageExhibit = $page->getExhibit();
         $pageParent = $page->getParent();
-        $pageSiblings = ($pageParent ? exhibit_builder_child_pages($pageParent) : $pageExhibit->getTopPages()); 
+        $pageSiblings = ($pageParent ? exhibit_builder_child_pages($pageParent) : $pageExhibit->getTopPages());
 
         $pageCounter = 1;
         $wtiOutputPath = dirname(dirname(__FILE__)) . '/views/public/images/';
         $pageThumbnailPath = FILES_DIR . '/layout/pagethumbnail/';
-        $defaultPageIcon = '/plugins/ExhibitBuilder/views/public/images/default-page-icon.jpg';
+        // $defaultPageIcon = '/plugins/ExhibitBuilder/views/public/images/default-page-icon.jpg';
         // $html .= "<li>\n<ul>\n";
         foreach ($pageSiblings as $pageSibling) {
-            $html .= '<div id="nav-carusel-item-' . $pageCounter . '" class="nav-carusel-item' 
+            $html .= '<div id="nav-carusel-item-' . $pageCounter . '" class="nav-carusel-item'
                   . ($pageSibling->id == $page->id ? ' current"' : '"') . '>';
             $html .= '<a class="exhibit-page-title" href="';
             $html .= html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling));
             $html .= '" title="' . html_escape($pageSibling->title) . '">';
             // $html .= '<div class="ddb-omeka-navigation-background-image">';
-            if (file_exists($pageThumbnailPath . $pageSibling->pagethumbnail) && 
+            if (file_exists($pageThumbnailPath . $pageSibling->pagethumbnail) &&
                 is_file($pageThumbnailPath . $pageSibling->pagethumbnail)) {
                 $html .= '<img class="ddb-omeka-navigation-background-image" '
                       . 'alt="page-' . $pageCounter . '" '
-                      . 'src="' . substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/pagethumbnail/' 
+                      . 'src="' . substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/pagethumbnail/'
                       . $pageSibling->pagethumbnail . '">';
-            } elseif (file_exists($wtiOutputPath . $exhibit->slug . '-' . $pageSibling->slug . '.jpg')) {
-                $html .= '<img class="ddb-omeka-navigation-background-image" '
-                      . 'alt="page-' . $pageCounter . '" '
-                      . 'src="/plugins/ExhibitBuilder/views/public/images/' 
-                      . $exhibit->slug . '-' . $pageSibling->slug . '.jpg">';
+            // We do not check for auto generated thumbnails, and default icon path is now in files dir.
+            // } elseif (file_exists($wtiOutputPath . $exhibit->slug . '-' . $pageSibling->slug . '.jpg')) {
+            //     $html .= '<img class="ddb-omeka-navigation-background-image" '
+            //           . 'alt="page-' . $pageCounter . '" '
+            //           . 'src="/plugins/ExhibitBuilder/views/public/images/'
+            //           . $exhibit->slug . '-' . $pageSibling->slug . '.jpg">';
+            // } else {
+            //     $html .= '<img class="ddb-omeka-navigation-background-image" alt="page-'
+            //           . $pageCounter . '" src="' . $defaultPageIcon . '">';
             } else {
-                $html .= '<img class="ddb-omeka-navigation-background-image" alt="page-' 
-                      . $pageCounter . '" src="' . $defaultPageIcon . '">';
+                $html .= '<img class="ddb-omeka-navigation-background-image" alt="page-'
+                      . $pageCounter . '" src="' . substr(FILES_DIR, strlen(BASE_DIR))
+                      . '/layout/pagethumbnail/'
+                      . 'default-page-icon.jpg">';
             }
 
             // $html .= '</div>';
             $html .= '<div class="ddb-omeka-pagecounter">' . $pageCounter . '</div>';
-            $html .= '<span>' . html_escape($pageSibling->title) . '</span>'; 
+            $html .= '<span>' . html_escape($pageSibling->title) . '</span>';
             // $html .= '<img src="/themes/ddb/images/page-dot.png">';
             $html .= '</a>';
             $html .= "</div>\n";
@@ -172,7 +178,7 @@ function exhibit_builder_page_nav($exhibitPage = null)
         // $html .= "</ul>\n</li>\n";
     }
     $html .= '</div></div>' . "\n";
-    
+
     $html .= '</div>' . "\n";
     // Grandgeorg Websolutions end
     $html = apply_filters('exhibit_builder_page_nav', $html);
@@ -366,7 +372,7 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
 
 /**
  * Get the children of a page.
- * 
+ *
  * @param ExhibitPage $exhibitPage The exhibit page. If null, uses the current page.
  * @return array[ExhibitPage]
  */
