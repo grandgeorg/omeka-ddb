@@ -111,9 +111,32 @@
                         // $('.etxernal-thumbnail').css({'width' : imgWidth + 'px', 'height' : imgWidth + 'px'});
                     // }
                 }
-
             }
         }
+
+
+        $.fn.openColorboxByUrl = function() {
+            var
+            hash,
+            hashes =  location.search.substring(1).split(/&/),
+            i,
+            cbitem,
+            allowedParams = 'lbitem';
+            for (i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                if (hash[0] === allowedParams) {
+                    cbitem = hash[1];
+                }
+            }
+            this.each(function() {
+                var parts = this.href.split('/');
+                if (cbitem.length > 0 && parts[parts.length - 1] === cbitem) {
+                    $(this).click();
+                }
+            });
+            return this;
+        }
+
         $.Gina.setWindowSizes();
         $.Gina.setThumbGallerImageSizes();
 
@@ -204,7 +227,19 @@
         }
 
         /*  Lightbox - ColorBox  */
-        $(".ddb-omeka-gallery a").colorbox({
+
+        // <?php
+        // $exhibit = get_current_record('exhibit');
+        // $cbItemUrl = url(array('slug'=>$exhibit->slug, 'item_id'=> $this->escape($_GET['lbitem'])), 'exhibitItem');
+        // ?>
+
+       function getColorboxParameters() {
+            var settingsObject = {};
+            return settingsObject;
+        }
+
+
+        var colorboxSettings = $.extend({
             rel:'ddb-omake-colorbox',
             maxWidth:"100%",
             maxHeight:"100%",
@@ -282,8 +317,10 @@
                 });
                 $('#cboxLoadedContent').css('overflow-x', 'hidden');
             }
-        });
+        }, getColorboxParameters());
 
+        $(".ddb-omeka-gallery a").colorbox(colorboxSettings).openColorboxByUrl();
+        // $(".ddb-omeka-gallery a").iterateColorbox();
 
     });
     </script>

@@ -163,11 +163,17 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         //pass all the pages into the view so the breadcrumb can be built there
         unset($params['slug']); // don't need the exhibit slug
 
+        $allowedParams = array(
+            'page_slug_1',
+            'page_slug_2',
+            'page_slug_3'
+        );
+
         $pageTable = $this->_helper->db->getTable('ExhibitPage');
 
         $parentPage = null;
-        foreach($params as $slug) {
-            if(!empty($slug)) {
+        foreach($params as $slugKey => $slug) {
+            if(!empty($slug) && in_array($slugKey, $allowedParams)) {
                 $exhibitPage = $pageTable->findBySlug($slug, $exhibit, $parentPage);
                 if($exhibitPage) {
                     $parentPage = $exhibitPage;
