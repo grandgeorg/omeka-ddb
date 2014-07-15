@@ -375,7 +375,7 @@ h3 { line-height: 1; }
     display: block;
     /*background: url('/themes/ddb/images/carousel-sprite.png') no-repeat transparent;*/
     /*background: url('/themes/ddb/css/ddb-arrows.png') no-repeat transparent;*/
-    background: url('/themes/ddb/css/ddb-arrows-small.png') no-repeat transparent;
+    background: url('ddb-arrows-small.png') no-repeat transparent;
    /* width: 31px;
     height: 31px;*/
     /*width: 27px;*/
@@ -937,7 +937,7 @@ audio {
     display: block;
     /*background: url('/themes/ddb/images/carousel-sprite.png') no-repeat transparent;*/
     /*background: url('/themes/ddb/css/ddb-arrows.png') no-repeat transparent;*/
-    background: url('/themes/ddb/css/ddb-arrows-small.png') no-repeat transparent;
+    background: url('ddb-arrows-small.png') no-repeat transparent;
     /*width: 27px;*/
     width: 22px;
     /*height: 41px;*/

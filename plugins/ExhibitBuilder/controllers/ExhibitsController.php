@@ -356,38 +356,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
 
-        // Grandgeorg Websolutions start
-        // -- We do not generate thumbnials automatically any longer, as they we be uploaded manualy (per page)
-        // if ($success){
-
-        //     require_once dirname(dirname(__FILE__)) . '/vendor/WebsiteToImage.php';
-        //     $websiteToImage = new WebsiteToImage();
-
-
-
-        //     $wtiEngine = 'wkhtmltoimage-i386-0.10.0';
-        //     $unameM = array();
-        //     exec ( 'uname -m', $unameM , $returnUnameMCheck);
-        //     if (0 == $returnUnameMCheck && isset($unameM[0]) && $unameM[0] == 'x86_64') {
-        //         $wtiEngine = 'wkhtmltoimage-amd64-0.10.0';
-        //     }
-        //     $wtiPath = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/bin/';
-        //     $wtiOutputPath = dirname(dirname(__FILE__)) . '/views/public/images/';
-
-        //     $websiteToImage->setProgramPath($wtiPath . $wtiEngine)
-        //         ->setOutputFile($wtiOutputPath . $exhibit->slug . '-' . $exhibitPage->slug . '-temp.jpg')
-        //         ->setQuality(90)
-        //         ->setUrl('http://' . $_SERVER['SERVER_NAME'] . '/exhibits/show/' . $exhibit->slug . '/' . $exhibitPage->slug)
-        //         // ->setOptions('--crop-y 347 --crop-x 38 --crop-h 952 --crop-w 810')
-        //         ->setOptions('--username omeka --password ddb2013 --crop-y 347 --crop-x 38 --crop-h 952 --crop-w 810')
-        //         ->setResizedOutputFile($wtiOutputPath . $exhibit->slug . '-' . $exhibitPage->slug . '.jpg')
-        //         ->setResize('150x150')
-        //         ->start();
-        //         $websiteToImage->convertRisize();
-
-        // }
-        // Grandgeorg Websolutions end
-
         if ($success and array_key_exists('page_metadata_form', $_POST)) {
             $this->_helper->redirector->gotoRoute(array('action' => 'edit-page-metadata', 'id' => $exhibitPage->id), 'exhibitStandard');
             return;

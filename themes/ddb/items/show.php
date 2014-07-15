@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = metadata('item', array('Item Type Metadata', 'Titel'));
 if (empty($title)) { $title = metadata('item', array('Dublin Core', 'Title')); } ?>
 
@@ -6,13 +6,13 @@ if (empty($title)) { $title = metadata('item', array('Dublin Core', 'Title')); }
 
 <h1><?php echo $title ?></h1>
 
-<?php 
+<?php
 $itemMetadata = all_element_texts('item', array('return_type' => 'array'));
 
 // var_dump($metadata);
 
 // $metadataDisplayFields = array(
-//     'Weiterer Titel', 'Institution', 'Link zum Objekt', 
+//     'Weiterer Titel', 'Institution', 'Link zum Objekt',
 //     'Link zum Objekt bei der datenliefernden Einrichtung',
 //     'Typ', 'Teil von', 'Beschreibung', 'Kurzbeschreibung',
 //     'Thema', 'Beteiligte Personen und Organisationen',
@@ -25,7 +25,7 @@ $itemMetadata = all_element_texts('item', array('return_type' => 'array'));
  * Display DDB style Metadata
  */
 $metadataDisplayFields = array(
-    'Weiterer Titel', 'Institution', 'Link zum Objekt', 
+    'Weiterer Titel', 'Institution', 'Link zum Objekt',
     'Link zum Objekt bei der datenliefernden Einrichtung',
     'Typ', 'Teil von', 'Beschreibung', 'Kurzbeschreibung',
     'Thema', 'Beteiligte Personen und Organisationen',
@@ -35,7 +35,7 @@ $metadataDisplayFields = array(
 );
 
 if (isset($itemMetadata['VA DDB Item Type Metadata'])):
-    foreach ($itemMetadata['VA DDB Item Type Metadata'] as $metaName => $metaValue): 
+    foreach ($itemMetadata['VA DDB Item Type Metadata'] as $metaName => $metaValue):
         if(in_array($metaName, $metadataDisplayFields)): ?>
         <div id="<?php echo text_to_id(html_escape('VA DDB Item Type Metadata' . $metaName)); ?>" class="element">
             <h3><?php echo html_escape(__($metaName)); ?></h3>
@@ -50,7 +50,7 @@ if (isset($itemMetadata['VA DDB Item Type Metadata'])):
 <?php endif; endforeach; endif; ?>
 
 
-<?php 
+<?php
 /**
  * Display files
  */
@@ -66,20 +66,20 @@ $wrapperAttributes = null;
 foreach ($files as $file) {
     if (isset($file->metadata)) {
         $metadata = json_decode($file->metadata);
-        if (isset($metadata->video->resolution_x) && 
+        if (isset($metadata->video->resolution_x) &&
             $metadata->video->resolution_x > $width) {
             $width = $metadata->video->resolution_x;
         } else {
             $width = 280;
         }
-        if (isset($metadata->video->resolution_y) && 
+        if (isset($metadata->video->resolution_y) &&
             $metadata->video->resolution_y > 0) {
             $height = $height + $metadata->video->resolution_y;
         } else {
             $height = 100;
         }
-        if (isset($metadata->mime_type) && 
-            ($metadata->mime_type == 'audio/mpeg' || 
+        if (isset($metadata->mime_type) &&
+            ($metadata->mime_type == 'audio/mpeg' ||
                 $metadata->mime_type == 'application/ogg')) {
                 $additionalWrapperOpen = '<audio controls>';
                 $additionalWrapperClose = '</audio>';
@@ -119,7 +119,7 @@ $imagemap = metadata($item, array('Item Type Metadata', 'Imagemap'), array('no_e
 $usemap = array();
 if (!empty($imagemap)) {
     $usemap = array(
-        'data-mediawidth' => (string) $width, 
+        'data-mediawidth' => (string) $width,
         'data-mediaheight' => (string) $height,
         'usemap' => "#imageMap",
         'id' => 'ddb-imagemap-image'
@@ -128,7 +128,7 @@ if (!empty($imagemap)) {
 }
 ?>
 
-<?php 
+<?php
 /**
  * echo the output if any
  */
@@ -138,19 +138,19 @@ if (metadata('item', 'has files') || !empty($embedVideo)): ?>
     <div class="element-text ddb-omeka-itempage-full-item-container">
         <?php echo $embedVideo; ?>
         <?php echo $additionalWrapperOpen; ?>
-        <?php 
+        <?php
         if (isset($wrapperAttributes)) {
             echo files_for_item(array(
-                'imageSize' => 'fullsize', 
+                'imageSize' => 'fullsize',
                 'linkToFile' => false,
                 'imgAttributes'=> $imgAttributes
-            ), $wrapperAttributes); 
+            ), $wrapperAttributes);
         } else {
             echo files_for_item(array(
-                'imageSize' => 'fullsize', 
+                'imageSize' => 'fullsize',
                 'linkToFile' => false,
                 'imgAttributes'=> $imgAttributes
-            )); 
+            ));
         }
         ?>
         <?php echo $additionalWrapperClose; ?>
@@ -158,17 +158,18 @@ if (metadata('item', 'has files') || !empty($embedVideo)): ?>
 </div>
 <?php endif; ?>
 
-<?php 
+<?php
 /**
  * echo imagemap if any
  */
 if (!empty($imagemap)) {
     echo $imagemap;
-    echo '<script src="/themes/ddb/javascripts/vendor/jquery.rwdImageMaps.js" type="text/javascript"></script>';
+    // echo '<script src="/themes/ddb/javascripts/vendor/jquery.rwdImageMaps.js" type="text/javascript"></script>';
+    echo js_tag('vendor/jquery.rwdImageMaps');
 }
 ?>
 
-<?php 
+<?php
 /**
  * If the item belongs to a collection, the following creates a link to that collection.
  */
@@ -180,7 +181,7 @@ if (!empty($imagemap)) {
 <?php // endif; ?>
 
 
-<?php 
+<?php
 /**
  *  The following prints a list of all tags associated with the item
  */
@@ -194,7 +195,7 @@ if (!empty($imagemap)) {
 <?php
 /**
  * The following prints a citation for this item.
- */ 
+ */
 ?>
 <div id="item-citation" class="element">
     <h3>Quellenangabe</h3>
@@ -214,7 +215,7 @@ if (!empty($imagemap)) {
     $(document).ready(function() {
 
         <?php if (!empty($imagemap)): ?>
-        $("area").tooltip({ 
+        $("area").tooltip({
             track: true,
             items: "[data-imgmap]",
             content: function() {
@@ -317,7 +318,7 @@ if (!empty($imagemap)) {
             } else {
                 $.colorbox.resize({width: (newWidth + 63), height: (newHeight + 95)});
             }
-            
+
             <?php if (!empty($imagemap)): ?>
             $('#ddb-imagemap-image').rwdImageMaps(newWidth, newHeight);
             // imagemap.rwdImageMap;
@@ -325,8 +326,8 @@ if (!empty($imagemap)) {
             <?php endif; ?>
         }
         $.Gina.sizeColorBoxItem();
-        
-        
+
+
     });
 
 </script>

@@ -66,7 +66,7 @@
             </div>
             <div class="five columns omega inputs">
                 <?php if (!empty($exhibit->banner) && is_file(FILES_DIR . '/layout/banner/' . $exhibit->banner)): ?>
-                <a href="/files/layout/banner/<?php echo $exhibit->banner; ?>" target="_blank"><img src="/files/layout/banner/<?php echo $exhibit->banner; ?>" style="diplay:block; float:left; height:80px; margin:0 10px 0 0;"></a>
+                <a href="<?php echo WEB_FILES . '/layout/banner/' . $exhibit->banner; ?>" target="_blank"><img src="<?php echo WEB_FILES . '/layout/banner/' . $exhibit->banner; ?>" style="diplay:block; float:left; height:80px; margin:0 10px 0 0;"></a>
                 <?php endif; ?>
                 <?php echo $this->formFile('banner'); ?>
             </div>
@@ -85,7 +85,9 @@
             </div>
             <div class="five columns omega inputs">
                 <?php if (!empty($exhibit->cover) && is_file(FILES_DIR . '/layout/cover/' . $exhibit->cover)): ?>
-                <a href="/files/layout/cover/<?php echo $exhibit->cover; ?>" target="_blank"><img src="/files/layout/cover/<?php echo $exhibit->cover; ?>" style="diplay:block; float:left; height:56px; margin:0 10px 0 0;"></a>
+                <a href="<?php echo WEB_FILES . '/layout/cover/' . $exhibit->cover; ?>" target="_blank">
+                    <img src="<?php echo WEB_FILES . '/layout/cover/'
+                    . $exhibit->cover; ?>" style="diplay:block; float:left; height:56px; margin:0 10px 0 0;"></a>
                 <?php endif; ?>
                 <?php echo $this->formFile('cover'); ?>
             </div>
@@ -126,11 +128,11 @@
         <?php endif; ?>
         <div id="public-featured">
             <div class="public">
-                <label for="public"><?php echo __('Public'); ?>:</label> 
+                <label for="public"><?php echo __('Public'); ?>:</label>
                 <?php echo $this->formCheckbox('public', $exhibit->public, array(), array('1', '0')); ?>
             </div>
             <div class="featured">
-                <label for="featured"><?php echo __('Featured'); ?>:</label> 
+                <label for="featured"><?php echo __('Featured'); ?>:</label>
                 <?php echo $this->formCheckbox('featured', $exhibit->featured, array(), array('1', '0')); ?>
             </div>
         </div>

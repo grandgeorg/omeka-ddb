@@ -165,7 +165,7 @@
         <div class="row">
           <div class="span7">
             <a href="https://www.deutsche-digitale-bibliothek.de/" class="navigation-header-logo" title="Zur Startseite" tabindex="-1">
-              <img src="/themes/ddb/images/logo.png" alt="Logo: Deutsche Digitale Bibliothek">
+              <img src="<?php echo img('logo.png'); ?>" alt="Logo: Deutsche Digitale Bibliothek">
             </a>
             <div role="navigation">
               <ul class="navigation inline">
@@ -275,7 +275,6 @@
 <!--[if lt IE 9]>
   </div>
 <![endif]-->
-
         <div id="wrap" class="container">
             <div id="content">
                 <?php fire_plugin_hook('public_content_top', array('view'=>$this)); ?>

@@ -130,7 +130,8 @@
             }
             this.each(function() {
                 var parts = this.href.split('/');
-                if (cbitem.length > 0 && parts[parts.length - 1] === cbitem) {
+                if (typeof cbitem !== 'undefined' && cbitem.length > 0
+                    && parts[parts.length - 1] === cbitem) {
                     $(this).click();
                 }
             });

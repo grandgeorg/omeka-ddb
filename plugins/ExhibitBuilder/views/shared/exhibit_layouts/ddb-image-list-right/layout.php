@@ -34,7 +34,7 @@
         <?php endif; ?>
         <?php if (isset($exhibit->banner) && !empty($exhibit->banner) && 
             file_exists(FILES_DIR . '/layout/banner/' . $exhibit->banner)): ?>
-        <img src="<?php echo substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/banner/' 
+        <img src="<?php echo WEB_FILES . '/layout/banner/' 
             . $exhibit->banner; ?>" alt="exihibition banner" class="exhibition-banner">
         <?php endif; ?>
         <?php if (isset($exhibitPage->widget) && !empty($exhibitPage->widget)): ?>

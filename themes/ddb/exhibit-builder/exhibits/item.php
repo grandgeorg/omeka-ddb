@@ -11,22 +11,22 @@ foreach ($files as $file) {
     if (isset($file->metadata)) {
         $metadata = json_decode($file->metadata);
         // var_dump($metadata);
-        if (isset($metadata->video->resolution_x) && 
+        if (isset($metadata->video->resolution_x) &&
             $metadata->video->resolution_x > $width) {
 
             $width = $metadata->video->resolution_x;
         } else {
             $width = 280;
         }
-        if (isset($metadata->video->resolution_y) && 
+        if (isset($metadata->video->resolution_y) &&
             $metadata->video->resolution_y > 0) {
 
             $height = $height + $metadata->video->resolution_y;
         } else {
             $height = 100;
         }
-        if (isset($metadata->mime_type) && 
-            ($metadata->mime_type == 'audio/mpeg' || 
+        if (isset($metadata->mime_type) &&
+            ($metadata->mime_type == 'audio/mpeg' ||
                 $metadata->mime_type == 'application/ogg')) {
                 $additionalWrapperOpen = '<audio controls>';
                 $additionalWrapperClose = '</audio>';
@@ -63,7 +63,7 @@ $imagemap = metadata($item, array('Item Type Metadata', 'Imagemap'), array('no_e
 $usemap = array();
 if (!empty($imagemap)) {
     $usemap = array(
-        'data-mediawidth' => (string) $width, 
+        'data-mediawidth' => (string) $width,
         'data-mediaheight' => (string) $height,
         'usemap' => "#imageMap",
         'id' => 'ddb-imagemap-image'
@@ -76,20 +76,26 @@ if (!empty($imagemap)) {
 <?php echo $embedVideo; ?>
 <?php echo $additionalWrapperOpen; ?>
 <?php echo files_for_item(array(
-        'imageSize' => 'fullsize', 
+        'imageSize' => 'fullsize',
         'linkToFile' => false,
         'imgAttributes'=> $imgAttributes
-        ), 
+        ),
     $wrapperAttributes); ?>
 <?php echo $additionalWrapperClose; ?>
 </div>
 
-<?php 
+<?php
 if (!empty($imagemap)) {
     echo $imagemap;
     // queue_js_file('vendor/jquery.rwdImageMaps');
-    // echo head_js(); 
-    echo '<script src="/themes/ddb/javascripts/vendor/jquery.rwdImageMaps.js" type="text/javascript"></script>';
+    // echo head_js();
+    // echo '<ul>'
+    // . '<li>' . public_url() . '</li>'
+    // . '<li>' . absolute_url() . '</li>'
+    // . '<li>' . current_url() . '</li>'
+    // . '<li>' . js_tag('vendor/jquery.rwdImageMaps') . '</li>'
+    // . '</ul>';
+    echo js_tag('vendor/jquery.rwdImageMaps');
 }
 ?>
 
@@ -97,7 +103,7 @@ if (!empty($imagemap)) {
     $(document).ready(function() {
 
         <?php if (!empty($imagemap)): ?>
-        $("area").tooltip({ 
+        $("area").tooltip({
             track: true,
             items: "[data-imgmap]",
             content: function() {
@@ -168,7 +174,7 @@ if (!empty($imagemap)) {
             } else {
                 $.colorbox.resize({width: (newWidth + 63), height: (newHeight + 95)});
             }
-            
+
             <?php if (!empty($imagemap)): ?>
             $('#ddb-imagemap-image').rwdImageMaps(newWidth, newHeight);
             // imagemap.rwdImageMap;
@@ -176,8 +182,8 @@ if (!empty($imagemap)) {
             <?php endif; ?>
         }
         $.Gina.sizeColorBoxItem();
-        
-        
+
+
     });
 
 </script>

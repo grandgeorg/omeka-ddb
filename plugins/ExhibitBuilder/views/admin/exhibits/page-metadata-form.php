@@ -44,9 +44,10 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             <div class="five columns omega inputs">
                  <p class="explanation"><?php echo sprintf(
                      __('Minimum size for image (width x height) is %d x %d pixel'), 92, 71); ?></p>
-                <?php if (!empty($exhibit_page->pagethumbnail) && 
+                <?php if (!empty($exhibit_page->pagethumbnail) &&
                     is_file(FILES_DIR . '/layout/pagethumbnail/' . $exhibit_page->pagethumbnail)): ?>
-                <a href="/files/layout/pagethumbnail/<?php echo $exhibit_page->pagethumbnail; ?>" target="_blank"><img src="/files/layout/pagethumbnail/<?php echo $exhibit_page->pagethumbnail; ?>" style="diplay:block; float:left; height:80px; margin:0 10px 0 0;"></a>
+                <a href="<?php echo WEB_FILES . '/layout/pagethumbnail/' . $exhibit_page->pagethumbnail; ?>" target="_blank">
+                    <img src="<?php echo WEB_FILES . '/layout/pagethumbnail/' . $exhibit_page->pagethumbnail; ?>" style="diplay:block; float:left; height:80px; margin:0 10px 0 0;"></a>
                 <?php endif; ?>
                 <?php echo $this->formFile('pagethumbnail'); ?>
             </div>

@@ -4,7 +4,7 @@ echo head(array(
     'bodyclass' => 'exhibits show'));
 ?>
 
-<div class="ddb-omeka-exhibit-title"><a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Ausstellungen</a>&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;<a href="/"><span class="help-bc-active"><?php echo metadata('exhibit', 'title'); ?></span></a></div>
+<div class="ddb-omeka-exhibit-title"><a href="https://www.deutsche-digitale-bibliothek.de/content/exhibits/">Ausstellungen</a>&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;<a href="<?php echo WEB_ROOT; ?>"><span class="help-bc-active"><?php echo metadata('exhibit', 'title'); ?></span></a></div>
 
 <nav id="exhibit-pages" class="exhibit-page-navigation-bar">
     <?php echo exhibit_builder_page_nav(); ?>
@@ -21,9 +21,9 @@ echo head(array(
 <div id="exhibit-page-navigation" class="exhibit-page-prevnext-bar">
     <?php if ($prevLink = exhibit_builder_link_to_previous_page('&larr; vorherige Seite')): ?>
     <div id="exhibit-nav-prev">
-    <?php 
-    // echo str_replace(array('</a>', '&rarr;', '&larr;'), 
-    //     array('<span class="nav-icon-prev"></span></a>', '', ''), $prevLink); 
+    <?php
+    // echo str_replace(array('</a>', '&rarr;', '&larr;'),
+    //     array('<span class="nav-icon-prev"></span></a>', '', ''), $prevLink);
     echo $prevLink;
     ?>
     </div>
@@ -33,8 +33,8 @@ echo head(array(
     </div>
     <?php if ($nextLink = exhibit_builder_link_to_next_page('nächste Seite &rarr;')): ?>
     <div id="exhibit-nav-next">
-    <?php 
-    // echo str_replace(array('</a>', '&rarr;', '&larr;'), array('<span class="nav-icon-next"></span></a>', '', ''), $nextLink); 
+    <?php
+    // echo str_replace(array('</a>', '&rarr;', '&larr;'), array('<span class="nav-icon-next"></span></a>', '', ''), $nextLink);
     echo $nextLink;
     ?>
     </div>

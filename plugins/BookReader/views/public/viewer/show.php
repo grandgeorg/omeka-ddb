@@ -29,7 +29,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <base target="_parent" />
     <link rel="apple-touch-icon" href="<?php echo WEB_FILES . '/thumbnails/' . $coverFile->getDerivativeFilename(); ?>" />
-    <link rel="shortcut icon" href="<?php echo get_option('bookreader_favicon_url'); ?>" type="image/x-icon" />
+    <!-- <link rel="shortcut icon" href="<?php // echo get_option('bookreader_favicon_url'); ?>" type="image/x-icon" /> -->
+    <link rel="shortcut icon" href="<?php echo web_path_to('images/favicon.ico'); ?>" type="image/x-icon" />
     <title><?php echo $title; ?></title>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php echo $sharedUrl . '/css/BookReader.css'; ?>" />

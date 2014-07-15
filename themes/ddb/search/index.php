@@ -48,7 +48,7 @@ $searchRecordTypes = get_search_record_types();
                             case 'Item':
                                 if ($record->hasThumbnail()) {
                                     $thmbnailLink = link_to_item(
-                                        file_image('square_thumbnail', array(), $record), 
+                                        file_image('square_thumbnail', array(), $record),
                                         array(), 'show', $record);
                                 }
                                 break;
@@ -57,10 +57,10 @@ $searchRecordTypes = get_search_record_types();
 
                                     $pageThumbnail = '<img class="ddb-omeka-page-thumbnail" '
                                         . 'alt="Exhibit Page" '
-                                        . 'src="' . substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/pagethumbnail/' 
+                                        . 'src="' . WEB_FILES. '/layout/pagethumbnail/'
                                         . $record->pagethumbnail . '">';
 
-                                    $thmbnailLink = '<a href="' 
+                                    $thmbnailLink = '<a href="'
                                         . record_url($record, 'show') . '">'
                                         . $pageThumbnail
                                         . '</a>';
@@ -71,10 +71,10 @@ $searchRecordTypes = get_search_record_types();
 
                                     $pageThumbnail = '<img class="ddb-omeka-exhibit-thumbnail" '
                                         . 'alt="Exhibit" '
-                                        . 'src="' . substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/cover/' 
+                                        . 'src="' . WEB_FILES. '/layout/cover/'
                                         . $record->cover . '">';
 
-                                    $thmbnailLink = '<a href="' 
+                                    $thmbnailLink = '<a href="'
                                         . record_url($record, 'show') . '">'
                                         . $pageThumbnail
                                         . '</a>';

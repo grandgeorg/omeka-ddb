@@ -1,7 +1,7 @@
 <?php
 // foreach (loop('files', $item->Files) as $file):
 //     if ( ($file->hasThumbnail()){
-//          $caption = (metadata($file,array('Dublin Core', 'Title'))) ? 
+//          $caption = (metadata($file,array('Dublin Core', 'Title'))) ?
 //             '<strong>'.metadata($file, array('Dublin Core', 'Title')).'</strong>' : '';
 //          file_markup($file, array('imageSize'=>'fullsize', 'linkToFile'=>'fullsize',
 //             'linkAttributes'=>array('rel'=>'fancy_group', 'class'=>'fancyitem',
@@ -75,9 +75,9 @@ var_dump($exhibitPage);
         <?php if (isset($exhibit->widget_top_second) && !empty($exhibit->widget_top_second)): ?>
         <div class="ddb-omeka-exhibit-widget-wrapper"><div class="ddb-omeka-exhibit-widget ddb-omeka-exhibit-widget-top-second"><?php echo $exhibit->widget_top_second; ?></div></div>
         <?php endif; ?>
-        <?php if (isset($exhibit->banner) && !empty($exhibit->banner) && 
+        <?php if (isset($exhibit->banner) && !empty($exhibit->banner) &&
             file_exists(FILES_DIR . '/layout/banner/' . $exhibit->banner)): ?>
-        <img src="<?php echo substr(FILES_DIR, strlen(BASE_DIR)) . '/layout/banner/' 
+        <img src="<?php echo WEB_FILES . '/layout/banner/'
             . $exhibit->banner; ?>" alt="exihibition banner" class="exhibition-banner">
         <?php endif; ?>
         <?php if (isset($exhibitPage->widget) && !empty($exhibitPage->widget)): ?>

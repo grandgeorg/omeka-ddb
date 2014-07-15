@@ -27,7 +27,7 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
     <div class="ddb-omeka-exhibit-list exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
         <?php if ($exhibit->cover): ?>
         <div class="ddb-omeka-exhibit-cover">
-            <img alt="<?php echo $exhibit->cover; ?>" src="/files/layout/cover/<?php echo $exhibit->cover; ?>">
+            <img alt="<?php echo $exhibit->cover; ?>" src="<?php echo WEB_FILES . '/layout/cover/' . $exhibit->cover; ?>">
         </div>
         <?php endif; ?>
         <div class="ddb-omeka-exhibit-info">
