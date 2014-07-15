@@ -3,3 +3,4 @@ _unset
 /db.ini
 public/plugins/ExhibitBuilder/views/public/images
 .htaccess
+plugins/Shortcodes/ShortcodesPlugin.php
