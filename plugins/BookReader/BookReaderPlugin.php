@@ -110,8 +110,8 @@ class BookReaderPlugin extends Omeka_Plugin_AbstractPlugin
     {
         $post = $args['post'];
 
-        if (!is_file(trim($post['bookreader_custom_css']))
-            && is_file(WEB_PLUGIN . '/BookReader/views/shared/css/' . trim($post['bookreader_custom_css']))) {
+        if (!file_exists(trim($post['bookreader_custom_css']))
+            && file_exists(PLUGIN_DIR . '/BookReader/views/shared/css/' . trim($post['bookreader_custom_css']))) {
 
             set_option('bookreader_custom_css', WEB_PLUGIN . '/BookReader/views/shared/css/' . trim($post['bookreader_custom_css']));
         } else {
