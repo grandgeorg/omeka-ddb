@@ -123,7 +123,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
 
 /**
  * Return a URL to an item within an exhibit.
- * 
+ *
  * @param Item $item
  * @param Exhibit|null $exhibit If null, will use the current exhibit.
  * @return string
@@ -214,7 +214,7 @@ function exhibit_builder_form_attachment($item = null, $file = null, $caption = 
               . '</h4>';
         if (metadata($item, 'has files')) {
             if ($file) {
-                $html .= '<div class="item-file">' 
+                $html .= '<div class="item-file">'
                     . file_image('square_thumbnail', array(), $file)
                     . '</div>';
             } else {
@@ -230,7 +230,7 @@ function exhibit_builder_form_attachment($item = null, $file = null, $caption = 
                 $html .= exhibit_builder_form_file($order, $item, $file);
             }
         }
-        
+
         if ($caption !== false) {
             $html .= exhibit_builder_form_caption($order, $caption);
         }
@@ -364,7 +364,7 @@ function exhibit_builder_layout($layout, $input = true)
         $layoutIni = new Zend_Config_Ini($iniPath, 'layout');
         $layoutName = $layoutIni->name;
     }
-    
+
     $html = '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. html_escape($layout) .'">'
           . '<img src="'. html_escape($imgFile) .'" />';
 
@@ -376,7 +376,7 @@ function exhibit_builder_layout($layout, $input = true)
 
     $html .= '<div class="layout-name">' . html_escape($layoutName) . '</div>'
            . '</div>';
-           
+
     return apply_filters('exhibit_builder_layout', $html,
         array('layout' => $layout, 'input' => $input));
 }
@@ -432,7 +432,7 @@ function exhibit_builder_render_layout_form($layout)
  * @param string $thumbnailType The type of thumbnail to display
  * @return string HTML output
  **/
-function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), 
+function exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
     $thumbnailType = 'square_thumbnail', $linkOptions = array()) {
 
     $html = '';
@@ -457,13 +457,13 @@ function exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
             $html .= '</div>' . "\n";
         }
     }
-    
+
     return apply_filters('exhibit_builder_thumbnail_gallery', $html,
         array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
 }
 
 // Grandgeorg Websolutions
-function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(), 
+function ddb_exhibit_builder_thumbnail_gallery($start, $end, $props = array(),
     $thumbnailType = 'square_thumbnail', $linkOptions = array()) {
     return ExhibitDdbHelper::getThumbnailGallery($start, $end, $props, $thumbnailType, $linkOptions);
 }
@@ -515,7 +515,7 @@ function exhibit_builder_random_featured_exhibit()
  * @param array $linkProperties Attributes for use when linking to an item
  * @return string
  */
-function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkProperties)
+function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkProperties, $thumbnail = null)
 {
     if (!$attachment) {
         return '';
@@ -531,11 +531,12 @@ function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkPrope
     if (!isset($fileOptions['imgAttributes']['alt'])) {
         $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
     }
-    
+
     if ($file) {
         $html = file_markup($file, $fileOptions, null);
+        // var_dump($file);
     } else if($item) {
-        $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
+        $html = exhibit_builder_link_to_exhibit_item($thumbnail, $linkProperties, $item);
     }
 
     $html .= exhibit_builder_attachment_caption($attachment);
@@ -554,7 +555,7 @@ function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkPrope
  */
 function exhibit_builder_attachment_caption($attachment)
 {
-    
+
     if (!is_string($attachment['caption']) || $attachment['caption'] == '') {
         return '';
     }
